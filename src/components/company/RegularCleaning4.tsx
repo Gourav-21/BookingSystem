@@ -45,7 +45,6 @@ export default function BuildingCleaning3({ onInputChange, formData }) {
         {options.map((option, index) => (
           <div key={index} className="flex items-center space-x-2">
             <Checkbox
-              type="checkbox"
               id={`option-${index}`}
               checked={selectedOptions.includes(option)}
               onCheckedChange={() => handleCheckboxChange(option)}

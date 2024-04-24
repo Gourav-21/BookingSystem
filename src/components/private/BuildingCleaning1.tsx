@@ -61,7 +61,6 @@ export default function BuildingCleaning1({ formData, onInputChange }) {
                 {options.map((option, index) => (
                     <div key={index} className="flex items-center space-x-2">
                         <Checkbox
-                            type="checkbox"
                             id={`option-${index}`}
                             checked={selectedOptions.includes(option)}
                             onCheckedChange={() => handleCheckboxChange(option)}
@@ -77,7 +76,6 @@ export default function BuildingCleaning1({ formData, onInputChange }) {
                 {options2.map((option, index) => (
                     <div key={index} className="flex items-center space-x-2">
                         <Checkbox
-                            type="checkbox"
                             id={`option-${option}`}
                             checked={selectedOptions2.includes(option)}
                             onCheckedChange={() => handleCheckboxChange2(option)}
