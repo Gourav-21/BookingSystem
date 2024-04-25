@@ -1,13 +1,22 @@
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "../ui/input"
+import { useEffect } from "react";
 
 
-export default function BuildingCleaning3({ onInputChange, formData }) {
+export default function BuildingCleaning3({ onInputChange, formData, setNext }) {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         onInputChange(name, value);
     };
+
+    useEffect(() => {
+        if (formData?.area_size && formData?.How_many_floors_must_be_washed) {
+            setNext(true);
+        }else{
+            setNext(false)
+        }
+    }, [formData?.area_size, formData?.How_many_floors_must_be_washed]);
 
     return (
         <div className="grid w-full items-center gap-5">

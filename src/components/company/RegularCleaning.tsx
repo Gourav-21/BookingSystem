@@ -5,7 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils"
 
-export default function RegularCleaning({ formData, onInputChange }) {
+export default function RegularCleaning({ formData, onInputChange, setNext }) {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [field, setField] = useState(1);
 
@@ -19,6 +19,14 @@ export default function RegularCleaning({ formData, onInputChange }) {
         "Instruction",
         "Other"
     ];
+
+    useEffect(() => {
+        if (formData?.what_type_of_premises_should_be_washed && formData.what_type_of_premises_should_be_washed.length != "" && formData?.frequency && formData.day0 && formData.time0){
+            setNext(true)
+        } else {
+            setNext(false)
+        }
+    }, [formData])
 
 
     useEffect(() => {

@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup } from "@radix-ui/react-radio-group"
 import { RadioGroupItem } from "../ui/radio-group"
 
-export default function RegularCleaning2({ onInputChange, formData }) {
+export default function RegularCleaning2({ onInputChange, formData, setNext }) {
     const [roomCounts, setRoomCounts] = useState({
         officeCell: 0,
         meetingRoom: 0,
@@ -48,6 +48,14 @@ export default function RegularCleaning2({ onInputChange, formData }) {
             other: 0
         })
     }, [])
+
+    React.useEffect(()=>{
+        if(formData?.does_the_company_have_a_lift && (formData?.rooms?.officeCell > 0 || formData?.rooms?.meetingRoom > 0 || formData?.rooms?.bathroom > 0 || formData?.rooms?.cafeteria > 0 || formData?.rooms?.kitchen > 0 || formData?.rooms?.officeCommunity > 0 || formData?.rooms?.other > 0)){
+            setNext(true)
+        }else{
+            setNext(false)
+        }
+    },[formData])
 
     return (
         <div className="grid w-full items-center gap-5">

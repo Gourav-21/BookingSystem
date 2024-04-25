@@ -3,7 +3,7 @@ import { Textarea } from "../ui/textarea"
 import { useEffect, useState } from "react";
 import { Checkbox } from "../ui/checkbox"
 
-export default function BuildingCleaning3({ onInputChange, formData }) {
+export default function BuildingCleaning3({ onInputChange, formData, setNext }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const options = [
@@ -35,6 +35,14 @@ export default function BuildingCleaning3({ onInputChange, formData }) {
   useEffect(() => {
     setSelectedOptions(formData?.Extra_services || [])
   }, [])
+
+  useEffect(()=>{
+    if(formData?.Other_comments && formData?.Other_comments.length > 0 && formData?.Extra_services.length > 0){
+      setNext(true)
+    }else{
+      setNext(false)
+    }
+  },[formData])
 
   return (
     <div className="grid w-full items-center gap-5">

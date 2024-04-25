@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CardContent, CardHeader, CardTitle } from "./ui/card";
 import CompanySubmitDetail from "./company/company-submit-detail";
 import Describe from "./Describe";
@@ -33,14 +33,20 @@ export default function Company({ page, setPage }) {
   const [next, setNext] = useState(true);
 
   const handleChoiceChange = (value) => {
-    setNext(true)
     setFormData({
       type: "Company",
       cleaningType: value
     });
-
+    
     setChoice(value);
   };
+
+  console.log(next)
+  
+  useEffect(() =>{
+    if(page==0)
+    setNext(true)
+  },[page])
 
   const nextPage = () => {
     if(next){
@@ -69,9 +75,9 @@ export default function Company({ page, setPage }) {
       case "regular-cleaning":
         // @ts-ignore
         if(formData?.what_type_of_premises_should_be_washed && formData?.what_type_of_premises_should_be_washed.includes("Office")){
-          return [<RegularCleaning key="page1" onInputChange={handleInputChange} formData={formData} />, <RegularCleaning2 key="page2" onInputChange={handleInputChange} formData={formData} />, <RegularCleaning3 key="page3"  onInputChange={handleInputChange}  formData={formData} />, <RegularCleaning4 key="page4"  onInputChange={handleInputChange}  formData={formData} />,<CompanySubmitDetail key="page5" onInputChange={handleInputChange} formData={formData} />];
+          return [<RegularCleaning key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning3 key="page3"  setNext={setNext} onInputChange={handleInputChange}  formData={formData} />, <RegularCleaning4 key="page4"  setNext={setNext} onInputChange={handleInputChange}  formData={formData} />,<CompanySubmitDetail key="page5" onInputChange={handleInputChange} formData={formData} setNext={setNext}  />];
         }else{
-          return [<RegularCleaning key="page1" onInputChange={handleInputChange} formData={formData} />,<RegularCleaning3 key="page3"  onInputChange={handleInputChange}  formData={formData} />, <RegularCleaning4 key="page4"  onInputChange={handleInputChange}  formData={formData} />,<CompanySubmitDetail key="page5" onInputChange={handleInputChange} formData={formData} />];
+          return [<RegularCleaning key="page1" setNext={setNext}  onInputChange={handleInputChange} formData={formData} />,<RegularCleaning3 key="page3" setNext={setNext}  onInputChange={handleInputChange}  formData={formData} />, <RegularCleaning4 key="page4" setNext={setNext}  onInputChange={handleInputChange}  formData={formData} />,<CompanySubmitDetail key="page5" onInputChange={handleInputChange} formData={formData} setNext={setNext}  />];
         }
       default:
         return [<Describe key="page1" onInputChange={handleInputChange} formData={formData} setNext={setNext} />, <CompanySubmitDetail key="page2" onInputChange={handleInputChange} formData={formData} setNext={setNext} />];
