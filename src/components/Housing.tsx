@@ -38,7 +38,6 @@ export default function HousingAssociationCleaning({ page, setPage }) {
 
     setChoice(value);
   };
-  console.log(formData)
 
   const nextPage = () => setPage(page => Math.min(page + 1, getPages().length));
   const prevPage = () => setPage(page => Math.max(page - 1, 0));

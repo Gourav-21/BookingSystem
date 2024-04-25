@@ -150,7 +150,6 @@ export default function PrivateCleaning({ page, setPage }) {
     console.log("Submitted Data:", formData);
   };
 
-  console.log(formData)
 
   return (
     <div>
