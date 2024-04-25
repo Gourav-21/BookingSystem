@@ -9,6 +9,8 @@ import RegularCleaning from "./company/RegularCleaning";
 import RegularCleaning2 from "./company/RegularCleaning2";
 import RegularCleaning3 from "./company/RegularCleaning3";
 import RegularCleaning4 from "./company/RegularCleaning4";
+import Example from "./Success";
+import Success from "./Success";
 
 function PageIndicator({ currentPage, totalPages }) {
   return (
@@ -26,9 +28,9 @@ function PageIndicator({ currentPage, totalPages }) {
 export default function Company({ page, setPage }) {
   const [choice, setChoice] = useState(null);
   const [formData, setFormData] = useState({});
+  const [submitted, setSubmitted] = useState(false);
 
-  const 
-  handleChoiceChange = (value) => {
+  const handleChoiceChange = (value) => {
     setFormData({
       type: "Company",
       cleaningType: value
@@ -63,25 +65,39 @@ export default function Company({ page, setPage }) {
 
   const submitData = () => {
     console.log("Submitted Data:", formData);
+    setSubmitted(true);
+  };
+
+  const goToHome = () => {
+    setPage(0);
+    setFormData({});
+    setSubmitted(false);
   };
 
   return (
     <div>
-      {page === 0 ? (
-        <ChoicePage choice={choice} onChoiceChange={handleChoiceChange} nextPage={nextPage} />
+      {!submitted ? (
+        page === 0 ? (
+          <ChoicePage choice={choice} onChoiceChange={handleChoiceChange} nextPage={nextPage} />
+        ) : (
+          <>
+            {getPages(choice)[page - 1]}
+            <div className="flex justify-between mt-4">
+              <Button variant="outline" className="rounded-r-none" onClick={prevPage}>back</Button>
+              {page === getPages(choice).length ? (
+                <Button variant="outline" className="flex-1 rounded-l-none" onClick={submitData}>Submit</Button>
+              ) : (
+                <Button variant="outline" className="flex-1 rounded-l-none" onClick={nextPage}>Next</Button>
+              )}
+            </div>
+          </>
+        )
       ) : (
-        <>
-          {getPages(choice)[page - 1]}
-          <div className="flex justify-between mt-4">
-            <Button variant="outline" className="rounded-r-none" onClick={prevPage}>back</Button>
-            {page === getPages(choice).length ? (
-              <Button variant="outline" className="flex-1 rounded-l-none" onClick={submitData}>Submit</Button>
-            ) : (
-              <Button variant="outline" className="flex-1 rounded-l-none" onClick={nextPage}>Next</Button>
-            )}
-          </div>
-
-        </>
+        <div className="text-center">
+          <Success />
+          <h2 className="text-2xl font-semibold mb-4">Successfully Submitted!</h2>
+          <Button variant="secondary" onClick={goToHome}>go back</Button>
+        </div>
       )}
       <PageIndicator currentPage={page + 1} totalPages={choice ? getPages(choice).length + 1 : 1} />
     </div>

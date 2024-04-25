@@ -1,5 +1,4 @@
 import './App.css'
-import { MenuCard } from './components/MenuCard'
 import {
   Card,
   CardContent,
@@ -9,6 +8,8 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Lock } from 'lucide-react'
+import Success from './components/Success'
+import { MenuCard } from './components/MenuCard'
 
 function App() {
 
@@ -21,7 +22,6 @@ function App() {
         </CardHeader>
         <CardContent>
           <MenuCard />
-          {/* <MovingLaundry11 formData={{}} onInputChange={e => {}} /> */}
         </CardContent>
         <CardFooter className="grid gap-3">
           <p className="text-xs text-gray-500 text-wrap text-center"> <b className="inline-flex text-center"> <Lock height={14} className='' />Your privacy is safeguarded:</b> We process all data in accordance with the Personal Data Protection Regulation (GDPR).</p>

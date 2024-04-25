@@ -10,6 +10,7 @@ import Describe from "./Describe";
 import HousingSubmitDetail from "./housing/housing-submit-detail copy";
 import Page1 from "./housing/stairAndCoridorWashing/page1";
 import Page2 from "./housing/stairAndCoridorWashing/page2";
+import Success from "./Success";
 
 function PageIndicator({ currentPage, totalPages }) {
   return (
@@ -27,6 +28,7 @@ function PageIndicator({ currentPage, totalPages }) {
 export default function HousingAssociationCleaning({ page, setPage }) {
   const [choice, setChoice] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const [submitted, setSubmitted] = useState(false);
 
   const [formData, setFormData] = useState({});
 
@@ -66,25 +68,39 @@ export default function HousingAssociationCleaning({ page, setPage }) {
 
   const submitData = () => {
     console.log("Submitted Data:", formData);
+    setSubmitted(true);
+  };
+
+  const goToHome = () => {
+    setPage(0);
+    setFormData({});
+    setSubmitted(false);
   };
 
   return (
     <div>
-      {page === 0 ? (
-        <ChoicePage selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} onChoiceChange={handleChoiceChange} nextPage={nextPage} />
+      {!submitted ? (
+         page === 0 ? (
+          <ChoicePage selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} onChoiceChange={handleChoiceChange} nextPage={nextPage} />
+        ) : (
+          <>
+            {getPages()[page - 1]}
+            <div className="flex justify-between mt-4">
+              <Button variant="outline" className="rounded-r-none" onClick={prevPage}>back</Button>
+              {page === getPages().length ? (
+                <Button variant="outline" className="flex-1 rounded-l-none" onClick={submitData}>Submit</Button>
+              ) : (
+                <Button variant="outline" className="flex-1 rounded-l-none" onClick={nextPage}>Next</Button>
+              )}
+            </div>
+          </>
+        )
       ) : (
-        <>
-          {getPages()[page - 1]}
-          <div className="flex justify-between mt-4">
-            <Button variant="outline" className="rounded-r-none" onClick={prevPage}>back</Button>
-            {page === getPages().length ? (
-              <Button variant="outline" className="flex-1 rounded-l-none" onClick={submitData}>Submit</Button>
-            ) : (
-              <Button variant="outline" className="flex-1 rounded-l-none" onClick={nextPage}>Next</Button>
-            )}
-          </div>
-
-        </>
+        <div className="text-center">
+          <Success />
+          <h2 className="text-2xl font-semibold mb-4">Successfully Submitted!</h2>
+          <Button variant="secondary" onClick={goToHome}>go back</Button>
+        </div>
       )}
       <PageIndicator currentPage={page + 1} totalPages={choice ? getPages().length + 1 : 1} />
     </div>
