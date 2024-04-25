@@ -5,7 +5,7 @@ import { CardDescription } from "../ui/card"
 import { Textarea } from "../ui/textarea"
 import { useEffect, useState } from "react"
 
-export default function MovingLaundry10({ formData, onInputChange }) {
+export default function MovingLaundry10({ onInputChange, formData, setNext }) {
     const [heavy, setHeavy] = useState("no")
     const [fragile, setFragile] = useState("no")
 

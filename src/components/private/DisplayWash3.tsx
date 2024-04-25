@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { Button } from "../ui/button"
 import { Card } from "../ui/card"
 
-export default function DisplayWash3({ formData, onInputChange }) {
+export default function DisplayWash3({ onInputChange, formData, setNext }) {
     const [selectedOptions, setSelectedOptions] = useState([]);
 
     const options = [

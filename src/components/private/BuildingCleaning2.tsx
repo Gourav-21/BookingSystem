@@ -16,13 +16,18 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 
-export default function BuildingCleaning2({ onInputChange, formData }) {
+export default function BuildingCleaning2({ onInputChange, formData, setNext }) {
     const [flexible, setFlexible] = useState("no");
 
     React.useEffect(() => {
         setFlexible(formData?.washing_Date_flexible || "no");
     }, [])
 
+    React.useEffect(() => {
+        const isValid = formData?.washingDate && formData?.type_of_home && (flexible === "yes" ? formData?.Flexibility : true);
+        setNext(isValid);
+    }, [formData, flexible, setNext]);
+    
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">

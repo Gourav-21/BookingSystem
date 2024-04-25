@@ -3,12 +3,23 @@ import { Label } from "../ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
 import { RadioGroupItem } from "../ui/radio-group"
 import { Input } from "../ui/input"
+import { useEffect } from "react"
 
-export default function RegularCleaning({ formData, onInputChange }) {
+export default function RegularCleaning({ onInputChange, formData, setNext }) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     onInputChange(name, value);
   };
+
+  useEffect(() => {
+    const isValid =
+      formData?.type_of_home &&
+      formData?.wash_entire_home &&
+      formData?.area_size;
+
+    setNext(isValid);
+  }, [formData, setNext]);
+
   return (
     <div className="grid w-full items-center gap-4">
       <div className="flex flex-col space-y-1.5">

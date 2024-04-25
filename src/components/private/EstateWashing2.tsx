@@ -7,7 +7,7 @@ import { Card } from "../ui/card"
 import { useEffect, useState } from "react";
 
 
-export default function EstateWashing2({ onInputChange, formData }) {
+export default function EstateWashing2({ onInputChange, formData, setNext }) {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         onInputChange(name, value);

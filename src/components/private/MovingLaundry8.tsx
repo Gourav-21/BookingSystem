@@ -4,7 +4,7 @@ import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-export default function MovingLaundry8({ onInputChange, formData }) {
+export default function MovingLaundry8({ onInputChange, formData, setNext }) {
 
   const [ToAddress, setToAddress] = useState({
     address: '',

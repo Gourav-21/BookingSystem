@@ -3,7 +3,7 @@ import { Label } from "../ui/label"
 import { RadioGroupItem } from "../ui/radio-group"
 import { Textarea } from "../ui/textarea"
 
-export default function DisplayWash4({ formData, onInputChange }) {
+export default function DisplayWash4({ onInputChange, formData, setNext }) {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         onInputChange(name, value);

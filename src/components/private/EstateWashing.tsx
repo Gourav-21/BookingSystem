@@ -17,7 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "../ui/checkbox"
 
 
-export default function EstateWashing({ onInputChange, formData }) {
+export default function EstateWashing({ onInputChange, formData, setNext }) {
     const [flexible, setFlexible] = useState("no");
     const [selectedOptions, setSelectedOptions] = useState([]);
 

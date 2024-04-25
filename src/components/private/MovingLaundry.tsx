@@ -16,7 +16,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 
-export default function MovingLaundry({ onInputChange, formData }) {
+export default function MovingLaundry({ onInputChange, formData, setNext }) {
     const [flexible, setFlexible] = useState("no");
 
     React.useEffect(() => {

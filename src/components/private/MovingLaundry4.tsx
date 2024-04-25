@@ -2,7 +2,7 @@ import { RadioGroup } from "@radix-ui/react-radio-group"
 import { Label } from "../ui/label"
 import { RadioGroupItem } from "../ui/radio-group"
 
-export default function MovingLaundry4({ formData, onInputChange }) {
+export default function MovingLaundry4({ onInputChange, formData, setNext }) {
 
     return (
         <div className="grid w-full items-center gap-4">

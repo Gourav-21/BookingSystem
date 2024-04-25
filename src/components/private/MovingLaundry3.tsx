@@ -6,7 +6,7 @@ import { Card } from "../ui/card"
 import { Checkbox } from "../ui/checkbox"
 
 
-export default function MovingLaundry3({ onInputChange, formData }) {
+export default function MovingLaundry3({ onInputChange, formData, setNext }) {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [roomCounts, setRoomCounts] = useState({
         bedroom: 0,

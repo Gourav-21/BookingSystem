@@ -3,7 +3,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 
-export default function MovingLaundry6({ onInputChange, formData }) {
+export default function MovingLaundry6({ onInputChange, formData, setNext }) {
 
   return (
     <div className="grid w-full items-center gap-5">

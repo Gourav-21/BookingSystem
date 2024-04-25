@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 import { Button } from "../ui/button"
 import { Card } from "../ui/card"
 
-export default function MajorCleaning3({ formData, onInputChange }) {
+export default function MajorCleaning3({ onInputChange, formData, setNext }) {
     const [selectedOptions, setSelectedOptions] = useState([]);
 
     const options = [

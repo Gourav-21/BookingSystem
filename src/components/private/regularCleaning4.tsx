@@ -5,7 +5,7 @@ import { Checkbox } from "../ui/checkbox"
 import { useEffect, useState } from "react"
 import { Textarea } from "../ui/textarea"
 
-export default function RegularCleaning4({ formData, onInputChange }) {
+export default function RegularCleaning4({ onInputChange, formData, setNext }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const options = [
@@ -36,6 +36,11 @@ export default function RegularCleaning4({ formData, onInputChange }) {
   useEffect(() => {
     setSelectedOptions(formData?.Extra_services || [])
   }, [])
+
+  useEffect(() => {
+    const isValid = formData?.Does_the_household_have_pets !== undefined && formData?.Does_the_household_have_pets !== "";
+    setNext(isValid);
+  }, [formData, setNext]);
 
   return (
     <div className="grid w-full items-center gap-4">

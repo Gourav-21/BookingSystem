@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CardContent, CardHeader, CardTitle } from "./ui/card";
 import Describe from "./Describe";
 import PrivateSubmitDetail from "./private/private-submit-detail";
@@ -35,6 +35,7 @@ import MovingLaundry4 from "./private/MovingLaundry4";
 import MovingLaundry10 from "./private/MovingLaundry10";
 import MovingLaundry11 from "./private/MovingLaundry11";
 import Success from "./Success";
+import { useToast } from "./ui/use-toast";
 
 function ChoicePage({ choice, onChoiceChange, nextPage }) {
   return (
@@ -94,21 +95,38 @@ function PageIndicator({ currentPage, totalPages }) {
 }
 
 export default function PrivateCleaning({ page, setPage }) {
+  const { toast } = useToast()
   const [choice, setChoice] = useState(null);
   const [formData, setFormData] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [next, setNext] = useState(true);
 
-  const
-    handleChoiceChange = (value) => {
-      setFormData({
-        type: "private",
-        cleaningType: value
-      });
+  const handleChoiceChange = (value) => {
+    setFormData({
+      type: "private",
+      cleaningType: value
+    });
 
-      setChoice(value);
-    };
+    setChoice(value);
+  };
 
-  const nextPage = () => setPage(page => Math.min(page + 1, getPages(choice).length));
+  useEffect(() => {
+    if (page == 0)
+      setNext(true)
+  }, [page])
+
+  const nextPage = () => {
+    if (next) {
+      setNext(false);
+      setPage(page => Math.min(page + 1, getPages(choice).length));
+    } else {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "Please fill in all the fields",
+      })
+    }
+  }
   const prevPage = () => setPage(page => Math.max(page - 1, 0));
 
   const handleInputChange = (name, value) => {
@@ -118,39 +136,50 @@ export default function PrivateCleaning({ page, setPage }) {
     }));
   };
 
+  console.log(next)
+
   const getPages = (choice) => {
     switch (choice) {
       case "regular-cleaning":
-        return [<RegularCleaning key="page1" onInputChange={handleInputChange} formData={formData} />, <RegularCleaning2 key="page2" onInputChange={handleInputChange} formData={formData} />, <RegularCleaning3 key="page0" onInputChange={handleInputChange} formData={formData} />, <RegularCleaning4 key="page3" onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" onInputChange={handleInputChange} formData={formData} />];
+        return [<RegularCleaning key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning4 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
       case "building-cleaning":
-        return [<BuildingCleaning1 key="page1" onInputChange={handleInputChange} formData={formData} />, <BuildingCleaning2 key="page2" onInputChange={handleInputChange} formData={formData} />, <BuildingCleaning3 key="page0" onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" onInputChange={handleInputChange} formData={formData} />];
+        return [<BuildingCleaning1 key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <BuildingCleaning2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <BuildingCleaning3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
       case "estate-washing":
-        return [<EstateWashing key="page1" onInputChange={handleInputChange} formData={formData} />, <EstateWashing2 key="page2" onInputChange={handleInputChange} formData={formData} />, <EstateWashing3 key="page0" onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" onInputChange={handleInputChange} formData={formData} />];
+        return [<EstateWashing key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <EstateWashing2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <EstateWashing3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
       case "moving-laundry":
         // @ts-ignore
         if (formData?.relocation_assistance === "yes") {
           // @ts-ignore
           if (formData?.type_of_housing === "Apartment") {
 
-            return [<MovingLaundry key="page1" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry2 key="page2" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry3 key="page3" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry4 key="page4" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry5 key="page5" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry6 key="page6" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry7 key="page7" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry8 key="page8" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry9 key="page9" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry10 key="page10" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry11 key="page11" onInputChange={handleInputChange} formData={formData} />];
+            return [<MovingLaundry key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry5 key="page5" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry6 key="page6" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry7 key="page7" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry8 key="page8" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry9 key="page9" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry10 key="page10" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry11 key="page11" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
           } else {
-            return [<MovingLaundry key="page1" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry2 key="page2" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry3 key="page3" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry4 key="page4" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry5 key="page5" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry6 key="page6" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry7 key="page7" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry8 key="page8" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry10 key="page10" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry11 key="page11" onInputChange={handleInputChange} formData={formData} />];
+            return [<MovingLaundry key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry5 key="page5" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry6 key="page6" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry7 key="page7" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry8 key="page8" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry10 key="page10" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry11 key="page11" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
           }
         } else {
-          return [<MovingLaundry key="page1" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry2 key="page2" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry3 key="page3" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry4 key="page4" onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" onInputChange={handleInputChange} formData={formData} />]
+          return [<MovingLaundry key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />]
         }
       case "major-cleaning":
-        return [<MajorCleaning key="page1" onInputChange={handleInputChange} formData={formData} />, <MajorCleaning2 key="page2" onInputChange={handleInputChange} formData={formData} />, <MajorCleaning3 key="page0" onInputChange={handleInputChange} formData={formData} />, <MajorCleaning4 key={"page4"} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" onInputChange={handleInputChange} formData={formData} />];
+        return [<MajorCleaning key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MajorCleaning2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MajorCleaning3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MajorCleaning4 key={"page4"} setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
       case "display-wash":
-        return [<DisplayWash key="page1" onInputChange={handleInputChange} formData={formData} />, <DisplayWash2 key="page2" onInputChange={handleInputChange} formData={formData} />, <DisplayWash3 key="page0" onInputChange={handleInputChange} formData={formData} />, <DisplayWash4 key="page5" onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" onInputChange={handleInputChange} formData={formData} />];
+        return [<DisplayWash key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <DisplayWash2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <DisplayWash3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <DisplayWash4 key="page5" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
       default:
-        return [<Describe key="page1" onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page2" onInputChange={handleInputChange} formData={formData} />];
+        return [<Describe key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
     }
   };
 
   const submitData = () => {
+    if(!next){
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "Please fill in all the fields",
+      })
+      return 
+    }
     console.log("Submitted Data:", formData);
     setSubmitted(true);
+    setNext(true)
   };
 
   const goToHome = () => {

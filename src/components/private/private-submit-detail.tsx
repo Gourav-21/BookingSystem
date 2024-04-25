@@ -1,11 +1,24 @@
+import { useEffect } from "react";
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 
-function PrivateSubmitDetail({ onInputChange, formData }) {
+function PrivateSubmitDetail({ onInputChange, formData, setNext }) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     onInputChange(name, value);
   };
+
+  useEffect(() => {
+    const isValid =
+      formData?.name &&
+      formData?.email &&
+      formData?.number &&
+      formData?.address &&
+      formData?.postalCode;
+
+    setNext(isValid);
+  },[formData])
+
   return (
     <div className="grid w-full items-center gap-4">
       <div className="flex flex-col space-y-1.5">

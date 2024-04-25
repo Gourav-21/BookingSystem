@@ -1,11 +1,11 @@
-import { Label } from "../ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
-import { Checkbox } from "../ui/checkbox"
-import { useEffect, useState } from "react"
-import { Button } from "../ui/button"
-import { Card } from "../ui/card"
+import { Label } from "../ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
+import { Checkbox } from "../ui/checkbox";
+import { useEffect, useState } from "react";
+import { Button } from "../ui/button";
+import { Card } from "../ui/card";
 
-function RegularCleaning3({ formData, onInputChange }) {
+function RegularCleaning3({ onInputChange, formData, setNext }) {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [roomCounts, setRoomCounts] = useState({
         bedroom: 0,
@@ -14,6 +14,7 @@ function RegularCleaning3({ formData, onInputChange }) {
         livingRoom: 0,
         otherRooms: 0
     });
+    const [selectedFloors, setSelectedFloors] = useState("");
 
     const decrementCount = (room) => {
         if (roomCounts[room] > 0) {
@@ -48,21 +49,27 @@ function RegularCleaning3({ formData, onInputChange }) {
     useEffect(() => {
         onInputChange("wash", selectedOptions);
     }, [selectedOptions]);
-    
+
     useEffect(() => {
         onInputChange("rooms", roomCounts);
     }, [roomCounts]);
 
     useEffect(() => {
-        setSelectedOptions(formData?.wash || [])
-        setRoomCounts(formData?.rooms||{
+        setSelectedOptions(formData?.wash || []);
+        setRoomCounts(formData?.rooms || {
             bedroom: 0,
             kitchen: 0,
             bathroom: 0,
             livingRoom: 0,
             otherRooms: 0
-        })
-    }, [])
+        });
+        setSelectedFloors(formData?.How_many_floors_must_be_washed || "");
+    }, []);
+
+    useEffect(() => {
+        const isValid = Object.values(roomCounts).some(count => count > 0) && selectedFloors !== "";
+        setNext(isValid);
+    }, [roomCounts, selectedFloors, setNext]);
 
     return (
         <div className="grid w-full items-center gap-4">
@@ -81,7 +88,7 @@ function RegularCleaning3({ formData, onInputChange }) {
             </div>
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="floors">How many floors must be washed?</Label>
-                <Select onValueChange={e => onInputChange("How_many_floors_must_be_washed", e)} value={formData?.How_many_floors_must_be_washed}>
+                <Select onValueChange={e => { onInputChange("How_many_floors_must_be_washed", e); setSelectedFloors(e); }} value={selectedFloors}>
                     <SelectTrigger id="floors">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
@@ -108,7 +115,7 @@ function RegularCleaning3({ formData, onInputChange }) {
                 ))}
             </div>
         </div>
-    )
+    );
 }
 
-export default RegularCleaning3
+export default RegularCleaning3;

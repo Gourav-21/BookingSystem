@@ -5,7 +5,7 @@ import { RadioGroupItem } from "../ui/radio-group"
 import { CardDescription } from "../ui/card"
 import { Input } from "../ui/input"
 
-export default function MovingLaundry9({ formData, onInputChange }) {
+export default function MovingLaundry9({ onInputChange, formData, setNext }) {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         onInputChange(name, value);

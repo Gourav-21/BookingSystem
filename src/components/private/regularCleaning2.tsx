@@ -1,12 +1,29 @@
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 
-export default function RegularCleaning2({ onInputChange, formData }) {
+export default function RegularCleaning2({ onInputChange, formData, setNext }) {
     const [field, setField] = useState(1);
+
+    const [isValid, setIsValid] = useState(false);
+
+    useEffect(() => {
+        let valid = formData?.frequency && formData?.frequency.trim() !== "";
+        for (let i = 0; i < field; i++) {
+            if (!(formData[`day${i}`] && formData[`time${i}`])) {
+                valid = false;
+                break;
+            }
+        }
+        setIsValid(valid);
+    }, [formData, field]);
+
+    useEffect(() => {
+        setNext(isValid);
+    }, [isValid, setNext]);
 
     return (
         <div className="grid w-full items-center gap-5">

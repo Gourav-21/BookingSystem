@@ -2,7 +2,7 @@ import { Label } from "../ui/label"
 import { Checkbox } from "../ui/checkbox"
 import { useEffect, useState } from "react"
 
-export default function BuildingCleaning1({ formData, onInputChange }) {
+export default function BuildingCleaning1({ onInputChange, formData, setNext }) {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [selectedOptions2, setSelectedOptions2] = useState([]);
 
@@ -37,6 +37,11 @@ export default function BuildingCleaning1({ formData, onInputChange }) {
         setSelectedOptions2(formData?.What_should_be_included_in_the_wash || [])
         setSelectedOptions(formData?.What_kind_of_work_is_done || [])
     }, [])
+    
+    useEffect(() => {
+        const isValid = selectedOptions.length > 0 && selectedOptions2.length > 0;
+        setNext(isValid);
+    }, [selectedOptions, selectedOptions2, setNext]);
 
     const handleCheckboxChange = (option) => {
         if (selectedOptions.includes(option)) {

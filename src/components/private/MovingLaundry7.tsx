@@ -3,7 +3,7 @@ import { Card, CardDescription } from "../ui/card"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 
-export default function MovingLaundry7({ onInputChange, formData }) {
+export default function MovingLaundry7({ onInputChange, formData, setNext }) {
   const [addressData, setAddressData] = useState({
     address: '',
     streetNo: '',

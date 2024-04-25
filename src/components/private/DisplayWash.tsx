@@ -4,7 +4,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { RadioGroupItem } from "../ui/radio-group"
 import { Input } from "../ui/input"
 
-export default function DisplayWash({ formData, onInputChange }) {
+export default function DisplayWash({ onInputChange, formData, setNext }) {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         onInputChange(name, value);
