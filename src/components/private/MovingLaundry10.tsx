@@ -28,12 +28,12 @@ export default function MovingLaundry10({ formData, onInputChange }) {
                     <Label htmlFor="are_you_moving_heavy_objects">Are you moving heavy objects?</Label>
                     <CardDescription>In order to plan the move as best as possible, the moving company should know about heavy or large items to be moved.</CardDescription>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="yes" id="yes" />
-                        <Label htmlFor="yes">yes</Label>
+                        <RadioGroupItem value="yes" id="1" />
+                        <Label htmlFor="1">yes</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="no" id="no" />
-                        <Label htmlFor="no">no</Label>
+                        <RadioGroupItem value="no" id="2" />
+                        <Label htmlFor="2">no</Label>
                     </div>
                 </RadioGroup>
                 {heavy=== "yes" && <Textarea onChange={handleChange} name="are_you_moving_heavy_objects_description" value={formData?.are_you_moving_heavy_objects_description} placeholder="Which heavy objects are to be moved?" id="description" />}

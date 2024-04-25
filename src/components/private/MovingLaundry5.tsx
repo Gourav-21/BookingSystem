@@ -19,21 +19,21 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 export default function MovingLaundry5({ onInputChange, formData }) {
     const [flexible, setFlexible] = useState("no");
     React.useEffect(() => {
-        onInputChange("washing_Date_flexible", flexible);
+        onInputChange("is_moving_Date_flexible", flexible);
     }, [flexible])
     
     React.useEffect(() => {
-        setFlexible(formData?.washing_Date_flexible || "no");
+        setFlexible(formData?.is_moving_Date_flexible || "no");
     }, [])
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="washing date">Desired moving date</Label>
-                <DatePicker onInputChange={(e) => onInputChange("washingDate", e)} value={formData?.washingDate} />
+                <DatePicker onInputChange={(e) => onInputChange("Desired_moving_date", e)} value={formData?.Desired_moving_date} />
             </div>
             <div className="flex flex-col space-y-1.5">
-                <RadioGroup className="space-y-1" onValueChange={(e) => { setFlexible(e); onInputChange("washing_Date_flexible", e) }} name="flexible" defaultValue={flexible} value={flexible} >
-                    <Label htmlFor="flexible date">Is the washing date flexible?</Label>
+                <RadioGroup className="space-y-1" onValueChange={(e) => { setFlexible(e); onInputChange("is_moving_Date_flexible", e) }} name="flexible" defaultValue={flexible} value={flexible} >
+                    <Label htmlFor="flexible date">Is the moving date flexible?</Label>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="yes" id="yes" />
                         <Label htmlFor="yes">yes</Label>
@@ -47,7 +47,7 @@ export default function MovingLaundry5({ onInputChange, formData }) {
 
             {flexible === "yes" && <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="Flexibility">Flexible moving date</Label>
-                <Select onValueChange={e => onInputChange("Flexibility", e)} value={formData?.Flexibility}>
+                <Select onValueChange={e => onInputChange("Flexibility_moving_date", e)} value={formData?.Flexibility_moving_date}>
                     <SelectTrigger id="Flexibility">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
