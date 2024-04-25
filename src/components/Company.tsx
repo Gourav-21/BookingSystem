@@ -9,7 +9,6 @@ import RegularCleaning from "./company/RegularCleaning";
 import RegularCleaning2 from "./company/RegularCleaning2";
 import RegularCleaning3 from "./company/RegularCleaning3";
 import RegularCleaning4 from "./company/RegularCleaning4";
-import Example from "./Success";
 import Success from "./Success";
 
 function PageIndicator({ currentPage, totalPages }) {

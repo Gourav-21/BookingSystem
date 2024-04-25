@@ -8,7 +8,6 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Lock } from 'lucide-react'
-import Success from './components/Success'
 import { MenuCard } from './components/MenuCard'
 
 function App() {
