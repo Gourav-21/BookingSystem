@@ -10,6 +10,7 @@ import RegularCleaning2 from "./company/RegularCleaning2";
 import RegularCleaning3 from "./company/RegularCleaning3";
 import RegularCleaning4 from "./company/RegularCleaning4";
 import Success from "./Success";
+import { useToast } from "./ui/use-toast";
 
 function PageIndicator({ currentPage, totalPages }) {
   return (
@@ -25,11 +26,14 @@ function PageIndicator({ currentPage, totalPages }) {
 }
 
 export default function Company({ page, setPage }) {
+  const { toast } = useToast()
   const [choice, setChoice] = useState(null);
   const [formData, setFormData] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [next, setNext] = useState(true);
 
   const handleChoiceChange = (value) => {
+    setNext(true)
     setFormData({
       type: "Company",
       cleaningType: value
@@ -38,7 +42,19 @@ export default function Company({ page, setPage }) {
     setChoice(value);
   };
 
-  const nextPage = () => setPage(page => Math.min(page + 1, getPages(choice).length));
+  const nextPage = () => {
+    if(next){
+      setNext(false);
+      setPage(page => Math.min(page + 1, getPages(choice).length));
+    }else{
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "Please fill in all the fields",
+      })
+    }
+  }
+
   const prevPage = () => setPage(page => Math.max(page - 1, 0));
 
   const handleInputChange = (name, value) => {
@@ -58,13 +74,22 @@ export default function Company({ page, setPage }) {
           return [<RegularCleaning key="page1" onInputChange={handleInputChange} formData={formData} />,<RegularCleaning3 key="page3"  onInputChange={handleInputChange}  formData={formData} />, <RegularCleaning4 key="page4"  onInputChange={handleInputChange}  formData={formData} />,<CompanySubmitDetail key="page5" onInputChange={handleInputChange} formData={formData} />];
         }
       default:
-        return [<Describe key="page1" onInputChange={handleInputChange} formData={formData} />, <CompanySubmitDetail key="page2" onInputChange={handleInputChange} formData={formData} />];
+        return [<Describe key="page1" onInputChange={handleInputChange} formData={formData} setNext={setNext} />, <CompanySubmitDetail key="page2" onInputChange={handleInputChange} formData={formData} setNext={setNext} />];
     }
   };
 
   const submitData = () => {
+    if(!next){
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "Please fill in all the fields",
+      })
+      return 
+    }
     console.log("Submitted Data:", formData);
     setSubmitted(true);
+    setNext(true)
   };
 
   const goToHome = () => {

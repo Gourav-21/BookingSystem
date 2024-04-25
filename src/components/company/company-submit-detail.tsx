@@ -1,11 +1,22 @@
+import { useEffect } from "react";
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 
-function CompanySubmitDetail({ onInputChange,formData }) {
+function CompanySubmitDetail({ onInputChange,formData,setNext }) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     onInputChange(name, value);
   };
+
+useEffect(() => {
+    if (formData?.company_name && formData?.name && formData?.number && formData?.email && formData?.address && formData?.postalCode && formData?.company_name != "" && formData?.name != "" && formData?.number != "" && formData?.email != "" && formData?.address != "" && formData?.postalCode != "" ) {
+      setNext(true)
+    } else {
+      setNext(false)
+    }
+  }, [formData])
+  
+
   return (
     <div className="grid w-full items-center gap-4">
       <div className="flex flex-col space-y-1.5">
