@@ -1,11 +1,24 @@
+import { useEffect } from "react";
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 
-function HousingSubmitDetail({ onInputChange, formData }) {
+function HousingSubmitDetail({ onInputChange, formData,setNext }) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     onInputChange(name, value);
   };
+
+
+  useEffect(()=>{
+    if(formData?.name && formData.name != "" && formData?.number && formData.number != "" && formData?.email && formData.email != "" && formData?.housing_association_name && formData.housing_association_name != "" && formData?.address && formData.address != "" && formData?.postalCode && formData.postalCode != ""){
+      setNext(true)
+    }else{
+      setNext(false)
+    }
+  },[formData])
+
+
+
   return (
     <div className="grid w-full items-center gap-4">
 

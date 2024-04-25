@@ -5,12 +5,13 @@ import {
 } from "@/components/ui/card"
 import { Checkbox } from "./ui/checkbox"
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Describe from "./Describe";
 import HousingSubmitDetail from "./housing/housing-submit-detail copy";
 import Page1 from "./housing/stairAndCoridorWashing/page1";
 import Page2 from "./housing/stairAndCoridorWashing/page2";
 import Success from "./Success";
+import { useToast } from "./ui/use-toast";
 
 function PageIndicator({ currentPage, totalPages }) {
   return (
@@ -26,9 +27,11 @@ function PageIndicator({ currentPage, totalPages }) {
 }
 
 export default function HousingAssociationCleaning({ page, setPage }) {
+  const { toast } = useToast()
   const [choice, setChoice] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+  const [next, setNext] = useState(true);
 
   const [formData, setFormData] = useState({});
 
@@ -41,7 +44,19 @@ export default function HousingAssociationCleaning({ page, setPage }) {
     setChoice(value);
   };
 
-  const nextPage = () => setPage(page => Math.min(page + 1, getPages().length));
+  const nextPage = () => {
+    if (next) {
+      setNext(false);
+      setPage(page => Math.min(page + 1, getPages().length));
+    } else {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "Please fill in all the fields",
+      })
+    }
+  }
+
   const prevPage = () => setPage(page => Math.max(page - 1, 0));
 
   const handleInputChange = (name, value) => {
@@ -51,24 +66,38 @@ export default function HousingAssociationCleaning({ page, setPage }) {
     }));
   };
 
+  useEffect(() => {
+    if (page == 0)
+      setNext(true)
+  }, [page])
+
   const getPages = () => {
     if (selectedOptions.includes("Stair and Corridor Washing")) {
       return [
-        <Page1 key="page4" onInputChange={handleInputChange} formData={formData} />,
-        <Page2 key="page5" onInputChange={handleInputChange} formData={formData} />,
-        <HousingSubmitDetail key="page2" onInputChange={handleInputChange} formData={formData} />,
+        <Page1 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />,
+        <Page2 key="page5" setNext={setNext} onInputChange={handleInputChange} formData={formData} />,
+        <HousingSubmitDetail key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />,
       ];
     } else {
       return [
-        <Describe key="page1" onInputChange={handleInputChange} formData={formData} />,
-        <HousingSubmitDetail key="page2" onInputChange={handleInputChange} formData={formData} />,
+        <Describe key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />,
+        <HousingSubmitDetail key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />,
       ];
     }
   };
 
   const submitData = () => {
+    if (!next) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "Please fill in all the fields",
+      })
+      return
+    }
     console.log("Submitted Data:", formData);
     setSubmitted(true);
+    setNext(true)
   };
 
   const goToHome = () => {
@@ -80,7 +109,7 @@ export default function HousingAssociationCleaning({ page, setPage }) {
   return (
     <div>
       {!submitted ? (
-         page === 0 ? (
+        page === 0 ? (
           <ChoicePage selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} onChoiceChange={handleChoiceChange} nextPage={nextPage} />
         ) : (
           <>

@@ -1,7 +1,16 @@
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useEffect } from "react";
 
-export default function Page1({ onInputChange, formData }) {
+export default function Page1({ onInputChange, formData,setNext }) {
+    useEffect(()=>{
+        if(formData.how_many_floors_does_the_building_have && formData.how_many_ascents_are_there){
+            setNext(true)
+        }else{
+            setNext(false)
+        }
+    },[formData])
+
     return (
         <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">

@@ -41,8 +41,6 @@ export default function Company({ page, setPage }) {
     setChoice(value);
   };
 
-  console.log(next)
-  
   useEffect(() =>{
     if(page==0)
     setNext(true)

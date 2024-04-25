@@ -16,13 +16,21 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 
-export default function Page2({ onInputChange, formData }) {
+export default function Page2({ onInputChange, formData, setNext }) {
   const [flexible, setFlexible] = useState("no");
   const [field, setField] = useState(1);
 
   React.useEffect(() => {
     setFlexible(formData?.washing_Date_flexible || "no");
   }, [])
+
+  React.useEffect(() => {
+    const isValidNoFlexibility = formData.how_often_do_you_want_laundry_help === "only once" && formData.when_do_you_want_corridor_and_staircase_washing && flexible === "no";
+    const isValidFlexibility = formData.how_often_do_you_want_laundry_help === "only once" && formData.when_do_you_want_corridor_and_staircase_washing && flexible === "yes" && formData.Flexibility;
+    const isValidMultiple = formData.how_often_do_you_want_laundry_help && formData.how_often_do_you_want_laundry_help !== "only once" && field > 0 && [...Array(field)].every((_, i) => formData[`day ${i}`] && formData[`time ${i}`]);
+    setNext(isValidNoFlexibility || isValidFlexibility || isValidMultiple);
+  }, [formData, flexible, field]);
+  
 
   return (
     <div className="grid w-full items-center gap-5">
