@@ -107,8 +107,7 @@ export function DatePicker({ value, onInputChange }) {
                 <Calendar
                     mode="single"
                     selected={date}
-                    disabled={(day) => day < new Date().setHours(0, 0, 0, 0)}
-                    onSelect={setDate}
+                    disabled={(day) => day.getTime() < new Date().setHours(0, 0, 0, 0)}                    onSelect={setDate}
                     initialFocus
                 />
             </PopoverContent>

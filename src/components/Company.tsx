@@ -50,6 +50,7 @@ export default function Company({ page, setPage }) {
   const getPages = (choice) => {
     switch (choice) {
       case "regular-cleaning":
+        // @ts-ignore
         if(formData?.what_type_of_premises_should_be_washed.includes("Office")){
           return [<RegularCleaning key="page1" onInputChange={handleInputChange} formData={formData} />, <RegularCleaning2 key="page2" onInputChange={handleInputChange} formData={formData} />, <RegularCleaning3 key="page3"  onInputChange={handleInputChange}  formData={formData} />, <RegularCleaning4 key="page4"  onInputChange={handleInputChange}  formData={formData} />,<CompanySubmitDetail key="page5" onInputChange={handleInputChange} formData={formData} />];
         }else{

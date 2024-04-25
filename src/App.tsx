@@ -1,6 +1,5 @@
 import './App.css'
 import { MenuCard } from './components/MenuCard'
-import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,

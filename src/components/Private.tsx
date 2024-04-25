@@ -125,7 +125,9 @@ export default function PrivateCleaning({ page, setPage }) {
       case "estate-washing":
         return [<EstateWashing key="page1" onInputChange={handleInputChange} formData={formData} />, <EstateWashing2 key="page2" onInputChange={handleInputChange} formData={formData} />, <EstateWashing3 key="page0" onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" onInputChange={handleInputChange} formData={formData} />];
       case "moving-laundry":
+        // @ts-ignore
         if (formData?.relocation_assistance === "yes") {
+          // @ts-ignore
           if (formData?.type_of_housing === "Apartment") {
 
             return [<MovingLaundry key="page1" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry2 key="page2" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry3 key="page3" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry4 key="page4" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry5 key="page5" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry6 key="page6" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry7 key="page7" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry8 key="page8" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry9 key="page9" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry10 key="page10" onInputChange={handleInputChange} formData={formData} />, <MovingLaundry11 key="page11" onInputChange={handleInputChange} formData={formData} />];

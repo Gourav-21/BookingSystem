@@ -40,7 +40,7 @@ export default function HousingAssociationCleaning({ page, setPage }) {
   };
   console.log(formData)
 
-  const nextPage = () => setPage(page => Math.min(page + 1, getPages(choice).length));
+  const nextPage = () => setPage(page => Math.min(page + 1, getPages().length));
   const prevPage = () => setPage(page => Math.max(page - 1, 0));
 
   const handleInputChange = (name, value) => {
@@ -50,7 +50,7 @@ export default function HousingAssociationCleaning({ page, setPage }) {
     }));
   };
 
-  const getPages = (choice) => {
+  const getPages = () => {
     if (selectedOptions.includes("Stair and Corridor Washing")) {
       return [
         <Page1 key="page4" onInputChange={handleInputChange} formData={formData} />,
@@ -75,10 +75,10 @@ export default function HousingAssociationCleaning({ page, setPage }) {
         <ChoicePage selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} onChoiceChange={handleChoiceChange} nextPage={nextPage} />
       ) : (
         <>
-          {getPages(choice)[page - 1]}
+          {getPages()[page - 1]}
           <div className="flex justify-between mt-4">
             <Button variant="outline" className="rounded-r-none" onClick={prevPage}>back</Button>
-            {page === getPages(choice).length ? (
+            {page === getPages().length ? (
               <Button variant="outline" className="flex-1 rounded-l-none" onClick={submitData}>Submit</Button>
             ) : (
               <Button variant="outline" className="flex-1 rounded-l-none" onClick={nextPage}>Next</Button>
@@ -87,7 +87,7 @@ export default function HousingAssociationCleaning({ page, setPage }) {
 
         </>
       )}
-      <PageIndicator currentPage={page + 1} totalPages={choice ? getPages(choice).length + 1 : 1} />
+      <PageIndicator currentPage={page + 1} totalPages={choice ? getPages().length + 1 : 1} />
     </div>
   );
 }

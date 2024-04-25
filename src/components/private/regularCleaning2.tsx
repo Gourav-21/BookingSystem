@@ -1,14 +1,4 @@
-import * as React from "react"
-import { format } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
-
 import { cn } from "@/lib/utils"
-import { Calendar } from "@/components/ui/calendar"
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover"
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Label } from "@/components/ui/label";
@@ -39,7 +29,7 @@ export default function RegularCleaning2({ onInputChange, formData }) {
 
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="frequency">Add at least one suitable day and time</Label>
-                {Array.from(Array(field)).map((c, index) => {
+                {Array.from(Array(field)).map((_, index) => {
                     return (
                         <div key={index} className="flex">
                             <Select onValueChange={e => onInputChange("day" + index, e)} value={formData?.[`day${index}`]}>
@@ -73,9 +63,9 @@ export default function RegularCleaning2({ onInputChange, formData }) {
                 })}
             </div>
             <div className="flex">
-                <Button variant="outline" className={cn("rounded-r-none", field === 1 && "rounded")} onClick={e => setField(field + 1)}>Add More</Button>
+                <Button variant="outline" className={cn("rounded-r-none", field === 1 && "rounded")} onClick={() => setField(field + 1)}>Add More</Button>
                 {field > 1 &&
-                    <Button variant="outline" className="rounded-l-none" disabled={field === 1} onClick={e => setField(field - 1)}>remove</Button>
+                    <Button variant="outline" className="rounded-l-none" disabled={field === 1} onClick={() => setField(field - 1)}>remove</Button>
                 }
             </div>
         </div>

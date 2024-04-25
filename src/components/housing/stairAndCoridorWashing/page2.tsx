@@ -22,7 +22,7 @@ export default function Page2({ onInputChange, formData }) {
 
   React.useEffect(() => {
     setFlexible(formData?.washing_Date_flexible || "no");
-}, [])
+  }, [])
 
   return (
     <div className="grid w-full items-center gap-5">
@@ -49,7 +49,7 @@ export default function Page2({ onInputChange, formData }) {
             <DatePicker onInputChange={(e) => onInputChange("when_do_you_want_corridor_and_staircase_washing", e)} value={formData?.when_do_you_want_corridor_and_staircase_washing} />
           </div>
           <div className="flex flex-col space-y-1.5">
-          <RadioGroup className="space-y-1" onValueChange={(e) => { setFlexible(e); onInputChange("washing_Date_flexible", e) }} name="flexible" defaultValue={flexible} value={flexible} >
+            <RadioGroup className="space-y-1" onValueChange={(e) => { setFlexible(e); onInputChange("washing_Date_flexible", e) }} name="flexible" defaultValue={flexible} value={flexible} >
               <Label htmlFor="flexible date">Is the washing date flexible?</Label>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="yes" id="yes" />
@@ -85,10 +85,10 @@ export default function Page2({ onInputChange, formData }) {
         <>
           <div className="flex flex-col space-y-1.5">
             <Label htmlFor="frequency">Add at least one suitable washing day and time:</Label>
-            {Array.from(Array(field)).map((c, index) => {
+            {Array.from(Array(field)).map((_, index) => {
               return (
                 <div key={index} className="flex">
-                  <Select onValueChange={e => onInputChange("day "+index, e)} value={formData?.[`day ${index}`]}>
+                  <Select onValueChange={e => onInputChange("day " + index, e)} value={formData?.[`day ${index}`]}>
                     <SelectTrigger className="rounded-r-none" id={`day ${index}`}>
                       <SelectValue placeholder="washing day" />
                     </SelectTrigger>
@@ -102,7 +102,7 @@ export default function Page2({ onInputChange, formData }) {
                       <SelectItem value="sunday">sunday</SelectItem>
                     </SelectContent>
                   </Select>
-                  <Select onValueChange={e => onInputChange("time "+index, e)} value={formData?.[`time ${index}`]}>
+                  <Select onValueChange={e => onInputChange("time " + index, e)} value={formData?.[`time ${index}`]}>
                     <SelectTrigger className="rounded-l-none" id={`time ${index}`}>
                       <SelectValue placeholder="time" />
                     </SelectTrigger>
@@ -119,9 +119,9 @@ export default function Page2({ onInputChange, formData }) {
             })}
           </div>
           <div className="flex">
-            <Button variant="outline" className={cn("rounded-r-none", field === 1 && "rounded")} onClick={e => setField(field + 1)}>Add More</Button>
+            <Button variant="outline" className={cn("rounded-r-none", field === 1 && "rounded")} onClick={() => setField(field + 1)}>Add More</Button>
             {field > 1 &&
-              <Button variant="outline" className="rounded-l-none" disabled={field === 1} onClick={e => setField(field - 1)}>remove</Button>
+              <Button variant="outline" className="rounded-l-none" disabled={field === 1} onClick={() => setField(field - 1)}>remove</Button>
             }
           </div>
         </>
@@ -156,7 +156,7 @@ export function DatePicker({ value, onInputChange }) {
         <Calendar
           mode="single"
           selected={date}
-          disabled={(day) => day < new Date().setHours(0, 0, 0, 0)}
+          disabled={(day) => day.getTime() < new Date().setHours(0, 0, 0, 0)}
           onSelect={setDate}
           initialFocus
         />

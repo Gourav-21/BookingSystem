@@ -1,22 +1,6 @@
 import * as React from "react"
-import { format } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
-
-import { cn } from "@/lib/utils"
-import { Calendar } from "@/components/ui/calendar"
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover"
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Checkbox } from "../ui/checkbox"
-import { Input } from "../ui/input"
-import { Card } from "../ui/card"
 import { Textarea } from "../ui/textarea"
 
 
@@ -45,8 +29,6 @@ export default function EstateWashing3({ onInputChange, formData }) {
                 <Label htmlFor="area">Other wishes (optional)</Label>
                 <Textarea onChange={handleChange} value={formData?.Other_wishes} name="Other_wishes" placeholder="Inform the laundry company of any wishes." />
             </div>
-
-
 
         </div>
     );
