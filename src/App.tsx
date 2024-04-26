@@ -14,12 +14,12 @@ function App() {
 
   return (
     <div className='flex justify-center h-screen items-center'>
-      <Card className="w-[450px]">
+      <Card className="w-[450px] ">
         <CardHeader>
           <CardTitle>Find the right cleaning company!</CardTitle>
           <CardDescription >The service is free and completely non-binding.</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className='min-h-[400px]'>
           <MenuCard />
         </CardContent>
         <CardFooter className="grid gap-3">

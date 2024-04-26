@@ -37,20 +37,20 @@ export default function Company({ page, setPage }) {
       type: "Company",
       cleaningType: value
     });
-    
+
     setChoice(value);
   };
 
-  useEffect(() =>{
-    if(page==0)
-    setNext(true)
-  },[page])
+  useEffect(() => {
+    if (page == 0)
+      setNext(true)
+  }, [page])
 
   const nextPage = () => {
-    if(next){
+    if (next) {
       setNext(false);
       setPage(page => Math.min(page + 1, getPages(choice).length));
-    }else{
+    } else {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
@@ -72,10 +72,10 @@ export default function Company({ page, setPage }) {
     switch (choice) {
       case "regular-cleaning":
         // @ts-ignore
-        if(formData?.what_type_of_premises_should_be_washed && formData?.what_type_of_premises_should_be_washed.includes("Office")){
-          return [<RegularCleaning key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning3 key="page3"  setNext={setNext} onInputChange={handleInputChange}  formData={formData} />, <RegularCleaning4 key="page4"  setNext={setNext} onInputChange={handleInputChange}  formData={formData} />,<CompanySubmitDetail key="page5" onInputChange={handleInputChange} formData={formData} setNext={setNext}  />];
-        }else{
-          return [<RegularCleaning key="page1" setNext={setNext}  onInputChange={handleInputChange} formData={formData} />,<RegularCleaning3 key="page3" setNext={setNext}  onInputChange={handleInputChange}  formData={formData} />, <RegularCleaning4 key="page4" setNext={setNext}  onInputChange={handleInputChange}  formData={formData} />,<CompanySubmitDetail key="page5" onInputChange={handleInputChange} formData={formData} setNext={setNext}  />];
+        if (formData?.what_type_of_premises_should_be_washed && formData?.what_type_of_premises_should_be_washed.includes("Office")) {
+          return [<RegularCleaning key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <CompanySubmitDetail key="page5" onInputChange={handleInputChange} formData={formData} setNext={setNext} />];
+        } else {
+          return [<RegularCleaning key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <CompanySubmitDetail key="page5" onInputChange={handleInputChange} formData={formData} setNext={setNext} />];
         }
       default:
         return [<Describe key="page1" onInputChange={handleInputChange} formData={formData} setNext={setNext} />, <CompanySubmitDetail key="page2" onInputChange={handleInputChange} formData={formData} setNext={setNext} />];
@@ -83,13 +83,13 @@ export default function Company({ page, setPage }) {
   };
 
   const submitData = () => {
-    if(!next){
+    if (!next) {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
         description: "Please fill in all the fields",
       })
-      return 
+      return
     }
     console.log("Submitted Data:", formData);
     setSubmitted(true);
@@ -109,14 +109,16 @@ export default function Company({ page, setPage }) {
           <ChoicePage choice={choice} onChoiceChange={handleChoiceChange} nextPage={nextPage} />
         ) : (
           <>
-            {getPages(choice)[page - 1]}
-            <div className="flex justify-between mt-4">
-              <Button variant="outline" className="rounded-r-none" onClick={prevPage}>back</Button>
-              {page === getPages(choice).length ? (
-                <Button variant="outline" className="flex-1 rounded-l-none" onClick={submitData}>Submit</Button>
-              ) : (
-                <Button variant="outline" className="flex-1 rounded-l-none" onClick={nextPage}>Next</Button>
-              )}
+            <div className="flex flex-col justify-between min-h-[400px]">
+              {getPages(choice)[page - 1]}
+              <div className="flex justify-between mt-4">
+                <Button variant="outline" className="rounded-r-none" onClick={prevPage}>back</Button>
+                {page === getPages(choice).length ? (
+                  <Button variant="outline" className="flex-1 rounded-l-none" onClick={submitData}>Submit</Button>
+                ) : (
+                  <Button variant="outline" className="flex-1 rounded-l-none" onClick={nextPage}>Next</Button>
+                )}
+              </div>
             </div>
           </>
         )

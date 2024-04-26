@@ -17,7 +17,7 @@ export default function DisplayWash4({ onInputChange, formData, setNext }) {
 
 
     return (
-        <div className="grid w-full items-center gap-4">
+        <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
                 <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Does_the_household_have_pets", e)} value={formData?.Does_the_household_have_pets} name="entire home" defaultValue={""} >
                     <Label htmlFor="entire home">Does the household have pets?</Label>

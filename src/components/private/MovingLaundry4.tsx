@@ -8,9 +8,9 @@ export default function MovingLaundry4({ onInputChange, formData, setNext }) {
     useEffect(() => {
         setNext(formData?.relocation_assistance !== undefined);
     }, [formData?.relocation_assistance, setNext]);
-    
+
     return (
-        <div className="grid w-full items-center gap-4">
+        <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
                 <RadioGroup className="space-y-1" onValueChange={(e) =>onInputChange("relocation_assistance", e)} value={formData?.relocation_assistance} name="entire home" defaultValue={""} >
                     <Label htmlFor="entire home">Do you also want relocation assistance?</Label>

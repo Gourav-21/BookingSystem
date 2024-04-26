@@ -46,7 +46,7 @@ export default function RegularCleaning({ formData, onInputChange, setNext }) {
     };
 
     return (
-        <div className="grid w-full items-center gap-4">
+        <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-2">
                 <Label htmlFor="what_type_of_premises_should_be_washed">What type of premises should be washed?</Label>
                 {options.map((option, index) => (

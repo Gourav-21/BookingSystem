@@ -113,14 +113,16 @@ export default function HousingAssociationCleaning({ page, setPage }) {
           <ChoicePage selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} onChoiceChange={handleChoiceChange} nextPage={nextPage} />
         ) : (
           <>
-            {getPages()[page - 1]}
-            <div className="flex justify-between mt-4">
-              <Button variant="outline" className="rounded-r-none" onClick={prevPage}>back</Button>
-              {page === getPages().length ? (
-                <Button variant="outline" className="flex-1 rounded-l-none" onClick={submitData}>Submit</Button>
-              ) : (
-                <Button variant="outline" className="flex-1 rounded-l-none" onClick={nextPage}>Next</Button>
-              )}
+            <div className="flex flex-col justify-between min-h-[400px]">
+              {getPages()[page - 1]}
+              <div className="flex justify-between mt-4">
+                <Button variant="outline" className="rounded-r-none" onClick={prevPage}>back</Button>
+                {page === getPages().length ? (
+                  <Button variant="outline" className="flex-1 rounded-l-none" onClick={submitData}>Submit</Button>
+                ) : (
+                  <Button variant="outline" className="flex-1 rounded-l-none" onClick={nextPage}>Next</Button>
+                )}
+              </div>
             </div>
           </>
         )

@@ -31,7 +31,7 @@ export default function MovingLaundry10({ onInputChange, formData, setNext }) {
 
 
     return (
-        <div className="grid w-full items-center gap-4">
+        <div className="grid w-full items-center gap-5">
 
             <div className="flex flex-col space-y-2">
                 <RadioGroup className="space-y-1" onValueChange={(e) => { setHeavy(e); onInputChange("are_you_moving_heavy_objects", e) }} name="are_you_moving_heavy_objects" value={heavy} >

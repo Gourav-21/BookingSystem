@@ -37,7 +37,7 @@ export default function BuildingCleaning1({ onInputChange, formData, setNext }) 
         setSelectedOptions2(formData?.What_should_be_included_in_the_wash || [])
         setSelectedOptions(formData?.What_kind_of_work_is_done || [])
     }, [])
-    
+
     useEffect(() => {
         const isValid = selectedOptions.length > 0 && selectedOptions2.length > 0;
         setNext(isValid);
@@ -60,7 +60,7 @@ export default function BuildingCleaning1({ onInputChange, formData, setNext }) 
     };
 
     return (
-        <div className="grid w-full items-center gap-4">
+        <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-2">
                 <Label htmlFor="What_should_be_included_in_the_wash">What kind of work is done?</Label>
                 {options.map((option, index) => (

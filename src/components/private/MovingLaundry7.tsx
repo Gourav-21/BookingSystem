@@ -36,9 +36,9 @@ export default function MovingLaundry7({ onInputChange, formData, setNext }) {
   },[formData])
 
   return (
-    <div className="grid w-full items-center gap-4">
+    <div className="grid w-full items-center gap-5">
       <Card className="p-4">The address to be <b>washed and moved from.</b></Card>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-5">
         <div className="flex flex-col col-span-2 space-y-1.5">
           <Label htmlFor="address">Address</Label>
           <Input id="address" type="text" placeholder="address" value={addressData?.address} onChange={handleChange} />

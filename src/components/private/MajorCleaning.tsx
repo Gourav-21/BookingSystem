@@ -17,7 +17,7 @@ export default function MajorCleaning({ onInputChange, formData, setNext }) {
     }, [formData, setNext]);
 
     return (
-        <div className="grid w-full items-center gap-4">
+        <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="type_of_home">What type of home should be washed?</Label>
                 <Select onValueChange={e => onInputChange("type_of_home", e)} value={formData?.type_of_home}>

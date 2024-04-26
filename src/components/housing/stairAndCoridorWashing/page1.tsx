@@ -12,7 +12,7 @@ export default function Page1({ onInputChange, formData,setNext }) {
     },[formData])
 
     return (
-        <div className="grid w-full items-center gap-4">
+        <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="floors">How many floors does the building have?</Label>
                 <Select onValueChange={e => onInputChange("how_many_floors_does_the_building_have",e)} value={formData?.how_many_floors_does_the_building_have}>

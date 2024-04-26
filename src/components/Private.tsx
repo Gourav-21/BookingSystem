@@ -136,8 +136,6 @@ export default function PrivateCleaning({ page, setPage }) {
     }));
   };
 
-  console.log(next)
-
   const getPages = (choice) => {
     switch (choice) {
       case "regular-cleaning":
@@ -169,13 +167,13 @@ export default function PrivateCleaning({ page, setPage }) {
   };
 
   const submitData = () => {
-    if(!next){
+    if (!next) {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
         description: "Please fill in all the fields",
       })
-      return 
+      return
     }
     console.log("Submitted Data:", formData);
     setSubmitted(true);
@@ -195,14 +193,16 @@ export default function PrivateCleaning({ page, setPage }) {
           <ChoicePage choice={choice} onChoiceChange={handleChoiceChange} nextPage={nextPage} />
         ) : (
           <>
-            {getPages(choice)[page - 1]}
-            <div className="flex justify-between mt-4">
-              <Button variant="outline" className="rounded-r-none" onClick={prevPage}>back</Button>
-              {page === getPages(choice).length ? (
-                <Button variant="outline" className="flex-1 rounded-l-none" onClick={submitData}>Submit</Button>
-              ) : (
-                <Button variant="outline" className="flex-1 rounded-l-none" onClick={nextPage}>Next</Button>
-              )}
+            <div className="flex flex-col justify-between min-h-[400px]">
+              {getPages(choice)[page - 1]}
+              <div className="flex justify-between mt-4">
+                <Button variant="outline" className="rounded-r-none" onClick={prevPage}>back</Button>
+                {page === getPages(choice).length ? (
+                  <Button variant="outline" className="flex-1 rounded-l-none" onClick={submitData}>Submit</Button>
+                ) : (
+                  <Button variant="outline" className="flex-1 rounded-l-none" onClick={nextPage}>Next</Button>
+                )}
+              </div>
             </div>
           </>
         )
