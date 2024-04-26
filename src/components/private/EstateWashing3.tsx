@@ -1,19 +1,24 @@
-import * as React from "react"
+import * as React from "react";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Textarea } from "../ui/textarea"
-
+import { Textarea } from "../ui/textarea";
 
 export default function EstateWashing3({ onInputChange, formData, setNext }) {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         onInputChange(name, value);
-      };
+    };
+
+    React.useEffect(() => {
+        const isValid = formData?.floors;
+        setNext(isValid);
+    }, [formData, setNext]);
+
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="floors">How many floors does the building have?</Label>
-                <Select onValueChange={e => formData.floors = e} value={formData.floors}>
+                <Select onValueChange={e => onInputChange("floors", e)} value={formData?.floors}>
                     <SelectTrigger id="floors">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
@@ -27,10 +32,8 @@ export default function EstateWashing3({ onInputChange, formData, setNext }) {
             </div>
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="area">Other wishes (optional)</Label>
-                <Textarea onChange={handleChange} value={formData?.Other_wishes} name="Other_wishes" placeholder="Inform the laundry company of any wishes." />
+                <Textarea onChange={handleChange} value={formData?.Other_wishes || ''} name="Other_wishes" placeholder="Inform the laundry company of any wishes." />
             </div>
-
         </div>
     );
 }
-

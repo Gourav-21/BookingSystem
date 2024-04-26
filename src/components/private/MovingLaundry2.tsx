@@ -2,6 +2,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "../ui/input"
+import { useEffect, useState } from "react";
 
 
 export default function MovingLaundry2({ onInputChange, formData, setNext }) {
@@ -9,6 +10,21 @@ export default function MovingLaundry2({ onInputChange, formData, setNext }) {
         const { name, value } = e.target;
         onInputChange(name, value);
     };
+    const [isValid, setIsValid] = useState(false);
+
+    useEffect(() => {
+        const isFormValid = (
+            formData?.type_of_home &&
+            formData?.How_many_floors_must_be_washed &&
+            formData?.Should_entire_home_be_washed &&
+            formData?.area_size
+        );
+        setIsValid(isFormValid);
+    }, [formData]);
+
+    useEffect(() => {
+        setNext(isValid);
+    }, [isValid, setNext]);
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">

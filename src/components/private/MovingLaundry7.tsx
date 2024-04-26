@@ -27,6 +27,14 @@ export default function MovingLaundry7({ onInputChange, formData, setNext }) {
     setAddressData(formData?.from_address)
   },[])
 
+  useEffect(()=>{
+    if(formData?.from_address?.address !== undefined && formData?.from_address?.postalCode !== undefined && formData?.from_address?.distanceToParking !== undefined && formData?.from_address?.address !== "" && formData?.from_address?.postalCode !== "" && formData?.from_address?.distanceToParking !== ""){
+      setNext(true)
+    }else{
+      setNext(false)
+    }
+  },[formData])
+
   return (
     <div className="grid w-full items-center gap-4">
       <Card className="p-4">The address to be <b>washed and moved from.</b></Card>

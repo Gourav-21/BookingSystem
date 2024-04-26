@@ -1,12 +1,20 @@
-import { Label } from "../ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
-import { Checkbox } from "../ui/checkbox"
-import { useEffect, useState } from "react"
-import { Button } from "../ui/button"
-import { Card } from "../ui/card"
+import { Label } from "../ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
+import { Checkbox } from "../ui/checkbox";
+import { useEffect, useState } from "react";
+import { Button } from "../ui/button";
+import { Card } from "../ui/card";
 
 export default function DisplayWash3({ onInputChange, formData, setNext }) {
     const [selectedOptions, setSelectedOptions] = useState([]);
+    const [roomCounts, setRoomCounts] = useState({
+        bedroom: 0,
+        kitchen: 0,
+        bathroom: 0,
+        livingRoom: 0,
+        otherRooms: 0
+    });
+    const [floorCount, setFloorCount] = useState("");
 
     const options = [
         "Garage",
@@ -21,14 +29,6 @@ export default function DisplayWash3({ onInputChange, formData, setNext }) {
             setSelectedOptions([...selectedOptions, option]);
         }
     };
-
-    const [roomCounts, setRoomCounts] = useState({
-        bedroom: 0,
-        kitchen: 0,
-        bathroom: 0,
-        livingRoom: 0,
-        otherRooms: 0
-    });
 
     const decrementCount = (room) => {
         if (roomCounts[room] > 0) {
@@ -55,15 +55,22 @@ export default function DisplayWash3({ onInputChange, formData, setNext }) {
     }, [roomCounts]);
 
     useEffect(() => {
-        setSelectedOptions(formData?.wash || [])
-        setRoomCounts(formData?.rooms||{
+        setSelectedOptions(formData?.wash || []);
+        setRoomCounts(formData?.rooms || {
             bedroom: 0,
             kitchen: 0,
             bathroom: 0,
             livingRoom: 0,
             otherRooms: 0
-        })
-    }, [])
+        });
+        setFloorCount(formData?.How_many_floors_must_be_washed || "");
+    }, []);
+
+    useEffect(() => {
+        // Check if all required fields are filled
+        const isValid = floorCount && Object.values(roomCounts).some(count => count > 0);
+        setNext(isValid);
+    }, [floorCount, roomCounts, setNext]);
 
     return (
         <div className="grid w-full items-center gap-4">
@@ -82,7 +89,7 @@ export default function DisplayWash3({ onInputChange, formData, setNext }) {
             </div>
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="floors">How many floors must be washed?</Label>
-                <Select onValueChange={e => onInputChange("How_many_floors_must_be_washed", e)} value={formData?.How_many_floors_must_be_washed}>
+                <Select onValueChange={e => { onInputChange("How_many_floors_must_be_washed", e); setFloorCount(e); }} value={floorCount}>
                     <SelectTrigger id="floors">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
@@ -109,5 +116,5 @@ export default function DisplayWash3({ onInputChange, formData, setNext }) {
                 ))}
             </div>
         </div>
-    )
+    );
 }

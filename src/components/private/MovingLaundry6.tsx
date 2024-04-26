@@ -1,10 +1,21 @@
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useEffect } from "react";
 
 
 export default function MovingLaundry6({ onInputChange, formData, setNext }) {
+  useEffect(() => {
+    const isValid =
+      formData?.Does_the_moving_agency_pack_the_items &&
+      formData?.Do_the_objects_have_to_be_stored_between_moving_out_and_moving_in &&
+      formData?.Do_you_want_to_move_abroad &&
+      formData?.are_you_going_to_move_abroad &&
+      formData?.do_you_want_to_insure_the_moving_load &&
+      formData?.how_big_is_the_moving_load;
 
+    setNext(isValid);
+  }, [formData, setNext]);
   return (
     <div className="grid w-full items-center gap-5">
 

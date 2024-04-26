@@ -1,11 +1,11 @@
+import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Input } from "../ui/input"
-import { Card } from "../ui/card"
+import { Input } from "../ui/input";
+import { Card } from "../ui/card";
 import { useEffect, useState } from "react";
-
 
 export default function EstateWashing2({ onInputChange, formData, setNext }) {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -42,15 +42,23 @@ export default function EstateWashing2({ onInputChange, formData, setNext }) {
     }, [roomCounts]);
 
     useEffect(() => {
-        setRoomCounts(formData?.rooms||{
+        setRoomCounts(formData?.rooms || {
             bedroom: 0,
             kitchen: 0,
             bathroom: 0,
             livingRoom: 0,
             otherRooms: 0
         })
-    }, [])
-    
+    }, []);
+
+    useEffect(() => {
+        const isValid = formData?.type_of_home &&
+                        formData?.area_size &&
+                        Object.values(roomCounts).reduce((total, count) => total + count, 0) > 0 &&
+                        formData?.Does_the_household_have_pets !== undefined;
+        setNext(isValid);
+    }, [formData, roomCounts, setNext]);
+
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
@@ -103,4 +111,3 @@ export default function EstateWashing2({ onInputChange, formData, setNext }) {
         </div>
     );
 }
-

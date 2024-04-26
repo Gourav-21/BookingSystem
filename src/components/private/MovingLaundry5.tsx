@@ -10,29 +10,40 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 
 export default function MovingLaundry5({ onInputChange, formData, setNext }) {
-    const [flexible, setFlexible] = useState("no");
-    React.useEffect(() => {
-        onInputChange("is_moving_Date_flexible", flexible);
-    }, [flexible])
-    
+    const [flexible, setFlexible] = React.useState("no");
+
     React.useEffect(() => {
         setFlexible(formData?.is_moving_Date_flexible || "no");
-    }, [])
+    }, [formData?.is_moving_Date_flexible]);
+
+    const handleDateChange = (date: Date | null) => {
+        onInputChange("Desired_moving_date", date);
+    };
+
+    const handleFlexibleChange = (value: string) => {
+        setFlexible(value);
+        onInputChange("is_moving_Date_flexible", value);
+    };
+
+    React.useEffect(() => {
+        const isValid = formData?.Desired_moving_date && (flexible === "no" || formData?.Flexibility_moving_date);
+        setNext(isValid);
+    }, [formData, flexible, setNext]);
+
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="washing date">Desired moving date</Label>
-                <DatePicker onInputChange={(e) => onInputChange("Desired_moving_date", e)} value={formData?.Desired_moving_date} />
+                <Label htmlFor="desired moving date">Desired moving date</Label>
+                <DatePicker value={formData?.Desired_moving_date} onInputChange={handleDateChange} />
             </div>
             <div className="flex flex-col space-y-1.5">
-                <RadioGroup className="space-y-1" onValueChange={(e) => { setFlexible(e); onInputChange("is_moving_Date_flexible", e) }} name="flexible" defaultValue={flexible} value={flexible} >
+                <RadioGroup className="space-y-1" onValueChange={handleFlexibleChange} value={flexible} name="flexible" defaultValue="no">
                     <Label htmlFor="flexible date">Is the moving date flexible?</Label>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="yes" id="yes" />
@@ -46,9 +57,9 @@ export default function MovingLaundry5({ onInputChange, formData, setNext }) {
             </div>
 
             {flexible === "yes" && <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="Flexibility">Flexible moving date</Label>
+                <Label htmlFor="flexibility moving date">Flexible moving date</Label>
                 <Select onValueChange={e => onInputChange("Flexibility_moving_date", e)} value={formData?.Flexibility_moving_date}>
-                    <SelectTrigger id="Flexibility">
+                    <SelectTrigger id="flexibility">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent position="popper">
@@ -62,7 +73,6 @@ export default function MovingLaundry5({ onInputChange, formData, setNext }) {
                     </SelectContent>
                 </Select>
             </div>}
-
         </div>
     );
 }
@@ -80,7 +90,7 @@ export function DatePicker({ value, onInputChange }) {
                 <Button
                     variant={"outline"}
                     className={cn(
-                        " justify-start text-left font-normal",
+                        "justify-start text-left font-normal",
                         !date && "text-muted-foreground"
                     )}
                 >
@@ -92,7 +102,8 @@ export function DatePicker({ value, onInputChange }) {
                 <Calendar
                     mode="single"
                     selected={date}
-                    disabled={(day) => day.getTime() < new Date().setHours(0, 0, 0, 0)}                    onSelect={setDate}
+                    disabled={(day) => day.getTime() < new Date().setHours(0, 0, 0, 0)}
+                    onSelect={setDate}
                     initialFocus
                 />
             </PopoverContent>

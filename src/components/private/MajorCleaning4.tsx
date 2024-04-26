@@ -2,12 +2,18 @@ import { RadioGroup } from "@radix-ui/react-radio-group"
 import { Label } from "../ui/label"
 import { RadioGroupItem } from "../ui/radio-group"
 import { Textarea } from "../ui/textarea"
+import { useEffect } from "react";
 
 export default function MajorCleaning4({ onInputChange, formData, setNext }) {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         onInputChange(name, value);
       };
+
+      useEffect(() => {
+        const isValid = formData?.Does_the_household_have_pets !== undefined;
+        setNext(isValid);
+    }, [formData, setNext]);
 
 
     return (

@@ -67,6 +67,15 @@ export default function MajorCleaning3({ onInputChange, formData, setNext }) {
         })
     }, [])
 
+    useEffect(() => {
+        const isValid = formData?.How_many_floors_must_be_washed &&
+            (formData?.what_floor_is_the_apartment_on !== "1" || !formData?.what_floor_is_the_apartment_on) &&
+            (formData?.what_floor_is_the_apartment_on === "1" || formData?.is_there_a_lift_in_the_building) &&
+            Object.values(roomCounts).reduce((acc, val) => acc + val, 0) > 0;
+
+        setNext(isValid);
+    }, [formData, roomCounts, setNext]);
+
     return (
         <div className="grid w-full items-center gap-4">
            <div className="flex flex-col space-y-1.5">

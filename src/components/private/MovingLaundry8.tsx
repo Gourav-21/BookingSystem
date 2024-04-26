@@ -30,6 +30,18 @@ export default function MovingLaundry8({ onInputChange, formData, setNext }) {
     setToAddress(formData?.to_address)
   },[])
 
+  useEffect(() => {
+    const isValid =
+      ToAddress?.address &&
+      ToAddress?.postalCode &&
+      ToAddress?.homeSize &&
+      ToAddress?.totalRooms &&
+      formData?.type_of_housing;
+  
+    setNext(isValid);
+  }, [ToAddress, formData, setNext]);
+  
+
   return (
     <div className="grid w-full items-center gap-4">
       <Card className="p-4">The address to be <b>moved to.</b> </Card>

@@ -8,6 +8,7 @@ import { Checkbox } from "../ui/checkbox"
 
 export default function MovingLaundry3({ onInputChange, formData, setNext }) {
     const [selectedOptions, setSelectedOptions] = useState([]);
+    const [isValid, setIsValid] = useState(false);
     const [roomCounts, setRoomCounts] = useState({
         bedroom: 0,
         kitchen: 0,
@@ -68,6 +69,15 @@ export default function MovingLaundry3({ onInputChange, formData, setNext }) {
             otherRooms: 0
         })
     }, [])
+
+    useEffect(() => {
+        const isFormValid = Object.values(roomCounts).some(count => count > 0) ;
+        setIsValid(isFormValid);
+    }, [roomCounts, selectedOptions]);
+
+    useEffect(() => {
+        setNext(isValid);
+    }, [isValid, setNext]);
 
     return (
         <div className="grid w-full items-center gap-5">

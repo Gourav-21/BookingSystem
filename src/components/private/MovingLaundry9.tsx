@@ -4,12 +4,23 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { RadioGroupItem } from "../ui/radio-group"
 import { CardDescription } from "../ui/card"
 import { Input } from "../ui/input"
+import { useEffect } from "react"
 
 export default function MovingLaundry9({ onInputChange, formData, setNext }) {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         onInputChange(name, value);
       };
+
+      useEffect(() => {
+        const isValid =
+          formData?.What_floor_is_the_apartment_on &&
+          formData?.Is_there_a_lift_in_the_building &&
+          formData?.distance_to_parking;
+      
+        setNext(isValid);
+      }, [formData, setNext]);
+      
     return (
         <div className="grid w-full items-center gap-4">
 

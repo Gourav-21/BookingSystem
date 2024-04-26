@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
@@ -7,6 +8,16 @@ export default function MovingLaundry11({ onInputChange, formData, setNext }) {
         const { name, value } = e.target;
         onInputChange(name, value);
     };
+
+    useEffect(() => {
+        const isValid =
+            formData?.name &&
+            formData?.number &&
+            formData?.email;
+
+        setNext(isValid);
+    }, [formData, setNext]);
+
     return (
         <div className="grid w-full items-center gap-4">
 

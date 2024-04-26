@@ -10,27 +10,50 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 
 export default function MovingLaundry({ onInputChange, formData, setNext }) {
-    const [flexible, setFlexible] = useState("no");
+    const [flexible, setFlexible] = React.useState("no");
+    const [flexibility, setFlexibility] = React.useState("");
 
     React.useEffect(() => {
         setFlexible(formData?.washing_Date_flexible || "no");
-    }, [])
+    }, []);
+
+    const handleDateChange = (date: Date | null) => {
+        onInputChange("washingDate", date);
+    };
+
+    const handleFlexibleChange = (value: string) => {
+        setFlexible(value);
+        onInputChange("washing_Date_flexible", value);
+        if (value === "no") {
+            setFlexibility("");
+            onInputChange("Flexibility", "");
+        }
+    };
+
+    const handleFlexibilityChange = (value: string) => {
+        setFlexibility(value);
+        onInputChange("Flexibility", value);
+    };
+
+    React.useEffect(() => {
+        const isValid = formData?.washingDate && (flexible === "no" || flexibility);
+        setNext(isValid);
+    }, [formData, flexible, flexibility, setNext]);
 
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="washing date">Washing date?</Label>
-                <DatePicker onInputChange={(e) => onInputChange("washingDate", e)} value={formData?.washingDate} />
+                <DatePicker value={formData?.washingDate} onInputChange={handleDateChange} />
             </div>
             <div className="flex flex-col space-y-1.5">
-                <RadioGroup className="space-y-1" onValueChange={(e) => { setFlexible(e); onInputChange("washing_Date_flexible", e) }} name="flexible" defaultValue={flexible} value={flexible} >
+                <RadioGroup className="space-y-1" onValueChange={handleFlexibleChange} value={flexible} name="flexible" defaultValue="no">
                     <Label htmlFor="flexible date">Is the washing date flexible?</Label>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="yes" id="yes" />
@@ -45,7 +68,7 @@ export default function MovingLaundry({ onInputChange, formData, setNext }) {
 
             {flexible === "yes" && <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="Flexibility">Flexibility</Label>
-                <Select onValueChange={e => onInputChange("Flexibility", e)} value={formData?.Flexibility}>
+                <Select onValueChange={handleFlexibilityChange} value={flexibility}>
                     <SelectTrigger id="Flexibility">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
@@ -60,7 +83,6 @@ export default function MovingLaundry({ onInputChange, formData, setNext }) {
                     </SelectContent>
                 </Select>
             </div>}
-
         </div>
     );
 }

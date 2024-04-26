@@ -1,25 +1,25 @@
-import * as React from "react"
-import { format } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
+import * as React from "react";
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils"
-import { Calendar } from "@/components/ui/calendar"
+import { cn } from "@/lib/utils";
+import { Calendar } from "@/components/ui/calendar";
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Checkbox } from "../ui/checkbox"
-
+import { Checkbox } from "../ui/checkbox";
 
 export default function EstateWashing({ onInputChange, formData, setNext }) {
-    const [flexible, setFlexible] = useState("no");
-    const [selectedOptions, setSelectedOptions] = useState([]);
+    const [flexible, setFlexible] = React.useState("no");
+    const [selectedOptions, setSelectedOptions] = React.useState([]);
+    const [date, setDate] = React.useState<Date | null>(formData?.washingDate || null);
+    const [flexibilitySelected, setFlexibilitySelected] = React.useState(false);
 
     const handleCheckboxChange = (option) => {
         if (selectedOptions.includes(option)) {
@@ -38,20 +38,27 @@ export default function EstateWashing({ onInputChange, formData, setNext }) {
     React.useEffect(() => {
         onInputChange("Extra_services", selectedOptions);
     }, [selectedOptions]);
-    
+
     React.useEffect(() => {
         setFlexible(formData?.washing_Date_flexible || "no");
-        setSelectedOptions(formData?.Extra_services || [])
-    }, [])
+        setSelectedOptions(formData?.Extra_services || []);
+        setDate(formData?.washingDate || null);
+    }, []);
+
+    React.useEffect(() => {
+        // Check if the user has selected a washing date and answered whether it's flexible
+        const isValid = date !== null && flexible !== "" && (flexible === "no" || (flexible === "yes" && flexibilitySelected));
+        setNext(isValid);
+    }, [date, flexible, flexibilitySelected, setNext]);
 
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="washing date">When do you want building cleaning?</Label>
-                <DatePicker onInputChange={(e) => onInputChange("washingDate", e)} value={formData?.washingDate} />
+                <DatePicker onInputChange={setDate} value={date} />
             </div>
             <div className="flex flex-col space-y-1.5">
-                <RadioGroup className="space-y-1" onValueChange={(e) => { setFlexible(e); onInputChange("washing_Date_flexible", e) }} name="flexible" defaultValue={flexible} value={flexible} >
+                <RadioGroup className="space-y-1" onValueChange={(e) => { setFlexible(e); setFlexibilitySelected(false); onInputChange("washing_Date_flexible", e) }} value={flexible} name="flexible" defaultValue={""}>
                     <Label htmlFor="flexible date">Is the washing date flexible?</Label>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="yes" id="yes" />
@@ -66,7 +73,7 @@ export default function EstateWashing({ onInputChange, formData, setNext }) {
 
             {flexible === "yes" && <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="Flexibility">Flexibility</Label>
-                <Select onValueChange={e => onInputChange("Flexibility", e)} value={formData?.Flexibility}>
+                <Select onValueChange={(e) => { onInputChange("Flexibility", e); setFlexibilitySelected(true); }} value={formData?.Flexibility || ""}>
                     <SelectTrigger id="Flexibility">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
@@ -127,7 +134,7 @@ export function DatePicker({ value, onInputChange }) {
                 <Calendar
                     mode="single"
                     selected={date}
-                    disabled={(day) => day.getTime() < new Date().setHours(0, 0, 0, 0)}                    onSelect={setDate}
+                    disabled={(day) => day.getTime() < new Date().setHours(0, 0, 0, 0)} onSelect={setDate}
                     initialFocus
                 />
             </PopoverContent>

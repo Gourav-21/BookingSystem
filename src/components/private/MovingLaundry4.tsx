@@ -1,9 +1,14 @@
 import { RadioGroup } from "@radix-ui/react-radio-group"
 import { Label } from "../ui/label"
 import { RadioGroupItem } from "../ui/radio-group"
+import { useEffect } from "react";
 
 export default function MovingLaundry4({ onInputChange, formData, setNext }) {
-
+    
+    useEffect(() => {
+        setNext(formData?.relocation_assistance !== undefined);
+    }, [formData?.relocation_assistance, setNext]);
+    
     return (
         <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
