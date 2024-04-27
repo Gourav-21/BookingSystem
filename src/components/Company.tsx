@@ -124,7 +124,7 @@ console.log(next)
     <div>
       {!submitted ? (
         page === 0 ? (
-          <div  className="flex min-h-[500px]">
+          <div  className="flex min-h-[460px]">
 
             <ChoicePage choice={choice} onChoiceChange={handleChoiceChange} nextPage={nextPage} />
           </div>

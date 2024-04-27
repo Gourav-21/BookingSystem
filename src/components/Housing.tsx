@@ -110,7 +110,7 @@ export default function HousingAssociationCleaning({ page, setPage }) {
     <div>
       {!submitted ? (
         page === 0 ? (
-          <div className="flex min-h-[500px]">
+          <div className="flex min-h-[460px]">
             <ChoicePage selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} onChoiceChange={handleChoiceChange} nextPage={nextPage} />
           </div>
         ) : (
