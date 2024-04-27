@@ -5,7 +5,7 @@ import { CardDescription } from "../ui/card"
 import { Textarea } from "../ui/textarea"
 import { useEffect, useState } from "react"
 
-export default function MovingLaundry10({ onInputChange, formData, setNext }) {
+export default function MovingLaundry9({ onInputChange, formData, setNext }) {
     const [heavy, setHeavy] = useState("")
     const [fragile, setFragile] = useState("")
 
@@ -50,7 +50,7 @@ export default function MovingLaundry10({ onInputChange, formData, setNext }) {
             </div>
 
             <div className="flex flex-col space-y-2">
-                <RadioGroup className="space-y-1" onValueChange={(e) => { setFragile(e); onInputChange("are_you_moving_fragile_or_valuable_items", e) }} name="are_you_moving_fragile_or_valuable_items" value={fragile} >
+                <RadioGroup className="space-y-2" onValueChange={(e) => { setFragile(e); onInputChange("are_you_moving_fragile_or_valuable_items", e) }} name="are_you_moving_fragile_or_valuable_items" value={fragile} >
                     <Label htmlFor="are_you_moving_fragile_or_valuable_items">Are you moving fragile or valuable items?</Label>
                     <CardDescription>In order to plan the move as best as possible, the moving company should know about fragile items to be moved.</CardDescription>
                     <div className="flex items-center space-x-2">

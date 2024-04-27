@@ -11,6 +11,16 @@ import RegularCleaning3 from "./company/RegularCleaning3";
 import RegularCleaning4 from "./company/RegularCleaning4";
 import Success from "./Success";
 import { useToast } from "./ui/use-toast";
+import MovingLaundry from "./company/MovingLaundry";
+import MovingLaundry2 from "./company/MovingLaundry2";
+import MovingLaundry3 from "./company/MovingLaundry3";
+import MovingLaundry4 from "./company/MovingLaundry4";
+import MovingLaundry5 from "./company/MovingLaundry5";
+import MovingLaundry6 from "./company/MovingLaundry6";
+import MovingLaundry7 from "./company/MovingLaundry7";
+import MovingLaundry8 from "./company/MovingLaundry8";
+import MovingLaundry9 from "./company/MovingLaundry9";
+import MovingLaundry10 from "./company/MovingLaundry10";
 
 function PageIndicator({ currentPage, totalPages }) {
   return (
@@ -77,11 +87,19 @@ export default function Company({ page, setPage }) {
         } else {
           return [<RegularCleaning key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <CompanySubmitDetail key="page5" onInputChange={handleInputChange} formData={formData} setNext={setNext} />];
         }
+      case "moving-laundry":
+        // @ts-ignore
+        if (formData?.relocation_assistance === "yes") {
+            return [<MovingLaundry key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry5 key="page5" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry6 key="page6" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry7 key="page7" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry8 key="page8" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry9 key="page9" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry10 key="page10" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
+        } else {
+          return [<MovingLaundry key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <CompanySubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />]
+        }
+
       default:
         return [<Describe key="page1" onInputChange={handleInputChange} formData={formData} setNext={setNext} />, <CompanySubmitDetail key="page2" onInputChange={handleInputChange} formData={formData} setNext={setNext} />];
     }
   };
-
+console.log(next)
   const submitData = () => {
     if (!next) {
       toast({

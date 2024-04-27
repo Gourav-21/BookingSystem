@@ -6,7 +6,7 @@
   :root {
     --background:  0 0% 100%; /* White background */
     --foreground: 217.2 32.6% 17.5%;  /* Dark blue text */
-    --card: 208 72% 45%; /* Blue-500 to blue-900 gradient */
+    --card:  0 0% 100%;  /* Light blue for card */
     --card-foreground: black; /* White text */
     --popover: 0 0% 100%; /* White background */
     --popover-foreground: 217.2 32.6% 17.5%;  /* Dark blue text */

@@ -14,8 +14,7 @@ function App() {
 
   return (
     <div className='flex justify-center h-screen items-center'>
-      <Card className="w-[450px] 
- ">
+      <Card className="w-[450px] bg-gradient-to-r from-blue-500 to-blue-900 relative rounded-lg">
         <CardHeader>
           <CardTitle className='text-white'>Find the right cleaning company!</CardTitle>
           <CardDescription className='text-gray-200 ' >The service is free and completely non-binding.</CardDescription>

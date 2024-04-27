@@ -63,11 +63,12 @@ export default function RegularCleaning2({ onInputChange, formData, setNext }) {
                 <Label htmlFor="floors">Number of rooms to be washed</Label>
                 {Object.keys(roomCounts).map((room, index) => (
                     <Card key={index} className="grid grid-cols-2 gap-5 items-center p-3 justify-center">
-                        <Label htmlFor={room}>{room.charAt(0).toUpperCase() + room.slice(1)}</Label>
+                                               <Label className="text-slate-500" htmlFor={room}>{room.charAt(0).toUpperCase() + room.slice(1)}</Label>
+
                         <div className="flex items-center gap-3 justify-center">
-                            <Button onClick={() => decrementCount(room)} className="w-8 h-8 rounded-full bg-slate-500 text-white"><p className="mb-[1px] mr-[1px]">-</p></Button>
+                            <Button onClick={() => decrementCount(room)} className="w-8 h-8 rounded-full bg-slate-500 text-white hover:bg-slate-200 hover:text-slate-900"><p className="mb-[1px] mr-[1px]">-</p></Button>
                             <b>{roomCounts[room]}</b>
-                            <Button onClick={() => incrementCount(room)} className="w-8 h-8 rounded-full bg-blue-500 text-white"><p className="mb-[1px] mr-[1px]">+</p></Button>
+                            <Button onClick={() => incrementCount(room)} className="w-8 h-8 rounded-full bg-blue-500 text-white hover:bg-blue-200 hover:text-blue-900"><p className="mb-[1px] mr-[1px]">+</p></Button>
                         </div>
                     </Card>
                 ))}

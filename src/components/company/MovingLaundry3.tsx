@@ -10,11 +10,9 @@ export default function MovingLaundry3({ onInputChange, formData, setNext }) {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [isValid, setIsValid] = useState(false);
     const [roomCounts, setRoomCounts] = useState({
-        bedroom: 0,
-        kitchen: 0,
-        bathroom: 0,
-        livingRoom: 0,
-        otherRooms: 0
+        "Room (excl. kitchen and bathroom)": 0,
+        "Kitchen/canteen": 0,
+        "Bathroom/toilet": 0,
     });
 
     const options = [
@@ -62,11 +60,9 @@ export default function MovingLaundry3({ onInputChange, formData, setNext }) {
     useEffect(() => {
         setSelectedOptions(formData?.wash || [])
         setRoomCounts(formData?.rooms || {
-            bedroom: 0,
-            kitchen: 0,
-            bathroom: 0,
-            livingRoom: 0,
-            otherRooms: 0
+            "Room (excl. kitchen and bathroom)": 0,
+            "Kitchen/canteen": 0,
+            "Bathroom/toilet": 0,
         })
     }, [])
 
@@ -85,8 +81,7 @@ export default function MovingLaundry3({ onInputChange, formData, setNext }) {
                 <Label htmlFor="floors">Number of rooms to be washed</Label>
                 {Object.keys(roomCounts).map((room, index) => (
                     <Card key={index} className="grid grid-cols-2 gap-5 items-center p-3 justify-center">
-                                               <Label className="text-slate-500" htmlFor={room}>{room.charAt(0).toUpperCase() + room.slice(1)}</Label>
-
+                        <Label className="text-slate-500" htmlFor={room}>{room.charAt(0).toUpperCase() + room.slice(1)}</Label>
                         <div className="flex items-center gap-3 justify-center">
                             <Button onClick={() => decrementCount(room)} className="w-8 h-8 rounded-full bg-slate-500 text-white hover:bg-slate-200 hover:text-slate-900"><p className="mb-[1px] mr-[1px]">-</p></Button>
                             <b>{roomCounts[room]}</b>
