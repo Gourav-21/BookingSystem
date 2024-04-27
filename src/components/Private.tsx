@@ -36,6 +36,7 @@ import MovingLaundry10 from "./private/MovingLaundry10";
 import MovingLaundry11 from "./private/MovingLaundry11";
 import Success from "./Success";
 import { useToast } from "./ui/use-toast";
+import emailjs from '@emailjs/browser';
 
 function ChoicePage({ choice, onChoiceChange, nextPage }) {
   return (
@@ -106,6 +107,7 @@ export default function PrivateCleaning({ page, setPage }) {
   const [formData, setFormData] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [next, setNext] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChoiceChange = (value) => {
     setFormData({
@@ -173,6 +175,9 @@ export default function PrivateCleaning({ page, setPage }) {
   };
 
   const submitData = () => {
+    if (isLoading) {
+      return
+    }
     if (!next) {
       toast({
         variant: "destructive",
@@ -181,14 +186,35 @@ export default function PrivateCleaning({ page, setPage }) {
       })
       return
     }
-    console.log("Submitted Data:", formData);
-    setSubmitted(true);
-    setNext(true)
+    emailjs.send("service_f0hbws8", "template_cppdusm", {
+      // @ts-ignore
+      name: formData.name,
+      // @ts-ignore
+      type: formData.type,
+      // @ts-ignore
+      cleaningType: formData.cleaningType,
+
+      formData: JSON.stringify(formData, null, 2),
+    }, "OICvfeVTiDhPZlCgX")
+      .then((result) => {
+        console.log("Submitted Data:", formData);
+        setSubmitted(true);
+        setNext(true)
+        console.log(result.text);
+      })
+      .catch((error) => {
+        console.error('Error sending email:', error);
+      });
+    setIsLoading(false);
   };
 
   const goToHome = () => {
     setPage(0);
-    setFormData({});
+    setFormData({
+      type: "private",
+      // @ts-ignore
+      cleaningType: formData?.cleaningType
+    });
     setSubmitted(false);
   };
 
@@ -207,7 +233,13 @@ export default function PrivateCleaning({ page, setPage }) {
               <div className="flex justify-between mt-4">
                 <Button variant="outline" className="rounded-r-none" onClick={prevPage}>back</Button>
                 {page === getPages(choice).length ? (
-                  <Button variant="outline" className="flex-1 rounded-l-none" onClick={submitData}>Submit</Button>
+                  <Button variant="outline" className="flex-1 rounded-l-none" disabled={isLoading} onClick={submitData}>
+                    {isLoading ? (
+                      "Submitting..."
+                    ) : (
+                      'Submit'
+                    )}
+                  </Button>
                 ) : (
                   <Button variant="outline" className="flex-1 rounded-l-none" onClick={nextPage}>Next</Button>
                 )}

@@ -21,6 +21,7 @@ import MovingLaundry7 from "./company/MovingLaundry7";
 import MovingLaundry8 from "./company/MovingLaundry8";
 import MovingLaundry9 from "./company/MovingLaundry9";
 import MovingLaundry10 from "./company/MovingLaundry10";
+import emailjs from '@emailjs/browser';
 
 function PageIndicator({ currentPage, totalPages }) {
   return (
@@ -41,6 +42,7 @@ export default function Company({ page, setPage }) {
   const [formData, setFormData] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [next, setNext] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChoiceChange = (value) => {
     setFormData({
@@ -90,7 +92,7 @@ export default function Company({ page, setPage }) {
       case "moving-laundry":
         // @ts-ignore
         if (formData?.relocation_assistance === "yes") {
-            return [<MovingLaundry key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry5 key="page5" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry6 key="page6" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry7 key="page7" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry8 key="page8" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry9 key="page9" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry10 key="page10" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
+          return [<MovingLaundry key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry5 key="page5" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry6 key="page6" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry7 key="page7" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry8 key="page8" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry9 key="page9" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry10 key="page10" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
         } else {
           return [<MovingLaundry key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <CompanySubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />]
         }
@@ -99,8 +101,11 @@ export default function Company({ page, setPage }) {
         return [<Describe key="page1" onInputChange={handleInputChange} formData={formData} setNext={setNext} />, <CompanySubmitDetail key="page2" onInputChange={handleInputChange} formData={formData} setNext={setNext} />];
     }
   };
-console.log(next)
+
   const submitData = () => {
+    if(isLoading){
+      return
+    }
     if (!next) {
       toast({
         variant: "destructive",
@@ -109,14 +114,37 @@ console.log(next)
       })
       return
     }
-    console.log("Submitted Data:", formData);
-    setSubmitted(true);
-    setNext(true)
+    setIsLoading(true);
+    emailjs.send("service_f0hbws8", "template_cppdusm", {
+      // @ts-ignore      
+      name: formData.name,
+      // @ts-ignore
+      type: formData.type,
+      // @ts-ignore
+      cleaningType: formData.cleaningType,
+
+      formData: JSON.stringify(formData, null, 2),
+    }, "OICvfeVTiDhPZlCgX")
+      .then((result) => {
+        console.log("Submitted Data:", formData);
+        setSubmitted(true);
+        setNext(true)
+        console.log(result.text);
+      })
+      .catch((error) => {
+        console.error('Error sending email:', error);
+      });
+    setIsLoading(false);
   };
 
   const goToHome = () => {
     setPage(0);
-    setFormData({});
+    // prevPage()
+    setFormData({
+      type: "Company",
+      // @ts-ignore
+      cleaningType: formData?.cleaningType
+    });
     setSubmitted(false);
   };
 
@@ -124,7 +152,7 @@ console.log(next)
     <div>
       {!submitted ? (
         page === 0 ? (
-          <div  className="flex min-h-[460px]">
+          <div className="flex min-h-[460px]">
 
             <ChoicePage choice={choice} onChoiceChange={handleChoiceChange} nextPage={nextPage} />
           </div>
@@ -135,7 +163,13 @@ console.log(next)
               <div className="flex justify-between mt-4">
                 <Button variant="outline" className="rounded-r-none" onClick={prevPage}>back</Button>
                 {page === getPages(choice).length ? (
-                  <Button variant="outline" className="flex-1 rounded-l-none" onClick={submitData}>Submit</Button>
+                  <Button variant="outline" className="flex-1 rounded-l-none" disabled={isLoading} onClick={submitData}>    
+                      {isLoading ? (
+                     "Submitting..."
+                      ) : (
+                        'Submit'
+                      )}
+                  </Button>
                 ) : (
                   <Button variant="outline" className="flex-1 rounded-l-none" onClick={nextPage}>Next</Button>
                 )}
@@ -160,42 +194,42 @@ function ChoicePage({ choice, onChoiceChange, nextPage }) {
     <div className="flex flex-col justify-between space-y-1">
       <div>
 
-      <CardHeader>
-        <CardTitle className="text-white">What type of cleaning do you want?</CardTitle>
-      </CardHeader>
-      <CardContent >
-        <RadioGroup defaultValue="comfortable" value={choice} onValueChange={onChoiceChange} className="space-y-1">
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="regular-cleaning" id="r1" />
-            <Label htmlFor="r1">Regular Cleaning</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="building-cleaning" id="r2" />
-            <Label htmlFor="r2">Building Cleaning</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="graffiti-removal" id="r4" />
-            <Label htmlFor="r4">Removal of Graffiti</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="moving-laundry" id="r5" />
-            <Label htmlFor="r5">Moving Laundry</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="display-sink" id="r7" />
-            <Label htmlFor="r7">Display Sink</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="other-washing" id="r9" />
-            <Label htmlFor="r9">Other Washing</Label>
-          </div>
-        </RadioGroup>
-      </CardContent>
+        <CardHeader>
+          <CardTitle className="text-white">What type of cleaning do you want?</CardTitle>
+        </CardHeader>
+        <CardContent >
+          <RadioGroup defaultValue="comfortable" value={choice} onValueChange={onChoiceChange} className="space-y-1">
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="regular-cleaning" id="r1" />
+              <Label htmlFor="r1">Regular Cleaning</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="building-cleaning" id="r2" />
+              <Label htmlFor="r2">Building Cleaning</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="graffiti-removal" id="r4" />
+              <Label htmlFor="r4">Removal of Graffiti</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="moving-laundry" id="r5" />
+              <Label htmlFor="r5">Moving Laundry</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="display-sink" id="r7" />
+              <Label htmlFor="r7">Display Sink</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="other-washing" id="r9" />
+              <Label htmlFor="r9">Other Washing</Label>
+            </div>
+          </RadioGroup>
+        </CardContent>
       </div>
       <div>
 
 
-      <Button variant="outline" className="flex-1 w-full " onClick={nextPage} disabled={!choice}>Next</Button>
+        <Button variant="outline" className="flex-1 w-full " onClick={nextPage} disabled={!choice}>Next</Button>
       </div>
     </div>
   );
