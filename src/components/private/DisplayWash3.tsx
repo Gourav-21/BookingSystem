@@ -67,7 +67,6 @@ export default function DisplayWash3({ onInputChange, formData, setNext }) {
     }, []);
 
     useEffect(() => {
-        // Check if all required fields are filled
         const isValid = floorCount && Object.values(roomCounts).some(count => count > 0);
         setNext(isValid);
     }, [floorCount, roomCounts, setNext]);

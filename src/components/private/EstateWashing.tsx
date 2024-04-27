@@ -46,7 +46,6 @@ export default function EstateWashing({ onInputChange, formData, setNext }) {
     }, []);
 
     React.useEffect(() => {
-        // Check if the user has selected a washing date and answered whether it's flexible
         const isValid = date !== null && flexible !== "" && (flexible === "no" || (flexible === "yes" && flexibilitySelected));
         setNext(isValid);
     }, [date, flexible, flexibilitySelected, setNext]);
