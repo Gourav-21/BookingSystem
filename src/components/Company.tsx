@@ -124,10 +124,13 @@ console.log(next)
     <div>
       {!submitted ? (
         page === 0 ? (
-          <ChoicePage choice={choice} onChoiceChange={handleChoiceChange} nextPage={nextPage} />
+          <div  className="flex min-h-[500px]">
+
+            <ChoicePage choice={choice} onChoiceChange={handleChoiceChange} nextPage={nextPage} />
+          </div>
         ) : (
           <>
-            <div className="flex flex-col justify-between min-h-[400px]">
+            <div className="flex flex-col justify-between min-h-[500px]">
               {getPages(choice)[page - 1]}
               <div className="flex justify-between mt-4">
                 <Button variant="outline" className="rounded-r-none" onClick={prevPage}>back</Button>
@@ -154,7 +157,9 @@ console.log(next)
 
 function ChoicePage({ choice, onChoiceChange, nextPage }) {
   return (
-    <div className="space-y-1">
+    <div className="flex flex-col justify-between space-y-1">
+      <div>
+
       <CardHeader>
         <CardTitle className="text-white">What type of cleaning do you want?</CardTitle>
       </CardHeader>
@@ -186,8 +191,12 @@ function ChoicePage({ choice, onChoiceChange, nextPage }) {
           </div>
         </RadioGroup>
       </CardContent>
+      </div>
+      <div>
+
 
       <Button variant="outline" className="flex-1 w-full " onClick={nextPage} disabled={!choice}>Next</Button>
+      </div>
     </div>
   );
 }

@@ -110,10 +110,12 @@ export default function HousingAssociationCleaning({ page, setPage }) {
     <div>
       {!submitted ? (
         page === 0 ? (
-          <ChoicePage selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} onChoiceChange={handleChoiceChange} nextPage={nextPage} />
+          <div className="flex min-h-[500px]">
+            <ChoicePage selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} onChoiceChange={handleChoiceChange} nextPage={nextPage} />
+          </div>
         ) : (
           <>
-            <div className="flex flex-col justify-between min-h-[400px]">
+            <div className="flex flex-col justify-between min-h-[500px]">
               {getPages()[page - 1]}
               <div className="flex justify-between mt-4">
                 <Button variant="outline" className="rounded-r-none" onClick={prevPage}>back</Button>
@@ -164,29 +166,34 @@ function ChoicePage({ selectedOptions, setSelectedOptions, onChoiceChange, nextP
   };
 
   return (
-    <div className="space-y-1">
-      <CardHeader>
-                <CardTitle className="text-white">What type of cleaning do you want?</CardTitle>
+    <div className="flex flex-col justify-between space-y-1">
+      <div>
 
-      </CardHeader>
-      <CardContent>
-        <div className="flex flex-col space-y-2">
-          {options.map((option, index) => (
-            <div key={index} className="flex items-center space-x-2">
-              <Checkbox
-                id={`option-${index}`}
-                checked={selectedOptions.includes(option)}
-                onCheckedChange={() => handleCheckboxChange(option)}
-              />
-              <label htmlFor={`option-${index}`} className="text-sm font-medium leading-none">
-                {option}
-              </label>
-            </div>
-          ))}
-        </div>
-      </CardContent>
+        <CardHeader>
+          <CardTitle className="text-white">What type of cleaning do you want?</CardTitle>
 
-      <Button variant="outline" className="flex-1 w-full" onClick={handleNextPage} disabled={!selectedOptions.length}>Next</Button>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-col space-y-2">
+            {options.map((option, index) => (
+              <div key={index} className="flex items-center space-x-2">
+                <Checkbox
+                  id={`option-${index}`}
+                  checked={selectedOptions.includes(option)}
+                  onCheckedChange={() => handleCheckboxChange(option)}
+                />
+                <label htmlFor={`option-${index}`} className="text-sm font-medium leading-none">
+                  {option}
+                </label>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </div>
+      <div>
+
+        <Button variant="outline" className="flex-1 w-full" onClick={handleNextPage} disabled={!selectedOptions.length}>Next</Button>
+      </div>
     </div>
   );
 }

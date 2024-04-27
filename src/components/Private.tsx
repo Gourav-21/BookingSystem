@@ -39,45 +39,50 @@ import { useToast } from "./ui/use-toast";
 
 function ChoicePage({ choice, onChoiceChange, nextPage }) {
   return (
-    <div className="space-y-1">
-      <CardHeader>
-                <CardTitle className="text-white">What type of cleaning do you want?</CardTitle>
+    <div className="flex flex-col justify-between space-y-1">
+      <div>
 
-      </CardHeader>
-      <CardContent>
-        <RadioGroup defaultValue="comfortable" value={choice} onValueChange={onChoiceChange} className="space-y-1">
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="regular-cleaning" id="r1" />
-            <Label htmlFor="r1">Regular Cleaning</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="building-cleaning" id="r2" />
-            <Label htmlFor="r2">Building Cleaning</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="estate-washing" id="r3" />
-            <Label htmlFor="r3">Estate Washing</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="moving-laundry" id="r5" />
-            <Label htmlFor="r5">Moving Laundry</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="major-cleaning" id="r7" />
-            <Label htmlFor="r7">Major Cleaning</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="display-wash" id="r9" />
-            <Label htmlFor="r9">Display wash</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="other-washing" id="r10" />
-            <Label htmlFor="r10">Other Washing</Label>
-          </div>
-        </RadioGroup>
-      </CardContent>
+        <CardHeader>
+          <CardTitle className="text-white">What type of cleaning do you want?</CardTitle>
 
-      <Button variant="outline" className="flex-1 w-full" onClick={nextPage} disabled={!choice}>Next</Button>
+        </CardHeader>
+        <CardContent>
+          <RadioGroup defaultValue="comfortable" value={choice} onValueChange={onChoiceChange} className="space-y-1">
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="regular-cleaning" id="r1" />
+              <Label htmlFor="r1">Regular Cleaning</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="building-cleaning" id="r2" />
+              <Label htmlFor="r2">Building Cleaning</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="estate-washing" id="r3" />
+              <Label htmlFor="r3">Estate Washing</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="moving-laundry" id="r5" />
+              <Label htmlFor="r5">Moving Laundry</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="major-cleaning" id="r7" />
+              <Label htmlFor="r7">Major Cleaning</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="display-wash" id="r9" />
+              <Label htmlFor="r9">Display wash</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="other-washing" id="r10" />
+              <Label htmlFor="r10">Other Washing</Label>
+            </div>
+          </RadioGroup>
+        </CardContent>
+      </div>
+
+      <div>
+        <Button variant="outline" className="flex-1 w-full" onClick={nextPage} disabled={!choice}>Next</Button>
+      </div>
     </div>
   );
 }
@@ -191,10 +196,13 @@ export default function PrivateCleaning({ page, setPage }) {
     <div>
       {!submitted ? (
         page === 0 ? (
-          <ChoicePage choice={choice} onChoiceChange={handleChoiceChange} nextPage={nextPage} />
+          <div className="flex min-h-[500px]">
+
+            <ChoicePage choice={choice} onChoiceChange={handleChoiceChange} nextPage={nextPage} />
+          </ div>
         ) : (
           <>
-            <div className="flex flex-col justify-between min-h-[400px]">
+            <div className="flex flex-col justify-between min-h-[500px]">
               {getPages(choice)[page - 1]}
               <div className="flex justify-between mt-4">
                 <Button variant="outline" className="rounded-r-none" onClick={prevPage}>back</Button>
