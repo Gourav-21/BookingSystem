@@ -18,7 +18,7 @@ function PageIndicator({ currentPage, totalPages }) {
       {Array.from(Array(totalPages), (_, i) => (
         <div
           key={i}
-          className={`h-2 w-2 rounded-full mx-1 ${i < currentPage ? 'bg-black' : 'bg-gray-300'}`}
+          className={`h-2 w-2 rounded-full mx-1 ${i < currentPage ? 'bg-white' : 'bg-blue-400'}`}
         />
       ))}
     </div>
@@ -125,8 +125,8 @@ export default function Company({ page, setPage }) {
       ) : (
         <div className="text-center">
           <Success />
-          <h2 className="text-2xl font-semibold mb-4">Successfully Submitted!</h2>
-          <Button variant="secondary" onClick={goToHome}>go back</Button>
+          <h2 className="text-2xl text-white font-semibold mb-4">Successfully Submitted!</h2>
+          <Button variant="outline" onClick={goToHome}>go back</Button>
         </div>
       )}
       <PageIndicator currentPage={page + 1} totalPages={choice ? getPages(choice).length + 1 : 1} />
@@ -138,7 +138,7 @@ function ChoicePage({ choice, onChoiceChange, nextPage }) {
   return (
     <div className="space-y-1">
       <CardHeader>
-        <CardTitle>What type of cleaning do you want?</CardTitle>
+        <CardTitle className="text-white">What type of cleaning do you want?</CardTitle>
       </CardHeader>
       <CardContent >
         <RadioGroup defaultValue="comfortable" value={choice} onValueChange={onChoiceChange} className="space-y-1">
@@ -169,7 +169,7 @@ function ChoicePage({ choice, onChoiceChange, nextPage }) {
         </RadioGroup>
       </CardContent>
 
-      <Button variant="outline" className="flex-1 w-full" onClick={nextPage} disabled={!choice}>Next</Button>
+      <Button variant="outline" className="flex-1 w-full " onClick={nextPage} disabled={!choice}>Next</Button>
     </div>
   );
 }
