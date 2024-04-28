@@ -46,7 +46,7 @@ export default function Company({ page, setPage }) {
 
   const handleChoiceChange = (value) => {
     setFormData({
-      type: "Company",
+      type: "Bedrift",
       cleaningType: value
     });
 
@@ -142,12 +142,13 @@ export default function Company({ page, setPage }) {
     setPage(0);
     // prevPage()
     setFormData({
-      type: "Company",
+      type: "Bedrift",
       // @ts-ignore
       cleaningType: formData?.cleaningType
     });
     setSubmitted(false);
   };
+  console.log(formData)
 
   return (
     <div>

@@ -10,19 +10,19 @@ export function MenuCard() {
   const [page, setPage] = useState(0);
 
   return (
-    <Tabs defaultValue="private" className="">
+    <Tabs defaultValue="Privat" className="">
      {page === 0 && <TabsList className="grid w-full grid-cols-4">
-        <TabsTrigger value="private">Private</TabsTrigger>
-        <TabsTrigger className="col-span-2" value="Housing association">Housing association</TabsTrigger>
-        <TabsTrigger value="Company">Company</TabsTrigger>
+        <TabsTrigger value="Privat">Privat</TabsTrigger>
+        <TabsTrigger className="col-span-2" value="Borettslag">Borettslag</TabsTrigger>
+        <TabsTrigger value="Bedrift">Bedrift</TabsTrigger>
       </TabsList>}
-      <TabsContent value="private">
+      <TabsContent value="Privat">
         <Private page={page} setPage={setPage} />
       </TabsContent>
-      <TabsContent value="Housing association">
+      <TabsContent value="Borettslag">
         <HousingAssociationCleaning page={page} setPage={setPage}  />
       </TabsContent>
-      <TabsContent value="Company">
+      <TabsContent value="Bedrift">
         <Company page={page} setPage={setPage} />
       </TabsContent>
     </Tabs>

@@ -38,7 +38,7 @@ export default function HousingAssociationCleaning({ page, setPage }) {
 
   const handleChoiceChange = (value) => {
     setFormData({
-      type: "Housing association",
+      type: "Borettslag",
       cleaningType: value
     });
 
@@ -126,12 +126,13 @@ export default function HousingAssociationCleaning({ page, setPage }) {
   const goToHome = () => {
     setPage(0);
     setFormData({
-      type: "Housing association",
+      type: "Borettslag",
       // @ts-ignore
       cleaningType: formData?.cleaningType
     });
     setSubmitted(false);
   };
+  console.log(formData)
 
   return (
     <div>

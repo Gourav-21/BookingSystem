@@ -111,7 +111,7 @@ export default function PrivateCleaning({ page, setPage }) {
 
   const handleChoiceChange = (value) => {
     setFormData({
-      type: "private",
+      type: "Privat",
       cleaningType: value
     });
 
@@ -209,11 +209,12 @@ export default function PrivateCleaning({ page, setPage }) {
         setIsLoading(false);
       });
   };
+  console.log(formData)
 
   const goToHome = () => {
     setPage(0);
     setFormData({
-      type: "private",
+      type: "Privat",
       // @ts-ignore
       cleaningType: formData?.cleaningType
     });
