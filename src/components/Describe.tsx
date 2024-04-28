@@ -9,17 +9,17 @@ function Describe({ onInputChange, formData, setNext }) {
   };
 
   useEffect(()=>{
-    if(formData.description && formData.description.length > 0){
+    if(formData.beskrivelse && formData.beskrivelse.length > 0){
       setNext(true)
     }else{
       setNext(false)
     }
-  },[formData.description]) 
+  },[formData.beskrivelse]) 
 
   return (
     <div className="grid w-full gap-1.5">
-      <Label htmlFor="name">Describe what the assignment entails</Label>
-      <Textarea name="description" value={formData?.description} onChange={handleChange} placeholder="What the task entails, size of the task, frequency, whether special treatment of objects is required, etc" id="description" />
+      <Label htmlFor="name">Beskriv hva oppdraget går ut på</Label>
+      <Textarea name="beskrivelse" value={formData?.beskrivelse} onChange={handleChange} placeholder="Hva oppgaven innebærer, størrelse på oppgave, hyppighet, om det kreves spesialbehandling av objekter, osv" id="beskrivelse" />
     </div>
   );
 }
