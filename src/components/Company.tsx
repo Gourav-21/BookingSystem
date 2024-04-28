@@ -117,7 +117,7 @@ export default function Company({ page, setPage }) {
     }
     emailjs.send("service_s51bxmq", "template_z6fjeta", {
       // @ts-ignore      
-      name: formData.Navn,
+      Navn: formData.Navn,
       // @ts-ignore
       type: formData.type,
       // @ts-ignore

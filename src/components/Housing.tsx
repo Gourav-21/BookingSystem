@@ -102,7 +102,7 @@ export default function HousingAssociationCleaning({ page, setPage }) {
     }
     emailjs.send("service_s51bxmq", "template_z6fjeta", {
       // @ts-ignore      
-      name: formData.name,
+      Navn: formData.name,
       // @ts-ignore
       type: formData.type,
       // @ts-ignore
