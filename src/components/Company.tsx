@@ -82,7 +82,7 @@ export default function Company({ page, setPage }) {
 
   const getPages = (choice) => {
     switch (choice) {
-      case "regular-cleaning":
+      case "Fast-renhold":
         // @ts-ignore
         if (formData?.what_type_of_premises_should_be_washed && formData?.what_type_of_premises_should_be_washed.includes("Office")) {
           return [<RegularCleaning key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <CompanySubmitDetail key="page5" onInputChange={handleInputChange} formData={formData} setNext={setNext} />];
@@ -202,28 +202,28 @@ function ChoicePage({ choice, onChoiceChange, nextPage }) {
         <CardContent >
           <RadioGroup defaultValue="comfortable" value={choice} onValueChange={onChoiceChange} className="space-y-1">
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="regular-cleaning" id="r1" />
-              <Label htmlFor="r1">Regular Cleaning</Label>
+              <RadioGroupItem value="Fast-renhold" id="r1" />
+              <Label htmlFor="r1">Fast renhold</Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="building-cleaning" id="r2" />
-              <Label htmlFor="r2">Building Cleaning</Label>
+              <RadioGroupItem value="Byggrengjøring" id="r2" />
+              <Label htmlFor="r2">Byggrengjøring</Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="graffiti-removal" id="r4" />
-              <Label htmlFor="r4">Removal of Graffiti</Label>
+              <RadioGroupItem value="Fjerning-av-grafitti" id="r4" />
+              <Label htmlFor="r4">Fjerning av grafitti</Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="moving-laundry" id="r5" />
               <Label htmlFor="r5">Moving Laundry</Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="display-sink" id="r7" />
-              <Label htmlFor="r7">Display Sink</Label>
+              <RadioGroupItem value="Visningsvask" id="r7" />
+              <Label htmlFor="r7">Visningsvask</Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="other-washing" id="r9" />
-              <Label htmlFor="r9">Other Washing</Label>
+              <RadioGroupItem value="Annen-vask" id="r9" />
+              <Label htmlFor="r9">Annen vask</Label>
             </div>
           </RadioGroup>
         </CardContent>
