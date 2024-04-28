@@ -112,7 +112,7 @@ export default function PrivateCleaning({ page, setPage }) {
   const handleChoiceChange = (value) => {
     setFormData({
       type: "Privat",
-      cleaningType: value
+      type_rengjøring: value
     });
 
     setChoice(value);
@@ -193,7 +193,7 @@ export default function PrivateCleaning({ page, setPage }) {
       // @ts-ignore
       type: formData.type,
       // @ts-ignore
-      cleaningType: formData.cleaningType,
+      type_rengjøring: formData.type_rengjøring,
 
       formData: JSON.stringify(formData, null, 2),
     }, "Ir-YjhpxWCxJ8yqh_")
@@ -216,7 +216,7 @@ export default function PrivateCleaning({ page, setPage }) {
     setFormData({
       type: "Privat",
       // @ts-ignore
-      cleaningType: formData?.cleaningType
+      type_rengjøring: formData?.type_rengjøring
     });
     setSubmitted(false);
   };

@@ -39,7 +39,7 @@ export default function HousingAssociationCleaning({ page, setPage }) {
   const handleChoiceChange = (value) => {
     setFormData({
       type: "Borettslag",
-      cleaningType: value
+      type_rengjøring: value
     });
 
     setChoice(value);
@@ -106,7 +106,7 @@ export default function HousingAssociationCleaning({ page, setPage }) {
       // @ts-ignore
       type: formData.type,
       // @ts-ignore
-      cleaningType: formData.cleaningType,
+      type_rengjøring: formData.type_rengjøring,
 
       formData: JSON.stringify(formData, null, 2),
     }, "Ir-YjhpxWCxJ8yqh_")
@@ -128,7 +128,7 @@ export default function HousingAssociationCleaning({ page, setPage }) {
     setFormData({
       type: "Borettslag",
       // @ts-ignore
-      cleaningType: formData?.cleaningType
+      type_rengjøring: formData?.type_rengjøring
     });
     setSubmitted(false);
   };

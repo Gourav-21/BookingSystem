@@ -47,7 +47,7 @@ export default function Company({ page, setPage }) {
   const handleChoiceChange = (value) => {
     setFormData({
       type: "Bedrift",
-      cleaningType: value
+      type_rengjøring: value
     });
 
     setChoice(value);
@@ -117,11 +117,11 @@ export default function Company({ page, setPage }) {
     }
     emailjs.send("service_s51bxmq", "template_z6fjeta", {
       // @ts-ignore      
-      name: formData.name,
+      name: formData.Navn,
       // @ts-ignore
       type: formData.type,
       // @ts-ignore
-      cleaningType: formData.cleaningType,
+      type_rengjøring: formData.type_rengjøring,
 
       formData: JSON.stringify(formData, null, 2),
     }, "Ir-YjhpxWCxJ8yqh_")
@@ -144,7 +144,7 @@ export default function Company({ page, setPage }) {
     setFormData({
       type: "Bedrift",
       // @ts-ignore
-      cleaningType: formData?.cleaningType
+      type_rengjøring: formData?.type_rengjøring
     });
     setSubmitted(false);
   };
