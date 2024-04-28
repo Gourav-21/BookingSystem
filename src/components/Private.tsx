@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useEffect, useState } from "react";
-import { CardContent, CardHeader, CardTitle } from "./ui/card";
+import { CardContent, CardHeader } from "./ui/card";
 import Describe from "./Describe";
 import PrivateSubmitDetail from "./private/private-submit-detail";
 import RegularCleaning from "./private/regularCleaning";
@@ -44,7 +44,7 @@ function ChoicePage({ choice, onChoiceChange, nextPage }) {
       <div>
 
         <CardHeader>
-          <CardTitle className="text-white">What type of cleaning do you want?</CardTitle>
+        <p className="text-white text-2xl font-semibold">What type of cleaning do you want?</p>
 
         </CardHeader>
         <CardContent>
@@ -186,7 +186,7 @@ export default function PrivateCleaning({ page, setPage }) {
       })
       return
     }
-    emailjs.send("service_f0hbws8", "template_cppdusm", {
+    emailjs.send("service_s51bxmq", "template_z6fjeta", {
       // @ts-ignore
       name: formData.name,
       // @ts-ignore
@@ -195,7 +195,7 @@ export default function PrivateCleaning({ page, setPage }) {
       cleaningType: formData.cleaningType,
 
       formData: JSON.stringify(formData, null, 2),
-    }, "OICvfeVTiDhPZlCgX")
+    }, "Ir-YjhpxWCxJ8yqh_")
       .then((result) => {
         console.log("Submitted Data:", formData);
         setSubmitted(true);
@@ -250,7 +250,7 @@ export default function PrivateCleaning({ page, setPage }) {
       ) : (
         <div className="text-center">
           <Success />
-          <h2 className="text-2xl text-white font-semibold mb-4">Successfully Submitted!</h2>
+          <p className="text-2xl text-white font-semibold mb-4">Successfully Submitted!</p>
           <Button variant="outline" onClick={goToHome}>go back</Button>
         </div>
 

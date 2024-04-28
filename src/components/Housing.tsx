@@ -1,7 +1,6 @@
 import {
   CardContent,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card"
 import { Checkbox } from "./ui/checkbox"
 import { Button } from "@/components/ui/button";
@@ -100,7 +99,7 @@ export default function HousingAssociationCleaning({ page, setPage }) {
       })
       return
     }
-    emailjs.send("service_f0hbws8", "template_cppdusm", {
+    emailjs.send("service_s51bxmq", "template_z6fjeta", {
       // @ts-ignore      
       name: formData.name,
       // @ts-ignore
@@ -109,7 +108,7 @@ export default function HousingAssociationCleaning({ page, setPage }) {
       cleaningType: formData.cleaningType,
 
       formData: JSON.stringify(formData, null, 2),
-    }, "OICvfeVTiDhPZlCgX")
+    }, "Ir-YjhpxWCxJ8yqh_")
       .then((result) => {
         console.log("Submitted Data:", formData);
         setSubmitted(true);
@@ -124,7 +123,11 @@ export default function HousingAssociationCleaning({ page, setPage }) {
 
   const goToHome = () => {
     setPage(0);
-    setFormData({});
+    setFormData({
+      type: "Housing association",
+      // @ts-ignore
+      cleaningType: formData?.cleaningType
+    });
     setSubmitted(false);
   };
 
@@ -159,7 +162,7 @@ export default function HousingAssociationCleaning({ page, setPage }) {
       ) : (
         <div className="text-center">
           <Success />
-          <h2 className="text-2xl text-white font-semibold mb-4">Successfully Submitted!</h2>
+          <p className="text-2xl text-white font-semibold mb-4">Successfully Submitted!</p>
           <Button variant="outline" onClick={goToHome}>go back</Button>
         </div>
       )}
@@ -198,7 +201,7 @@ function ChoicePage({ selectedOptions, setSelectedOptions, onChoiceChange, nextP
       <div>
 
         <CardHeader>
-          <CardTitle className="text-white">What type of cleaning do you want?</CardTitle>
+        <p className="text-white text-2xl font-semibold">What type of cleaning do you want?</p>
 
         </CardHeader>
         <CardContent>
