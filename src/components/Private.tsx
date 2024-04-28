@@ -44,7 +44,7 @@ function ChoicePage({ choice, onChoiceChange, nextPage }) {
       <div>
 
         <CardHeader>
-        <p className="text-white text-2xl font-semibold">Hva slags type rengjøring ønsker du?</p>
+          <p className="text-white text-2xl font-semibold">Hva slags type rengjøring ønsker du?</p>
 
         </CardHeader>
         <CardContent>
@@ -130,7 +130,7 @@ export default function PrivateCleaning({ page, setPage }) {
     } else {
       toast({
         variant: "destructive",
-        title:"Åh! Noe gikk galt.",
+        title: "Åh! Noe gikk galt.",
         description: "Vennligst fyll inn alle feltene",
       })
     }
@@ -182,7 +182,7 @@ export default function PrivateCleaning({ page, setPage }) {
     if (!next) {
       toast({
         variant: "destructive",
-        title:"Åh! Noe gikk galt.",
+        title: "Åh! Noe gikk galt.",
         description: "Vennligst fyll inn alle feltene",
       })
       return
@@ -238,9 +238,9 @@ export default function PrivateCleaning({ page, setPage }) {
                 {page === getPages(choice).length ? (
                   <Button variant="outline" className="flex-1 rounded-l-none" disabled={isLoading} onClick={submitData}>
                     {isLoading ? (
-                      "Submitting..."
+                      "Sender inn..."
                     ) : (
-                      'Submit'
+                      'Send inn'
                     )}
                   </Button>
                 ) : (

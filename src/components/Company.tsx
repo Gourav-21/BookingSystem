@@ -65,7 +65,7 @@ export default function Company({ page, setPage }) {
     } else {
       toast({
         variant: "destructive",
-        title:"Åh! Noe gikk galt.",
+        title: "Åh! Noe gikk galt.",
         description: "Vennligst fyll inn alle feltene",
       })
     }
@@ -110,7 +110,7 @@ export default function Company({ page, setPage }) {
     if (!next) {
       toast({
         variant: "destructive",
-        title:"Åh! Noe gikk galt.",
+        title: "Åh! Noe gikk galt.",
         description: "Vennligst fyll inn alle feltene",
       })
       return
@@ -167,9 +167,9 @@ export default function Company({ page, setPage }) {
                 {page === getPages(choice).length ? (
                   <Button variant="outline" className="flex-1 rounded-l-none" disabled={isLoading} onClick={submitData}>
                     {isLoading ? (
-                      "Submitting..."
+                      "Sender inn..."
                     ) : (
-                      'Submit'
+                      'Send inn'
                     )}
                   </Button>
                 ) : (
