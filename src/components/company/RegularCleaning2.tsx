@@ -66,9 +66,9 @@ export default function RegularCleaning2({ onInputChange, formData, setNext }) {
                                                <Label className="text-slate-500" htmlFor={room}>{room.charAt(0).toUpperCase() + room.slice(1)}</Label>
 
                         <div className="flex items-center gap-3 justify-center">
-                            <Button onClick={() => decrementCount(room)} className="w-8 h-8 rounded-full bg-slate-500 text-white hover:bg-slate-200 hover:text-slate-900"><p className="mb-[1px] mr-[1px]">-</p></Button>
+                            <Button onClick={() => decrementCount(room)} className="w-8 h-8 rounded-full bg-slate-500 text-white hover:bg-slate-200 hover:text-slate-900"><span className="">-</span></Button>
                             <b>{roomCounts[room]}</b>
-                            <Button onClick={() => incrementCount(room)} className="w-8 h-8 rounded-full bg-blue-500 text-white hover:bg-blue-200 hover:text-blue-900"><p className="mb-[1px] mr-[1px]">+</p></Button>
+                            <Button onClick={() => incrementCount(room)} className="w-8 h-8 rounded-full bg-blue-500 text-white hover:bg-blue-200 hover:text-blue-900"><span className="">+</span></Button>
                         </div>
                     </Card>
                 ))}

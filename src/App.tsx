@@ -5,7 +5,6 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card"
 import { Lock } from 'lucide-react'
 import { MenuCard } from './components/MenuCard'
@@ -16,7 +15,7 @@ function App() {
     <div className='flex justify-center h-screen items-center'>
       <Card className="w-[420px] bg-gradient-to-r from-blue-500 to-blue-900 relative rounded-lg">
         <CardHeader>
-          <CardTitle className='text-white'>Find the right cleaning company!</CardTitle>
+          <p className='text-white text-2xl font-semibold'>Find the right cleaning company!</p>
           <CardDescription className='text-gray-200 ' >The service is free and completely non-binding.</CardDescription>
         </CardHeader>
         <CardContent className='min-h-[500px]'>

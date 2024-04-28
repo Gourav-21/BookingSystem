@@ -12,7 +12,7 @@ const Success = () => {
         autoplay: true,
         renderer: 'svg',
     };
-    // @ts-ignore
+    
     const { View } = useLottie(options, style);
     
     return View;
