@@ -88,9 +88,10 @@ export default function HousingAssociationCleaning({ page, setPage }) {
   };
 
   const submitData = () => {
-    if(isLoading){
+    if (isLoading) {
       return
     }
+    setIsLoading(true);
     if (!next) {
       toast({
         variant: "destructive",
@@ -114,11 +115,12 @@ export default function HousingAssociationCleaning({ page, setPage }) {
         setSubmitted(true);
         setNext(true)
         console.log(result.text);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error('Error sending email:', error);
+        setIsLoading(false);
       });
-      setIsLoading(false);
   };
 
   const goToHome = () => {
@@ -143,17 +145,17 @@ export default function HousingAssociationCleaning({ page, setPage }) {
             <div className="flex flex-col justify-between min-h-[500px]">
               {getPages()[page - 1]}
               <div className="flex justify-between mt-4">
-                <Button variant="outline" className="rounded-r-none" onClick={prevPage}>back</Button>
+                <Button variant="outline" className="rounded-r-none" onClick={prevPage}>Tilbake</Button>
                 {page === getPages().length ? (
                   <Button variant="outline" className="flex-1 rounded-l-none" disabled={isLoading} onClick={submitData}>
-                     {isLoading ? (
-                     "Submitting..."
-                      ) : (
-                        'Submit'
-                      )}
+                    {isLoading ? (
+                      "Submitting..."
+                    ) : (
+                      'Submit'
+                    )}
                   </Button>
                 ) : (
-                  <Button variant="outline" className="flex-1 rounded-l-none" onClick={nextPage}>Next</Button>
+                  <Button variant="outline" className="flex-1 rounded-l-none" onClick={nextPage}>Neste</Button>
                 )}
               </div>
             </div>
@@ -162,8 +164,8 @@ export default function HousingAssociationCleaning({ page, setPage }) {
       ) : (
         <div className="text-center">
           <Success />
-          <p className="text-2xl text-white font-semibold mb-4">Successfully Submitted!</p>
-          <Button variant="outline" onClick={goToHome}>go back</Button>
+          <p className="text-2xl text-white font-semibold mb-4">Vellykket innsendt!</p>
+          <Button variant="outline" onClick={goToHome}>gå tilbake</Button>
         </div>
       )}
       <PageIndicator currentPage={page + 1} totalPages={choice ? getPages().length + 1 : 1} />
@@ -201,7 +203,7 @@ function ChoicePage({ selectedOptions, setSelectedOptions, onChoiceChange, nextP
       <div>
 
         <CardHeader>
-        <p className="text-white text-2xl font-semibold">What type of cleaning do you want?</p>
+          <p className="text-white text-2xl font-semibold">Hva slags type rengjøring ønsker du?</p>
 
         </CardHeader>
         <CardContent>
@@ -223,7 +225,7 @@ function ChoicePage({ selectedOptions, setSelectedOptions, onChoiceChange, nextP
       </div>
       <div>
 
-        <Button variant="outline" className="flex-1 w-full" onClick={handleNextPage} disabled={!selectedOptions.length}>Next</Button>
+        <Button variant="outline" className="flex-1 w-full" onClick={handleNextPage} disabled={!selectedOptions.length}>Neste</Button>
       </div>
     </div>
   );

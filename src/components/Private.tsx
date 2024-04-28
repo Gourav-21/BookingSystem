@@ -44,7 +44,7 @@ function ChoicePage({ choice, onChoiceChange, nextPage }) {
       <div>
 
         <CardHeader>
-        <p className="text-white text-2xl font-semibold">What type of cleaning do you want?</p>
+        <p className="text-white text-2xl font-semibold">Hva slags type rengjøring ønsker du?</p>
 
         </CardHeader>
         <CardContent>
@@ -82,7 +82,7 @@ function ChoicePage({ choice, onChoiceChange, nextPage }) {
       </div>
 
       <div>
-        <Button variant="outline" className="flex-1 w-full" onClick={nextPage} disabled={!choice}>Next</Button>
+        <Button variant="outline" className="flex-1 w-full" onClick={nextPage} disabled={!choice}>Neste</Button>
       </div>
     </div>
   );
@@ -178,6 +178,7 @@ export default function PrivateCleaning({ page, setPage }) {
     if (isLoading) {
       return
     }
+    setIsLoading(true);
     if (!next) {
       toast({
         variant: "destructive",
@@ -201,11 +202,12 @@ export default function PrivateCleaning({ page, setPage }) {
         setSubmitted(true);
         setNext(true)
         console.log(result.text);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error('Error sending email:', error);
+        setIsLoading(false);
       });
-    setIsLoading(false);
   };
 
   const goToHome = () => {
@@ -231,7 +233,7 @@ export default function PrivateCleaning({ page, setPage }) {
             <div className="flex flex-col justify-between min-h-[500px]">
               {getPages(choice)[page - 1]}
               <div className="flex justify-between mt-4">
-                <Button variant="outline" className="rounded-r-none" onClick={prevPage}>back</Button>
+                <Button variant="outline" className="rounded-r-none" onClick={prevPage}>Tilbake</Button>
                 {page === getPages(choice).length ? (
                   <Button variant="outline" className="flex-1 rounded-l-none" disabled={isLoading} onClick={submitData}>
                     {isLoading ? (
@@ -241,7 +243,7 @@ export default function PrivateCleaning({ page, setPage }) {
                     )}
                   </Button>
                 ) : (
-                  <Button variant="outline" className="flex-1 rounded-l-none" onClick={nextPage}>Next</Button>
+                  <Button variant="outline" className="flex-1 rounded-l-none" onClick={nextPage}>Neste</Button>
                 )}
               </div>
             </div>
@@ -250,8 +252,8 @@ export default function PrivateCleaning({ page, setPage }) {
       ) : (
         <div className="text-center">
           <Success />
-          <p className="text-2xl text-white font-semibold mb-4">Successfully Submitted!</p>
-          <Button variant="outline" onClick={goToHome}>go back</Button>
+          <p className="text-2xl text-white font-semibold mb-4">Vellykket innsendt!</p>
+          <Button variant="outline" onClick={goToHome}>gå tilbake</Button>
         </div>
 
       )}
