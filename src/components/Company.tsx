@@ -84,7 +84,7 @@ export default function Company({ page, setPage }) {
     switch (choice) {
       case "Fast-renhold":
         // @ts-ignore
-        if (formData?.what_type_of_premises_should_be_washed && formData?.what_type_of_premises_should_be_washed.includes("Office")) {
+        if (formData?.what_type_of_premises_should_be_washed && formData?.what_type_of_premises_should_be_washed.includes("Kontor")) {
           return [<RegularCleaning key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <CompanySubmitDetail key="page5" onInputChange={handleInputChange} formData={formData} setNext={setNext} />];
         } else {
           return [<RegularCleaning key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <CompanySubmitDetail key="page5" onInputChange={handleInputChange} formData={formData} setNext={setNext} />];
@@ -148,7 +148,7 @@ export default function Company({ page, setPage }) {
     });
     setSubmitted(false);
   };
-  console.log(formData)
+  console.log(next)
 
   return (
     <div>

@@ -11,17 +11,17 @@ export default function RegularCleaning({ formData, onInputChange, setNext }) {
 
 
     const options = [
-        "Office",
-        "Stock/production",
-        "Combination room",
-        "Shop/trade",
-        "Serving",
-        "Instruction",
-        "Other"
+        "Kontor",
+        "Lager/produksjon",
+        "Kombinasjonslokale",
+        "Butikk/handel",
+        "Servering",
+        "Undervisning",
+        "Annet"
     ];
 
     useEffect(() => {
-        if (formData?.what_type_of_premises_should_be_washed && formData.what_type_of_premises_should_be_washed.length != "" && formData?.frequency && formData.day0 && formData.time0){
+        if (formData?.Hva_slags_type_lokale_skal_vaskes && formData.Hva_slags_type_lokale_skal_vaskes.length != "" && formData?.Hvor_ofte_vil_dere_ha_vaskehjelp && formData.Vaskedag0 && formData.Tidspunkt0) {
             setNext(true)
         } else {
             setNext(false)
@@ -30,11 +30,11 @@ export default function RegularCleaning({ formData, onInputChange, setNext }) {
 
 
     useEffect(() => {
-        onInputChange("what_type_of_premises_should_be_washed", selectedOptions);
+        onInputChange("Hva_slags_type_lokale_skal_vaskes", selectedOptions);
     }, [selectedOptions]);
 
     useEffect(() => {
-        setSelectedOptions(formData?.what_type_of_premises_should_be_washed || [])
+        setSelectedOptions(formData?.Hva_slags_type_lokale_skal_vaskes || [])
     }, [])
 
     const handleCheckboxChange = (option) => {
@@ -48,7 +48,7 @@ export default function RegularCleaning({ formData, onInputChange, setNext }) {
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-2">
-                <Label htmlFor="what_type_of_premises_should_be_washed">What type of premises should be washed?</Label>
+                <Label htmlFor="Hva_slags_type_lokale_skal_vaskes">Hva slags type lokale skal vaskes?</Label>
                 {options.map((option, index) => (
                     <div key={index} className="flex items-center space-x-2">
                         <Checkbox
@@ -63,42 +63,42 @@ export default function RegularCleaning({ formData, onInputChange, setNext }) {
                 ))}
             </div>
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="frequency">How often do you want laundry help?</Label>
-                <Select onValueChange={e => onInputChange("frequency", e)} value={formData?.frequency}>
-                    <SelectTrigger id="frequency">
-                        <SelectValue placeholder="Select" />
+                <Label htmlFor="Hvor_ofte_vil_dere_ha_vaskehjelp">HHvor ofte vil dere ha vaskehjelp?</Label>
+                <Select onValueChange={e => onInputChange("Hvor_ofte_vil_dere_ha_vaskehjelp", e)} value={formData?.Hvor_ofte_vil_dere_ha_vaskehjelp}>
+                    <SelectTrigger id="Hvor_ofte_vil_dere_ha_vaskehjelp">
+                        <SelectValue placeholder="-- Velg hyppighet --" />
                     </SelectTrigger>
                     <SelectContent position="popper">
-                        <SelectItem value="Daily">Daily</SelectItem>
-                        <SelectItem value="Several times a week">Several times a week</SelectItem>
-                        <SelectItem value="Weekly">Weekly</SelectItem>
-                        <SelectItem value="Biweekly">Biweekly</SelectItem>
-                        <SelectItem value="Monthly">Monthly</SelectItem>
+                        <SelectItem value="Daglig">Daglig</SelectItem>
+                        <SelectItem value="Flere ganger i uka">Flere ganger i uka</SelectItem>
+                        <SelectItem value="Ukentlig">Ukentlig</SelectItem>
+                        <SelectItem value="Annen hver uke">Annen hver uke</SelectItem>
+                        <SelectItem value="Månedlig">Månedlig</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="frequency">Add at least one suitable day and time</Label>
+                <Label htmlFor="Legg til minst én passende vaskedag og tidspunkt:">Legg til minst én passende vaskedag og tidspunkt:</Label>
                 {Array.from(Array(field)).map((_, index) => {
                     return (
                         <div key={index} className="flex">
-                            <Select onValueChange={e => onInputChange("day" + index, e)} value={formData?.[`day${index}`]}>
-                                <SelectTrigger className="rounded-r-none" id={`day${index}`}>
-                                    <SelectValue placeholder="washing day" />
+                            <Select onValueChange={e => onInputChange("Vaskedag" + index, e)} value={formData?.[`Vaskedag${index}`]}>
+                                <SelectTrigger className="rounded-r-none" id={`Vaskedag${index}`}>
+                                    <SelectValue placeholder="Vaskedag" />
                                 </SelectTrigger>
                                 <SelectContent position="popper">
-                                    <SelectItem value="monday">monday</SelectItem>
-                                    <SelectItem value="tuesday">tuesday</SelectItem>
-                                    <SelectItem value="wednesday">wednesday</SelectItem>
-                                    <SelectItem value="thursday">thursday</SelectItem>
-                                    <SelectItem value="friday">friday</SelectItem>
-                                    <SelectItem value="saturday">saturday</SelectItem>
-                                    <SelectItem value="sunday">sunday</SelectItem>
+                                    <SelectItem value="Mandager">Mandager</SelectItem>
+                                    <SelectItem value="Tirsdager">Tirsdager</SelectItem>
+                                    <SelectItem value="Onsdager">Onsdager</SelectItem>
+                                    <SelectItem value="Torsdager">Torsdager</SelectItem>
+                                    <SelectItem value="Fredager">Fredager</SelectItem>
+                                    <SelectItem value="Lørdager">Lørdager</SelectItem>
+                                    <SelectItem value="Søndager">Søndager</SelectItem>
                                 </SelectContent>
                             </Select>
-                            <Select onValueChange={e => onInputChange("time" + index, e)} value={formData?.[`time${index}`]}>
-                                <SelectTrigger className="rounded-l-none" id={`time${index}`}>
-                                    <SelectValue placeholder="time" />
+                            <Select onValueChange={e => onInputChange("Tidspunkt" + index, e)} value={formData?.[`Tidspunkt${index}`]}>
+                                <SelectTrigger className="rounded-l-none" id={`Tidspunkt${index}`}>
+                                    <SelectValue placeholder="Tidspunkt" />
                                 </SelectTrigger>
                                 <SelectContent position="popper">
                                     <SelectItem value="06:00 - 09:00">06:00 - 09:00</SelectItem>
@@ -113,9 +113,9 @@ export default function RegularCleaning({ formData, onInputChange, setNext }) {
                 })}
             </div>
             <div className="flex">
-                <Button variant="outline" className={cn("rounded-r-none", field === 1 && "rounded")} onClick={() => setField(field + 1)}>Add More</Button>
+                <Button variant="outline" className={cn("rounded-r-none", field === 1 && "rounded")} onClick={() => setField(field + 1)}>Legg til flere</Button>
                 {field > 1 &&
-                    <Button variant="outline" className="rounded-l-none" disabled={field === 1} onClick={() => setField(field - 1)}>remove</Button>
+                    <Button variant="outline" className="rounded-l-none" disabled={field === 1} onClick={() => setField(field - 1)}>fjerne</Button>
                 }
             </div>
         </div>
