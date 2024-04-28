@@ -130,8 +130,8 @@ export default function PrivateCleaning({ page, setPage }) {
     } else {
       toast({
         variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: "Please fill in all the fields",
+        title:"Åh! Noe gikk galt.",
+        description: "Vennligst fyll inn alle feltene",
       })
     }
   }
@@ -182,8 +182,8 @@ export default function PrivateCleaning({ page, setPage }) {
     if (!next) {
       toast({
         variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: "Please fill in all the fields",
+        title:"Åh! Noe gikk galt.",
+        description: "Vennligst fyll inn alle feltene",
       })
       return
     }
