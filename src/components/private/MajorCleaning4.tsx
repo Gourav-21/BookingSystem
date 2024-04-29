@@ -22,12 +22,12 @@ export default function MajorCleaning4({ onInputChange, formData, setNext }) {
                 <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Does_the_household_have_pets", e)} value={formData?.Does_the_household_have_pets} name="entire home" defaultValue={""} >
                     <Label htmlFor="entire home">Does the household have pets?</Label>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="yes" id="yes" />
-                        <Label htmlFor="yes">yes</Label>
+                        <RadioGroupItem value="ja" id="ja" />
+                        <Label htmlFor="ja">ja</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="no" id="no" />
-                        <Label htmlFor="no">no</Label>
+                        <RadioGroupItem value="nei" id="nei" />
+                        <Label htmlFor="nei">nei</Label>
                     </div>
                 </RadioGroup>
             </div>

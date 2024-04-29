@@ -6,21 +6,21 @@ import { useEffect } from "react";
 export default function MovingLaundry4({ onInputChange, formData, setNext }) {
     
     useEffect(() => {
-        setNext(formData?.relocation_assistance !== undefined);
-    }, [formData?.relocation_assistance, setNext]);
+        setNext(formData?.Ønsker_dere_også_flyttehjelp !== undefined);
+    }, [formData?.Ønsker_dere_også_flyttehjelp, setNext]);
 
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
-                <RadioGroup className="space-y-1" onValueChange={(e) =>onInputChange("relocation_assistance", e)} value={formData?.relocation_assistance} name="entire home" defaultValue={""} >
-                    <Label htmlFor="entire home">Do you also want relocation assistance?</Label>
+                <RadioGroup className="space-y-1" onValueChange={(e) =>onInputChange("Ønsker_dere_også_flyttehjelp", e)} value={formData?.Ønsker_dere_også_flyttehjelp} name="entire home" defaultValue={""} >
+                    <Label htmlFor="entire home">Ønsker dere også flyttehjelp?</Label>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="yes" id="yes" />
-                        <Label htmlFor="yes">yes</Label>
+                        <RadioGroupItem value="ja" id="ja" />
+                        <Label htmlFor="ja">ja</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="no" id="no" />
-                        <Label htmlFor="no">no</Label>
+                        <RadioGroupItem value="nei" id="nei" />
+                        <Label htmlFor="nei">nei</Label>
                     </div>
                 </RadioGroup>
             </div>

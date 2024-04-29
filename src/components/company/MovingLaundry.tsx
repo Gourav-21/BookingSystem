@@ -15,58 +15,60 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function MovingLaundry({ onInputChange, formData, setNext }) {
-    const [flexible, setFlexible] = React.useState("no");
+    const [flexible, setFlexible] = React.useState("nei");
     const [flexibility, setFlexibility] = React.useState("");
 
     React.useEffect(() => {
-        setFlexible(formData?.washing_Date_flexible || "no");
+        setFlexible(formData?.Er_vaskedatoen_fleksibel || "nei");
     }, []);
 
+    console.log(formData)
+
     const handleDateChange = (date: Date | null) => {
-        onInputChange("washingDate", date);
+        onInputChange("Vaskedato", date);
     };
 
     const handleFlexibleChange = (value: string) => {
         setFlexible(value);
-        onInputChange("washing_Date_flexible", value);
-        if (value === "no") {
+        onInputChange("Er_vaskedatoen_fleksibel", value);
+        if (value === "nei") {
             setFlexibility("");
-            onInputChange("Flexibility", "");
+            onInputChange("Fleksibilitet", "");
         }
     };
 
     const handleFlexibilityChange = (value: string) => {
         setFlexibility(value);
-        onInputChange("Flexibility", value);
+        onInputChange("Fleksibilitet", value);
     };
 
     React.useEffect(() => {
-        const isValid = formData?.washingDate && (flexible === "no" || flexibility);
+        const isValid = formData?.Vaskedato && (flexible === "nei" || flexibility);
         setNext(isValid);
     }, [formData, flexible, flexibility, setNext]);
 
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="washing date">Washing date?</Label>
-                <DatePicker value={formData?.washingDate} onInputChange={handleDateChange} />
+                <Label htmlFor="Vaskedato">Vaskedato</Label>
+                <DatePicker value={formData?.Vaskedato} onInputChange={handleDateChange} />
             </div>
             <div className="flex flex-col space-y-1.5">
-                <RadioGroup className="space-y-1" onValueChange={handleFlexibleChange} value={flexible} name="flexible" defaultValue="no">
-                    <Label htmlFor="flexible date">Is the washing date flexible?</Label>
+                <RadioGroup className="space-y-1" onValueChange={handleFlexibleChange} value={flexible} name="flexible" defaultValue="nei">
+                    <Label htmlFor="flexible date">Er vaskedatoen fleksibel?</Label>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="yes" id="yes" />
-                        <Label htmlFor="yes">yes</Label>
+                        <RadioGroupItem value="ja" id="ja" />
+                        <Label htmlFor="ja">ja</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="no" id="no" />
-                        <Label htmlFor="no">no</Label>
+                        <RadioGroupItem value="nei" id="nei" />
+                        <Label htmlFor="nei">nei</Label>
                     </div>
                 </RadioGroup>
             </div>
 
-            {flexible === "yes" && <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="Flexibility">Flexibility</Label>
+            {flexible === "ja" && <div className="flex flex-col space-y-1.5">
+                <Label htmlFor="Flexibility">Fleksibilitet</Label>
                 <Select onValueChange={handleFlexibilityChange} value={flexibility}>
                     <SelectTrigger id="Flexibility">
                         <SelectValue placeholder="Select" />
@@ -104,7 +106,7 @@ export function DatePicker({ value, onInputChange }) {
                     )}
                 >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {date ? format(date, "PPP") : <span>Pick a date</span>}
+                    {date ? format(date, "PPP") : <span>Velg dato</span>}
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0">

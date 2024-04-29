@@ -8,13 +8,13 @@ import { RadioGroupItem } from "../ui/radio-group"
 
 export default function RegularCleaning2({ onInputChange, formData, setNext }) {
     const [roomCounts, setRoomCounts] = useState({
-        officeCell: 0,
-        meetingRoom: 0,
-        bathroom: 0,
-        cafeteria: 0,
-        kitchen: 0,
-        officeCommunity: 0,
-        other: 0
+        Cellekontor: 0,
+        Møterom: 0,
+        Bad_WC: 0,
+        Kantine: 0,
+        Kjøkken: 0,
+        Kontorfellesskap: 0,
+        Annet: 0
     });
 
     const decrementCount = (room) => {
@@ -39,28 +39,28 @@ export default function RegularCleaning2({ onInputChange, formData, setNext }) {
 
     React.useEffect(() => {
         setRoomCounts(formData?.rooms || {
-            officeCell: 0,
-            meetingRoom: 0,
-            bathroom: 0,
-            cafeteria: 0,
-            kitchen: 0,
-            officeCommunity: 0,
-            other: 0
+            Cellekontor: 0,
+            Møterom: 0,
+            Bad_WC: 0,
+            Kantine: 0,
+            Kjøkken: 0,
+            Kontorfellesskap: 0,
+            Annet: 0
         })
     }, [])
 
-    React.useEffect(()=>{
-        if(formData?.does_the_company_have_a_lift && (formData?.rooms?.officeCell > 0 || formData?.rooms?.meetingRoom > 0 || formData?.rooms?.bathroom > 0 || formData?.rooms?.cafeteria > 0 || formData?.rooms?.kitchen > 0 || formData?.rooms?.officeCommunity > 0 || formData?.rooms?.other > 0)){
-            setNext(true)
-        }else{
-            setNext(false)
+    React.useEffect(() => {
+        if (formData?.Har_bedriften_heis && (formData?.rooms?.Cellekontor > 0 || formData?.rooms?.Møterom > 0 || formData?.rooms?.Bad_WC > 0 || formData?.rooms?.Kantine > 0 || formData?.rooms?.Kjøkken > 0 || formData?.rooms?.Kontorfellesskap > 0 || formData?.rooms?.Annet > 0)) {
+            setNext(true);
+        } else {
+            setNext(false);
         }
-    },[formData])
+    }, [formData]);    
 
     return (
         <div className="grid w-full items-center gap-5">
              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="floors">Number of rooms to be washed</Label>
+                <Label htmlFor="floors">Sett antall som skal vaskes:</Label>
                 {Object.keys(roomCounts).map((room, index) => (
                     <Card key={index} className="grid grid-cols-2 gap-5 items-center p-3 justify-center">
                                                <Label className="text-slate-500" htmlFor={room}>{room.charAt(0).toUpperCase() + room.slice(1)}</Label>
@@ -74,15 +74,15 @@ export default function RegularCleaning2({ onInputChange, formData, setNext }) {
                 ))}
             </div>
             <div className="flex flex-col space-y-1.5">
-                <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("does_the_company_have_a_lift", e)} value={formData?.does_the_company_have_a_lift} name="entire home" defaultValue={""} >
-                    <Label htmlFor="entire home">Does the company have a lift?</Label>
+                <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Har_bedriften_heis", e)} value={formData?.Har_bedriften_heis} name="entire home" defaultValue={""} >
+                    <Label htmlFor="entire home">Har bedriften heis?</Label>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="yes" id="yes" />
-                        <Label htmlFor="yes">yes</Label>
+                        <RadioGroupItem value="ja" id="ja" />
+                        <Label htmlFor="ja">ja</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="no" id="no" />
-                        <Label htmlFor="no">no</Label>
+                        <RadioGroupItem value="nei" id="nei" />
+                        <Label htmlFor="nei">nei</Label>
                     </div>
                 </RadioGroup>
             </div>

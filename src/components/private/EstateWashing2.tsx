@@ -53,7 +53,7 @@ export default function EstateWashing2({ onInputChange, formData, setNext }) {
 
     useEffect(() => {
         const isValid = formData?.type_of_home &&
-                        formData?.area_size &&
+                        formData?.Omtrent_hvor_stort_areal_skal_vaskes &&
                         Object.values(roomCounts).reduce((total, count) => total + count, 0) > 0 &&
                         formData?.Does_the_household_have_pets !== undefined;
         setNext(isValid);
@@ -78,8 +78,8 @@ export default function EstateWashing2({ onInputChange, formData, setNext }) {
                 </Select>
             </div>
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="area">Approximately how large is the area to be washed?</Label>
-                <Input onChange={handleChange} required type="number" value={formData?.area_size} name="area_size" placeholder="70 sq m" />
+                <Label htmlFor="area">Omtrent hvor stort areal skal vaskes?</Label>
+                <Input onChange={handleChange} required type="number" value={formData?.Omtrent_hvor_stort_areal_skal_vaskes} name="Omtrent_hvor_stort_areal_skal_vaskes" placeholder="70 sq m" />
             </div>
 
             <div className="flex flex-col space-y-1.5">
@@ -100,12 +100,12 @@ export default function EstateWashing2({ onInputChange, formData, setNext }) {
                 <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Does_the_household_have_pets", e)} value={formData?.Does_the_household_have_pets} name="entire home" defaultValue={""} >
                     <Label htmlFor="entire home">Does the household have pets?</Label>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="yes" id="yes" />
-                        <Label htmlFor="yes">yes</Label>
+                        <RadioGroupItem value="ja" id="ja" />
+                        <Label htmlFor="ja">ja</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="no" id="no" />
-                        <Label htmlFor="no">no</Label>
+                        <RadioGroupItem value="nei" id="nei" />
+                        <Label htmlFor="nei">nei</Label>
                     </div>
                 </RadioGroup>
             </div>

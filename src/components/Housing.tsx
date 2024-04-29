@@ -73,7 +73,7 @@ export default function HousingAssociationCleaning({ page, setPage }) {
   }, [page])
 
   const getPages = () => {
-    if (selectedOptions.includes("Stair and Corridor Washing")) {
+    if (selectedOptions.includes("Trapp- og gangvask")) {
       return [
         <Page1 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />,
         <Page2 key="page5" setNext={setNext} onInputChange={handleInputChange} formData={formData} />,
@@ -102,7 +102,7 @@ export default function HousingAssociationCleaning({ page, setPage }) {
     }
     emailjs.send("service_s51bxmq", "template_z6fjeta", {
       // @ts-ignore      
-      Navn: formData.name,
+      Navn: formData.Navn,
       // @ts-ignore
       type: formData.type,
       // @ts-ignore
@@ -176,13 +176,13 @@ export default function HousingAssociationCleaning({ page, setPage }) {
 
 function ChoicePage({ selectedOptions, setSelectedOptions, onChoiceChange, nextPage }) {
   const options = [
-    "Stair and Corridor Washing",
-    "Balcony Sink",
-    "Storeroom Washing",
-    "Removal of Graffiti",
-    "Garage Wash",
-    "Elevator Laundry",
-    "Other Washing"
+    "Trapp- og gangvask",
+    "Balkongvask",
+    "Bodvask",
+    "Fjerning av grafitti",
+    "Garasjevask",
+    "Heisvask",
+    "Annen vask"
   ];
 
 

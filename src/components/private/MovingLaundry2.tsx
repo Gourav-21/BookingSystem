@@ -17,7 +17,7 @@ export default function MovingLaundry2({ onInputChange, formData, setNext }) {
             formData?.type_of_home &&
             formData?.How_many_floors_must_be_washed &&
             formData?.Should_entire_home_be_washed &&
-            formData?.area_size
+            formData?.Omtrent_hvor_stort_areal_skal_vaskes
         );
         setIsValid(isFormValid);
     }, [formData]);
@@ -60,18 +60,18 @@ export default function MovingLaundry2({ onInputChange, formData, setNext }) {
                 <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Should_entire_home_be_washed", e)} value={formData?.Should_entire_home_be_washed} name="entire home" defaultValue={""} >
                     <Label htmlFor="entire home">Should the entire home be washed?</Label>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="yes" id="yes" />
-                        <Label htmlFor="yes">yes</Label>
+                        <RadioGroupItem value="ja" id="ja" />
+                        <Label htmlFor="ja">ja</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="no" id="no" />
-                        <Label htmlFor="no">no</Label>
+                        <RadioGroupItem value="nei" id="nei" />
+                        <Label htmlFor="nei">nei</Label>
                     </div>
                 </RadioGroup>
             </div>
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="area">Approximately how large is the area to be washed?</Label>
-                <Input onChange={handleChange} required type="number" value={formData?.area_size} name="area_size" placeholder="70 sq m" />
+                <Label htmlFor="Omtrent_hvor_stort_areal_skal_vaskes">Omtrent hvor stort areal skal vaskes?</Label>
+                <Input onChange={handleChange} required type="number" value={formData?.Omtrent_hvor_stort_areal_skal_vaskes} name="Omtrent_hvor_stort_areal_skal_vaskes" placeholder="70 sq m" />
             </div>
 
         </div>

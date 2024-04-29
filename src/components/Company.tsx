@@ -84,14 +84,14 @@ export default function Company({ page, setPage }) {
     switch (choice) {
       case "Fast-renhold":
         // @ts-ignore
-        if (formData?.what_type_of_premises_should_be_washed && formData?.what_type_of_premises_should_be_washed.includes("Kontor")) {
+        if (formData?.Hva_slags_type_lokale_skal_vaskes && formData?.Hva_slags_type_lokale_skal_vaskes.includes("Kontor")) {
           return [<RegularCleaning key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <CompanySubmitDetail key="page5" onInputChange={handleInputChange} formData={formData} setNext={setNext} />];
         } else {
           return [<RegularCleaning key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <CompanySubmitDetail key="page5" onInputChange={handleInputChange} formData={formData} setNext={setNext} />];
         }
-      case "moving-laundry":
+      case "Flyttevask":
         // @ts-ignore
-        if (formData?.relocation_assistance === "yes") {
+        if (formData?.Ønsker_dere_også_flyttehjelp === "ja") {
           return [<MovingLaundry key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry5 key="page5" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry6 key="page6" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry7 key="page7" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry8 key="page8" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry9 key="page9" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry10 key="page10" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
         } else {
           return [<MovingLaundry key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <CompanySubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />]
@@ -214,8 +214,8 @@ function ChoicePage({ choice, onChoiceChange, nextPage }) {
               <Label htmlFor="r4">Fjerning av grafitti</Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="moving-laundry" id="r5" />
-              <Label htmlFor="r5">Moving Laundry</Label>
+              <RadioGroupItem value="Flyttevask" id="r5" />
+              <Label htmlFor="r5">Flyttevask</Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="Visningsvask" id="r7" />

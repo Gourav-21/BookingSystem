@@ -16,14 +16,14 @@ export default function MovingLaundry10({ onInputChange, formData, setNext }) {
 
 
     useEffect(() => {
-        setHeavy(formData?.are_you_moving_heavy_objects || "")
-        setFragile(formData?.are_you_moving_fragile_or_valuable_items || "")
+        setHeavy(formData?.Skal_dere_flytte_tunge_gjenstander || "")
+        setFragile(formData?.Skal_dere_flytte_skjøre_eller_verdifulle_gjenstander || "")
     }, [])
 
     useEffect(() => {
         const isValid =
-            (formData?.are_you_moving_heavy_objects === "no" || formData?.are_you_moving_heavy_objects_description) &&
-            (formData?.are_you_moving_fragile_or_valuable_items === "no" || formData?.are_you_moving_fragile_or_valuable_items_description);
+            (formData?.Skal_dere_flytte_tunge_gjenstander === "nei" || formData?.er_du_beveger_tunge_objekter_beskrivelse) &&
+            (formData?.Skal_dere_flytte_skjøre_eller_verdifulle_gjenstander === "nei" || formData?.Flytter_du_skjøre_eller_verdifulle_gjenstander_beskrivelse);
 
         setNext(isValid);
     }, [formData, setNext]);
@@ -34,35 +34,35 @@ export default function MovingLaundry10({ onInputChange, formData, setNext }) {
         <div className="grid w-full items-center gap-5">
 
             <div className="flex flex-col space-y-2">
-                <RadioGroup className="space-y-2" onValueChange={(e) => { setHeavy(e); onInputChange("are_you_moving_heavy_objects", e) }} name="are_you_moving_heavy_objects" value={heavy} >
-                    <Label htmlFor="are_you_moving_heavy_objects">Are you moving heavy objects?</Label>
-                    <CardDescription>In order to plan the move as best as possible, the moving company should know about heavy or large items to be moved.</CardDescription>
+                <RadioGroup className="space-y-2" onValueChange={(e) => { setHeavy(e); onInputChange("Skal_dere_flytte_tunge_gjenstander", e) }} name="Skal_dere_flytte_tunge_gjenstander" value={heavy} >
+                    <Label htmlFor="Skal_dere_flytte_tunge_gjenstander">Skal dere flytte tunge gjenstander?</Label>
+                    <CardDescription>For å planlegge flyttingen best mulig, bør flyttefirmaet vite om tunge eller store ting som skal flyttes.</CardDescription>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="yes" id="1" />
-                        <Label htmlFor="1">yes</Label>
+                        <RadioGroupItem value="ja" id="1" />
+                        <Label htmlFor="1">ja</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="no" id="2" />
-                        <Label htmlFor="2">no</Label>
+                        <RadioGroupItem value="nei" id="2" />
+                        <Label htmlFor="2">nei</Label>
                     </div>
                 </RadioGroup>
-                {heavy === "yes" && <Textarea onChange={handleChange} name="are_you_moving_heavy_objects_description" value={formData?.are_you_moving_heavy_objects_description} placeholder="Which heavy objects are to be moved?" id="description" />}
+                {heavy === "ja" && <Textarea onChange={handleChange} name="er_du_beveger_tunge_objekter_beskrivelse" value={formData?.er_du_beveger_tunge_objekter_beskrivelse} placeholder="Hvilke tunge gjenstander skal flyttes?" id="description" />}
             </div>
 
             <div className="flex flex-col space-y-2">
-                <RadioGroup className="space-y-1" onValueChange={(e) => { setFragile(e); onInputChange("are_you_moving_fragile_or_valuable_items", e) }} name="are_you_moving_fragile_or_valuable_items" value={fragile} >
-                    <Label htmlFor="are_you_moving_fragile_or_valuable_items">Are you moving fragile or valuable items?</Label>
-                    <CardDescription>In order to plan the move as best as possible, the moving company should know about fragile items to be moved.</CardDescription>
+                <RadioGroup className="space-y-1" onValueChange={(e) => { setFragile(e); onInputChange("Skal_dere_flytte_skjøre_eller_verdifulle_gjenstander", e) }} name="Skal_dere_flytte_skjøre_eller_verdifulle_gjenstander" value={fragile} >
+                    <Label htmlFor="Skal_dere_flytte_skjøre_eller_verdifulle_gjenstander">Skal dere flytte skjøre eller verdifulle gjenstander?</Label>
+                    <CardDescription>For å planlegge flyttingen best mulig, bør flyttefirmaet vite om skjøre ting som skal flyttes.</CardDescription>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="yes" id="yes" />
-                        <Label htmlFor="yes">yes</Label>
+                        <RadioGroupItem value="ja" id="ja" />
+                        <Label htmlFor="ja">ja</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="no" id="no" />
-                        <Label htmlFor="no">no</Label>
+                        <RadioGroupItem value="nei" id="nei" />
+                        <Label htmlFor="nei">nei</Label>
                     </div>
                 </RadioGroup>
-                {fragile === "yes" && <Textarea onChange={handleChange} name="are_you_moving_fragile_or_valuable_items_description" value={formData?.are_you_moving_fragile_or_valuable_items_description} placeholder="Which fragile or valuable items should be moved?" id="description" />}
+                {fragile === "ja" && <Textarea onChange={handleChange} name="Flytter_du_skjøre_eller_verdifulle_gjenstander_beskrivelse" value={formData?.Flytter_du_skjøre_eller_verdifulle_gjenstander_beskrivelse} placeholder="Hvilke skjøre eller verdifulle gjenstander skal flyttes?" id="description" />}
             </div>
 
         </div>

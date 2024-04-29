@@ -7,10 +7,10 @@ import { useEffect } from "react";
 export default function MovingLaundry6({ onInputChange, formData, setNext }) {
   useEffect(() => {
     const isValid =
-      formData?.Does_the_moving_agency_pack_the_items &&
-      formData?.Do_the_objects_have_to_be_stored_between_moving_out_and_moving_in &&
-      formData?.do_you_want_to_insure_the_moving_load &&
-      formData?.how_big_is_the_moving_load;
+      formData?.Ønsker_dere_at_flyttebyrået_pakker_inventaret_deres &&
+      formData?.Må_gjenstandene_lagres_mellom_ut_og_innflytting &&
+      formData?.Ønsker_dere_å_forsikre_flyttelasset &&
+      formData?.Omtrent_hvor_stort_er_flyttelasset;
 
     setNext(isValid);
   }, [formData, setNext]);
@@ -18,62 +18,62 @@ export default function MovingLaundry6({ onInputChange, formData, setNext }) {
     <div className="grid w-full items-center gap-5">
 
       <div className="flex flex-col space-y-1.5">
-        <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Does_the_moving_agency_pack_the_items", e)} value={formData?.Does_the_moving_agency_pack_the_items}  >
-          <Label htmlFor="flexible date">Do you want the moving agency to pack the items?</Label>
+        <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Ønsker_dere_at_flyttebyrået_pakker_inventaret_deres", e)} value={formData?.Ønsker_dere_at_flyttebyrået_pakker_inventaret_deres}  >
+          <Label htmlFor="flexible date">Ønsker dere at flyttebyrået pakker inventaret deres?</Label>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="yes" id="1"/>
-            <Label htmlFor="1">yes</Label>
+            <RadioGroupItem value="ja" id="1" />
+            <Label htmlFor="1">ja</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="no" id="2" />
-            <Label htmlFor="2">no</Label>
-          </div>
-        </RadioGroup>
-      </div>
-
-      <div className="flex flex-col space-y-1.5">
-        <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Do_the_objects_have_to_be_stored_between_moving_out_and_moving_in", e)} value={formData?.Do_the_objects_have_to_be_stored_between_moving_out_and_moving_in}  >
-          <Label htmlFor="flexible date">Do the objects have to be stored between moving out and moving in?</Label>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="yes" id="3" />
-            <Label htmlFor="3">yes</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="no" id="4" />
-            <Label htmlFor="4">no</Label>
+            <RadioGroupItem value="nei" id="2" />
+            <Label htmlFor="2">nei</Label>
           </div>
         </RadioGroup>
       </div>
 
       <div className="flex flex-col space-y-1.5">
-        <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("do_you_want_to_insure_the_moving_load", e)} value={formData?.do_you_want_to_insure_the_moving_load}  >
-          <Label htmlFor="flexible date">Do you want to insure the moving load?</Label>
+        <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Må_gjenstandene_lagres_mellom_ut_og_innflytting", e)} value={formData?.Må_gjenstandene_lagres_mellom_ut_og_innflytting}  >
+          <Label htmlFor="flexible date">Må gjenstandene lagres mellom ut- og innflytting?</Label>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="yes" id="9" />
-            <Label htmlFor="9">yes</Label>
+            <RadioGroupItem value="ja" id="3" />
+            <Label htmlFor="3">ja</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="no" id="10" />
-            <Label htmlFor="10">no</Label>
+            <RadioGroupItem value="nei" id="4" />
+            <Label htmlFor="4">nei</Label>
           </div>
         </RadioGroup>
       </div>
 
       <div className="flex flex-col space-y-1.5">
-        <Label htmlFor="how_big_is_the_moving_load">Approximately how big is the moving load?</Label>
-        <Select onValueChange={e => onInputChange("how_big_is_the_moving_load", e)} value={formData?.how_big_is_the_moving_load}>
-          <SelectTrigger id="how_big_is_the_moving_load">
+        <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Ønsker_dere_å_forsikre_flyttelasset", e)} value={formData?.Ønsker_dere_å_forsikre_flyttelasset}  >
+          <Label htmlFor="flexible date">Ønsker dere å forsikre flyttelasset?</Label>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="ja" id="9" />
+            <Label htmlFor="9">ja</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="nei" id="10" />
+            <Label htmlFor="10">nei</Label>
+          </div>
+        </RadioGroup>
+      </div>
+
+      <div className="flex flex-col space-y-1.5">
+        <Label htmlFor="Omtrent_hvor_stort_er_flyttelasset">Omtrent hvor stort er flyttelasset?</Label>
+        <Select onValueChange={e => onInputChange("Omtrent_hvor_stort_er_flyttelasset", e)} value={formData?.Omtrent_hvor_stort_er_flyttelasset}>
+          <SelectTrigger id="Omtrent_hvor_stort_er_flyttelasset">
             <SelectValue placeholder="Select" />
           </SelectTrigger>
           <SelectContent position="popper">
-            <SelectItem value="Fills a trunk">Fills a trunk</SelectItem>
-            <SelectItem value="Fills a small trailer">Fills a small trailer</SelectItem>
-            <SelectItem value="Fills a large trailer">Fills a large trailer</SelectItem>
-            <SelectItem value="Filling a van">Filling a van</SelectItem>
-            <SelectItem value="Fills a small truck">Fills a small truck</SelectItem>
-            <SelectItem value="Fills a large truck">Fills a large truck</SelectItem>
-            <SelectItem value="Fills a large truck with trailer">Fills a large truck with trailer</SelectItem>
-            <SelectItem value="Other/uncertain">Other/uncertain</SelectItem>
+            <SelectItem value="Fyller et bagasjerom">Fyller et bagasjerom</SelectItem>
+            <SelectItem value="Fyller en liten tilhenger">Fyller en liten tilhenger</SelectItem>
+            <SelectItem value="Fyller en stor tilhenger">Fyller en stor tilhenger</SelectItem>
+            <SelectItem value="Fyller en varebil">Fyller en varebil</SelectItem>
+            <SelectItem value="Fyller en liten lastebil">Fyller en liten lastebil</SelectItem>
+            <SelectItem value="Fyller en stor lastebil">Fyller en stor lastebil</SelectItem>
+            <SelectItem value="Fyller en stor lastebil med tilhenger">Fyller en stor lastebil med tilhenger</SelectItem>
+            <SelectItem value="Annet/usikker">Annet/usikker</SelectItem>
           </SelectContent>
         </Select>
       </div>

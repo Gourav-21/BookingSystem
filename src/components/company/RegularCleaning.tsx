@@ -63,7 +63,7 @@ export default function RegularCleaning({ formData, onInputChange, setNext }) {
                 ))}
             </div>
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="Hvor_ofte_vil_dere_ha_vaskehjelp">HHvor ofte vil dere ha vaskehjelp?</Label>
+                <Label htmlFor="Hvor_ofte_vil_dere_ha_vaskehjelp">Hvor ofte vil dere ha vaskehjelp?</Label>
                 <Select onValueChange={e => onInputChange("Hvor_ofte_vil_dere_ha_vaskehjelp", e)} value={formData?.Hvor_ofte_vil_dere_ha_vaskehjelp}>
                     <SelectTrigger id="Hvor_ofte_vil_dere_ha_vaskehjelp">
                         <SelectValue placeholder="-- Velg hyppighet --" />

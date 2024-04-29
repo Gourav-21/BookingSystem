@@ -17,63 +17,63 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 
 export default function Page2({ onInputChange, formData, setNext }) {
-  const [flexible, setFlexible] = useState("no");
+  const [flexible, setFlexible] = useState("nei");
   const [field, setField] = useState(1);
 
   React.useEffect(() => {
-    setFlexible(formData?.washing_Date_flexible || "no");
+    setFlexible(formData?.Er_vaskedatoen_fleksibel || "nei");
   }, [])
 
   React.useEffect(() => {
-    const isValidNoFlexibility = formData.how_often_do_you_want_laundry_help === "only once" && formData.when_do_you_want_corridor_and_staircase_washing && flexible === "no";
-    const isValidFlexibility = formData.how_often_do_you_want_laundry_help === "only once" && formData.when_do_you_want_corridor_and_staircase_washing && flexible === "yes" && formData.Flexibility;
-    const isValidMultiple = formData.how_often_do_you_want_laundry_help && formData.how_often_do_you_want_laundry_help !== "only once" && field > 0 && [...Array(field)].every((_, i) => formData[`day ${i}`] && formData[`time ${i}`]);
+    const isValidNoFlexibility = formData.Hvor_ofte_vil_du_ha_vaskehjelp === "Bare én gang" && formData.Når_ønsker_du_gang_og_trappevask && flexible === "nei";
+    const isValidFlexibility = formData.Hvor_ofte_vil_du_ha_vaskehjelp === "Bare én gang" && formData.Når_ønsker_du_gang_og_trappevask && flexible === "ja" && formData.Fleksibilitet;
+    const isValidMultiple = formData.Hvor_ofte_vil_du_ha_vaskehjelp && formData.Hvor_ofte_vil_du_ha_vaskehjelp !== "Bare én gang" && field > 0 && [...Array(field)].every((_, i) => formData[`Vaskedag ${i}`] && formData[`Tidspunkt ${i}`]);
     setNext(isValidNoFlexibility || isValidFlexibility || isValidMultiple);
   }, [formData, flexible, field]);
-  
+
 
   return (
     <div className="grid w-full items-center gap-5">
       <div className="flex flex-col space-y-1.5">
-        <Label htmlFor="frequency">How often do you want laundry help?</Label>
-        <Select onValueChange={e => onInputChange("how_often_do_you_want_laundry_help", e)} value={formData?.how_often_do_you_want_laundry_help}>
+        <Label htmlFor="frequency">Hvor ofte vil du ha vaskehjelp?</Label>
+        <Select onValueChange={e => onInputChange("Hvor_ofte_vil_du_ha_vaskehjelp", e)} value={formData?.Hvor_ofte_vil_du_ha_vaskehjelp}>
           <SelectTrigger id="frequency">
             <SelectValue placeholder="Select" />
           </SelectTrigger>
           <SelectContent position="popper">
-            <SelectItem value="only once">only once</SelectItem>
-            <SelectItem value="several times a week">several times a week</SelectItem>
-            <SelectItem value="weekly">weekly</SelectItem>
-            <SelectItem value="biweekly">biweekly</SelectItem>
-            <SelectItem value="monthly">monthly</SelectItem>
+            <SelectItem value="Bare én gang">Bare én gang</SelectItem>
+            <SelectItem value="Flere ganger i uka">Flere ganger i uka</SelectItem>
+            <SelectItem value="Ukentlig">Ukentlig</SelectItem>
+            <SelectItem value="Annenhver uke">Annenhver uke</SelectItem>
+            <SelectItem value="Månedlig">Månedlig</SelectItem>
           </SelectContent>
         </Select>
       </div>
 
-      {formData?.how_often_do_you_want_laundry_help === "only once" &&
+      {formData?.Hvor_ofte_vil_du_ha_vaskehjelp === "Bare én gang" &&
         <>
           <div className="flex flex-col space-y-1.5">
-            <Label htmlFor="washing date">When do you want corridor and staircase washing?</Label>
-            <DatePicker onInputChange={(e) => onInputChange("when_do_you_want_corridor_and_staircase_washing", e)} value={formData?.when_do_you_want_corridor_and_staircase_washing} />
+            <Label htmlFor="washing date">Når ønsker du gang- og trappevask?</Label>
+            <DatePicker onInputChange={(e) => onInputChange("Når_ønsker_du_gang_og_trappevask", e)} value={formData?.Når_ønsker_du_gang_og_trappevask} />
           </div>
           <div className="flex flex-col space-y-1.5">
-            <RadioGroup className="space-y-1" onValueChange={(e) => { setFlexible(e); onInputChange("washing_Date_flexible", e) }} name="flexible" defaultValue={flexible} value={flexible} >
-              <Label htmlFor="flexible date">Is the washing date flexible?</Label>
+            <RadioGroup className="space-y-1" onValueChange={(e) => { setFlexible(e); onInputChange("Er_vaskedatoen_fleksibel", e) }} name="flexible" defaultValue={flexible} value={flexible} >
+              <Label htmlFor="flexible date">Er vaskedatoen fleksibel?</Label>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="yes" id="yes" />
-                <Label htmlFor="yes">yes</Label>
+                <RadioGroupItem value="ja" id="ja" />
+                <Label htmlFor="ja">ja</Label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="no" id="no" />
-                <Label htmlFor="no">no</Label>
+                <RadioGroupItem value="nei" id="nei" />
+                <Label htmlFor="nei">nei</Label>
               </div>
             </RadioGroup>
           </div>
 
-          {flexible === "yes" && <div className="flex flex-col space-y-1.5">
-            <Label htmlFor="Flexibility">Flexibility</Label>
-            <Select onValueChange={e => onInputChange("Flexibility", e)} value={formData?.Flexibility}>
-              <SelectTrigger id="Flexibility">
+          {flexible === "ja" && <div className="flex flex-col space-y-1.5">
+            <Label htmlFor="Fleksibilitet">Fleksibilitet</Label>
+            <Select onValueChange={e => onInputChange("Fleksibilitet", e)} value={formData?.Fleksibilitet}>
+              <SelectTrigger id="Fleksibilitet">
                 <SelectValue placeholder="Select" />
               </SelectTrigger>
               <SelectContent position="popper">
@@ -89,30 +89,30 @@ export default function Page2({ onInputChange, formData, setNext }) {
           </div>}
         </>}
 
-      {formData?.how_often_do_you_want_laundry_help && formData?.how_often_do_you_want_laundry_help != "only once" &&
+      {formData?.Hvor_ofte_vil_du_ha_vaskehjelp && formData?.Hvor_ofte_vil_du_ha_vaskehjelp != "Bare én gang" &&
         <>
           <div className="flex flex-col space-y-1.5">
-            <Label htmlFor="frequency">Add at least one suitable washing day and time:</Label>
+            <Label htmlFor="frequency">Legg til minst én passende vaskedag og tidspunkt:</Label>
             {Array.from(Array(field)).map((_, index) => {
               return (
                 <div key={index} className="flex">
-                  <Select onValueChange={e => onInputChange("day " + index, e)} value={formData?.[`day ${index}`]}>
-                    <SelectTrigger className="rounded-r-none" id={`day ${index}`}>
-                      <SelectValue placeholder="washing day" />
+                  <Select onValueChange={e => onInputChange("Vaskedag " + index, e)} value={formData?.[`Vaskedag ${index}`]}>
+                    <SelectTrigger className="rounded-r-none" id={`Vaskedag ${index}`}>
+                      <SelectValue placeholder="Vaskedag" />
                     </SelectTrigger>
                     <SelectContent position="popper">
-                      <SelectItem value="monday">monday</SelectItem>
-                      <SelectItem value="tuesday">tuesday</SelectItem>
-                      <SelectItem value="wednesday">wednesday</SelectItem>
-                      <SelectItem value="thursday">thursday</SelectItem>
-                      <SelectItem value="friday">friday</SelectItem>
-                      <SelectItem value="saturday">saturday</SelectItem>
-                      <SelectItem value="sunday">sunday</SelectItem>
+                      <SelectItem value="Mandager">Mandager</SelectItem>
+                      <SelectItem value="Tirsdager">Tirsdager</SelectItem>
+                      <SelectItem value="Onsdager">Onsdager</SelectItem>
+                      <SelectItem value="Torsdager">Torsdager</SelectItem>
+                      <SelectItem value="Fredager">Fredager</SelectItem>
+                      <SelectItem value="Lørdager">Lørdager</SelectItem>
+                      <SelectItem value="Søndager">Søndager</SelectItem>
                     </SelectContent>
                   </Select>
-                  <Select onValueChange={e => onInputChange("time " + index, e)} value={formData?.[`time ${index}`]}>
-                    <SelectTrigger className="rounded-l-none" id={`time ${index}`}>
-                      <SelectValue placeholder="time" />
+                  <Select onValueChange={e => onInputChange("Tidspunkt " + index, e)} value={formData?.[`Tidspunkt ${index}`]}>
+                    <SelectTrigger className="rounded-l-none" id={`Tidspunkt ${index}`}>
+                      <SelectValue placeholder="Tidspunkt" />
                     </SelectTrigger>
                     <SelectContent position="popper">
                       <SelectItem value="06:00 - 09:00">06:00 - 09:00</SelectItem>
@@ -127,9 +127,9 @@ export default function Page2({ onInputChange, formData, setNext }) {
             })}
           </div>
           <div className="flex">
-            <Button variant="outline" className={cn("rounded-r-none", field === 1 && "rounded")} onClick={() => setField(field + 1)}>Add More</Button>
+            <Button variant="outline" className={cn("rounded-r-none", field === 1 && "rounded")} onClick={() => setField(field + 1)}>Legg til flere</Button>
             {field > 1 &&
-              <Button variant="outline" className="rounded-l-none" disabled={field === 1} onClick={() => setField(field - 1)}>remove</Button>
+              <Button variant="outline" className="rounded-l-none" disabled={field === 1} onClick={() => setField(field - 1)}>fjerne</Button>
             }
           </div>
         </>
@@ -157,7 +157,7 @@ export function DatePicker({ value, onInputChange }) {
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {date ? format(date, "PPP") : <span>Pick a date</span>}
+          {date ? format(date, "PPP") : <span>Velg dato</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">

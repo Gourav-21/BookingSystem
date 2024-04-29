@@ -70,7 +70,7 @@ export default function MajorCleaning3({ onInputChange, formData, setNext }) {
     useEffect(() => {
         const isValid = formData?.How_many_floors_must_be_washed &&
             (formData?.what_floor_is_the_apartment_on !== "1" || !formData?.what_floor_is_the_apartment_on) &&
-            (formData?.what_floor_is_the_apartment_on === "1" || formData?.is_there_a_lift_in_the_building) &&
+            (formData?.what_floor_is_the_apartment_on === "1" || formData?.Er_det_heis_i_bygningen) &&
             Object.values(roomCounts).reduce((acc, val) => acc + val, 0) > 0;
 
         setNext(isValid);
@@ -127,15 +127,15 @@ export default function MajorCleaning3({ onInputChange, formData, setNext }) {
             </div>
 
             {formData?.what_floor_is_the_apartment_on && formData?.what_floor_is_the_apartment_on !== "1" && <div className="flex flex-col space-y-1.5">
-                <RadioGroup className="space-y-1" value={formData?.is_there_a_lift_in_the_building} onValueChange={(e) => onInputChange("is_there_a_lift_in_the_building",e)} name="lift"  >
-                    <Label htmlFor="lift">Is there a lift in the building?</Label>
+                <RadioGroup className="space-y-1" value={formData?.Er_det_heis_i_bygningen} onValueChange={(e) => onInputChange("Er_det_heis_i_bygningen",e)} name="lift"  >
+                    <Label htmlFor="lift">Er det heis i bygningen?</Label>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="yes" id="yes" />
-                        <Label htmlFor="yes">yes</Label>
+                        <RadioGroupItem value="ja" id="ja" />
+                        <Label htmlFor="ja">ja</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="no" id="no" />
-                        <Label htmlFor="no">no</Label>
+                        <RadioGroupItem value="nei" id="nei" />
+                        <Label htmlFor="nei">nei</Label>
                     </div>
                 </RadioGroup>
             </div>}

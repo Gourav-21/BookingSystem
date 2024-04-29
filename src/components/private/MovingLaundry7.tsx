@@ -5,10 +5,10 @@ import { Label } from "../ui/label"
 
 export default function MovingLaundry7({ onInputChange, formData, setNext }) {
   const [addressData, setAddressData] = useState({
-    address: '',
-    streetNo: '',
-    postalCode: '',
-    distanceToParking: ''
+    Adresse: '',
+    Gatenr: '',
+    Postnummer: '',
+    Avstand_til_parkering: ''
   });
 
   const handleChange = (e) => {
@@ -20,15 +20,15 @@ export default function MovingLaundry7({ onInputChange, formData, setNext }) {
   };
 
   useEffect(() => {
-    onInputChange("from_address",addressData);
+    onInputChange("Adressen_som_skal_vaskes_og_flyttes_fra",addressData);
   }, [addressData]);
 
   useEffect(()=>{
-    setAddressData(formData?.from_address)
+    setAddressData(formData?.Adressen_som_skal_vaskes_og_flyttes_fra)
   },[])
 
   useEffect(()=>{
-    if(formData?.from_address?.address !== undefined && formData?.from_address?.postalCode !== undefined && formData?.from_address?.distanceToParking !== undefined && formData?.from_address?.address !== "" && formData?.from_address?.postalCode !== "" && formData?.from_address?.distanceToParking !== ""){
+    if(formData?.Adressen_som_skal_vaskes_og_flyttes_fra?.Adresse !== undefined && formData?.Adressen_som_skal_vaskes_og_flyttes_fra?.Postnummer !== undefined && formData?.Adressen_som_skal_vaskes_og_flyttes_fra?.Avstand_til_parkering !== undefined && formData?.Adressen_som_skal_vaskes_og_flyttes_fra?.Adresse !== "" && formData?.Adressen_som_skal_vaskes_og_flyttes_fra?.Postnummer !== "" && formData?.Adressen_som_skal_vaskes_og_flyttes_fra?.Avstand_til_parkering !== ""){
       setNext(true)
     }else{
       setNext(false)
@@ -37,25 +37,25 @@ export default function MovingLaundry7({ onInputChange, formData, setNext }) {
 
   return (
     <div className="grid w-full items-center gap-5">
-      <Card className="p-4">The address to be <b>washed and moved from.</b></Card>
+      <Card className="p-4">Adressen som skal <b>vaskes og flyttes fra.</b></Card>
       <div className="grid grid-cols-3 gap-5">
         <div className="flex flex-col col-span-2 space-y-1.5">
-          <Label htmlFor="address">Address</Label>
-          <Input id="address" type="text" placeholder="address" value={addressData?.address} onChange={handleChange} />
+          <Label htmlFor="Adresse">Adresse</Label>
+          <Input id="Adresse" type="text" placeholder="Adresse" value={addressData?.Adresse} onChange={handleChange} />
         </div>
         <div className="flex flex-col space-y-1.5">
-          <Label htmlFor="StreetNo">Street no.</Label>
-          <Input id="streetNo" type="text" placeholder="1A" value={addressData?.streetNo} onChange={handleChange} />
+          <Label htmlFor="Gatenr">Gatenr.</Label>
+          <Input id="Gatenr" type="text" placeholder="1A" value={addressData?.Gatenr} onChange={handleChange} />
         </div>
       </div>
       <div className="flex flex-col space-y-1.5">
-        <Label htmlFor="postalCode">Postal code</Label>
-        <Input id="postalCode" type="number" minLength={4} maxLength={4} placeholder="1234" value={addressData?.postalCode} onChange={handleChange} />
+        <Label htmlFor="Postnummer">Postnummer</Label>
+        <Input id="Postnummer" type="number" minLength={4} maxLength={4} placeholder="1234" value={addressData?.Postnummer} onChange={handleChange} />
       </div>
       <div className="flex flex-col space-y-1.5">
-        <Label htmlFor="number">Distance to parking</Label>
-        <CardDescription >Nearest point where the removal truck can be parked during loading</CardDescription>
-        <Input id="distanceToParking" type="number" placeholder="20 meters" value={addressData?.distanceToParking} onChange={handleChange} />
+        <Label htmlFor="number">Avstand til parkering</Label>
+        <CardDescription >Nærmeste punkt hvor flyttebilen kan stå under lasting</CardDescription>
+        <Input id="Avstand_til_parkering" type="number" placeholder="20 meters" value={addressData?.Avstand_til_parkering} onChange={handleChange} />
       </div>
     </div>
   )

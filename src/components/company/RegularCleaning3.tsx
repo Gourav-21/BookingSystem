@@ -11,24 +11,24 @@ export default function BuildingCleaning3({ onInputChange, formData, setNext }) 
     };
 
     useEffect(() => {
-        if (formData?.area_size && formData?.How_many_floors_must_be_washed) {
+        if (formData?.områdestørrelse && formData?.Hvor_mange_etasjer_skal_vaskes) {
             setNext(true);
         }else{
             setNext(false)
         }
-    }, [formData?.area_size, formData?.How_many_floors_must_be_washed]);
+    }, [formData?.områdestørrelse, formData?.Hvor_mange_etasjer_skal_vaskes]);
 
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="area">Approximately how large is the area to be washed?</Label>
-                <Input onChange={handleChange} required type="number" value={formData?.area_size} name="area_size" placeholder="70 sq m" />
+                <Label htmlFor="områdestørrelse">Omtrent hvor stort er området som skal vaskes?</Label>
+                <Input onChange={handleChange} required type="number" value={formData?.områdestørrelse} name="områdestørrelse" placeholder="60 Kvm" />
             </div>
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="floors">How many floors must be washed?</Label>
-                <Select onValueChange={e => onInputChange("How_many_floors_must_be_washed", e)} value={formData?.How_many_floors_must_be_washed}>
+                <Label htmlFor="floors">Hvor mange etasjer skal vaskes?</Label>
+                <Select onValueChange={e => onInputChange("Hvor_mange_etasjer_skal_vaskes", e)} value={formData?.Hvor_mange_etasjer_skal_vaskes}>
                     <SelectTrigger id="floors">
-                        <SelectValue placeholder="Select" />
+                        <SelectValue placeholder="-- Velg antall --" />
                     </SelectTrigger>
                     <SelectContent position="popper">
                         <SelectItem value="1 floor">1 floor</SelectItem>

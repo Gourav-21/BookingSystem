@@ -10,11 +10,11 @@ function PrivateSubmitDetail({ onInputChange, formData, setNext }) {
 
   useEffect(() => {
     const isValid =
-      formData?.name &&
+      formData?.Navn &&
       formData?.email &&
-      formData?.number &&
-      formData?.address &&
-      formData?.postalCode;
+      formData?.Telefon &&
+      formData?.Adresse &&
+      formData?.Postnummer;
 
     setNext(isValid);
   },[formData])
@@ -23,7 +23,7 @@ function PrivateSubmitDetail({ onInputChange, formData, setNext }) {
     <div className="grid w-full items-center gap-4">
       <div className="flex flex-col space-y-1.5">
         <Label htmlFor="name">Your name</Label>
-        <Input onChange={handleChange} value={formData?.name} name="name" placeholder="First and last name" />
+        <Input onChange={handleChange} value={formData?.Navn} name="name" placeholder="First and last name" />
       </div>
       <div className="flex flex-col space-y-1.5">
         <Label htmlFor="email">Email</Label>
@@ -31,21 +31,21 @@ function PrivateSubmitDetail({ onInputChange, formData, setNext }) {
       </div>
       <div className="flex flex-col space-y-1.5">
         <Label htmlFor="number">Telephone</Label>
-        <Input onChange={handleChange} value={formData?.number} name="number" type="number" placeholder="12345678" />
+        <Input onChange={handleChange} value={formData?.Telefon} name="number" type="number" placeholder="12345678" />
       </div>
       <div className="grid grid-cols-3 gap-4">
         <div className="flex flex-col col-span-2 space-y-1.5">
-          <Label htmlFor="address">Address</Label>
-          <Input onChange={handleChange} value={formData?.address} name="address" type="text" placeholder="address" />
+          <Label htmlFor="Adresse">Adresse</Label>
+          <Input onChange={handleChange} value={formData?.Adresse} name="Adresse" type="text" placeholder="Adresse" />
         </div>
         <div className="flex flex-col space-y-1.5">
-          <Label htmlFor="StreetNo">Street no.</Label>
-          <Input onChange={handleChange} value={formData?.StreetNo} name="StreetNo" type="text" placeholder="1A" />
+          <Label htmlFor="Gatenr">Gatenr.</Label>
+          <Input onChange={handleChange} value={formData?.Gatenr} name="Gatenr" type="text" placeholder="1A" />
         </div>
       </div>
       <div className="flex flex-col space-y-1.5">
-        <Label htmlFor="postalCode">Postal code</Label>
-        <Input onChange={handleChange} value={formData?.postalCode} name="postalCode" type="number" minLength={4} maxLength={4} placeholder="1234" />
+        <Label htmlFor="Postnummer">Postnummer</Label>
+        <Input onChange={handleChange} value={formData?.Postnummer} name="Postnummer" type="number" minLength={4} maxLength={4} placeholder="1234" />
       </div>
     </div>
   )

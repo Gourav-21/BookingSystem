@@ -10,15 +10,15 @@ export default function MovingLaundry3({ onInputChange, formData, setNext }) {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [isValid, setIsValid] = useState(false);
     const [roomCounts, setRoomCounts] = useState({
-        "Room (excl. kitchen and bathroom)": 0,
-        "Kitchen/canteen": 0,
-        "Bathroom/toilet": 0,
+        "Rom (ekskl. kjøkken og bad)": 0,
+        "Kjøkken/kantine": 0,
+        "Bad/WC": 0,
     });
 
     const options = [
-        "Garage",
-        "Balcony/porch",
-        "Storage room"
+        "Garasje",
+        "Balkong/veranda",
+        "Bod"
     ];
 
     const handleCheckboxChange = (option) => {
@@ -50,24 +50,24 @@ export default function MovingLaundry3({ onInputChange, formData, setNext }) {
     };
 
     useEffect(() => {
-        onInputChange("wash", selectedOptions);
+        onInputChange("vask", selectedOptions);
     }, [selectedOptions]);
 
     useEffect(() => {
-        onInputChange("rooms", roomCounts);
+        onInputChange("Sett_antall_rom_som_skal_vaskes", roomCounts);
     }, [roomCounts]);
 
     useEffect(() => {
-        setSelectedOptions(formData?.wash || [])
-        setRoomCounts(formData?.rooms || {
-            "Room (excl. kitchen and bathroom)": 0,
-            "Kitchen/canteen": 0,
-            "Bathroom/toilet": 0,
+        setSelectedOptions(formData?.vask || [])
+        setRoomCounts(formData?.Sett_antall_rom_som_skal_vaskes || {
+            "Rom (ekskl. kjøkken og bad)": 0,
+            "Kjøkken/kantine": 0,
+            "Bad/WC": 0,
         })
     }, [])
 
     useEffect(() => {
-        const isFormValid = Object.values(roomCounts).some(count => count > 0) ;
+        const isFormValid = Object.values(roomCounts).some(count => count > 0);
         setIsValid(isFormValid);
     }, [roomCounts, selectedOptions]);
 
@@ -78,7 +78,7 @@ export default function MovingLaundry3({ onInputChange, formData, setNext }) {
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="floors">Number of rooms to be washed</Label>
+                <Label htmlFor="floors">Sett antall rom som skal vaskes:</Label>
                 {Object.keys(roomCounts).map((room, index) => (
                     <Card key={index} className="grid grid-cols-2 gap-5 items-center p-3 justify-center">
                         <Label className="text-slate-500" htmlFor={room}>{room.charAt(0).toUpperCase() + room.slice(1)}</Label>
@@ -91,7 +91,7 @@ export default function MovingLaundry3({ onInputChange, formData, setNext }) {
                 ))}
             </div>
             <div className="flex flex-col space-y-2">
-                <Label htmlFor="floors">Choose whether you want to wash the following:</Label>
+                <Label htmlFor="floors">Velg dersom dere ønsker vask av følgende:</Label>
                 {options.map((option, index) => (
                     <div key={index} className="flex items-center space-x-2">
                         <Checkbox
@@ -107,8 +107,8 @@ export default function MovingLaundry3({ onInputChange, formData, setNext }) {
             </div>
 
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="area">Do you have other comments?</Label>
-                <Textarea onChange={handleChange} value={formData?.Other_comments} name="Other_comments" placeholder="For example, washing double-glazed windows and hand-washing stucco" />
+                <Label htmlFor="andre_kommentarer">Har du andre kommentarer?</Label>
+                <Textarea onChange={handleChange} value={formData?.andre_kommentarer} name="andre_kommentarer" placeholder="Skriv her dersom du har andre opplysninger det er relevant for vaskefirmaet å vite." />
             </div>
 
         </div>

@@ -16,10 +16,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 
 export default function MovingLaundry5({ onInputChange, formData, setNext }) {
-    const [flexible, setFlexible] = React.useState("no");
+    const [flexible, setFlexible] = React.useState("nei");
 
     React.useEffect(() => {
-        setFlexible(formData?.is_moving_Date_flexible || "no");
+        setFlexible(formData?.is_moving_Date_flexible || "nei");
     }, [formData?.is_moving_Date_flexible]);
 
     const handleDateChange = (date: Date | null) => {
@@ -32,7 +32,7 @@ export default function MovingLaundry5({ onInputChange, formData, setNext }) {
     };
 
     React.useEffect(() => {
-        const isValid = formData?.Desired_moving_date && (flexible === "no" || formData?.Flexibility_moving_date);
+        const isValid = formData?.Desired_moving_date && (flexible === "nei" || formData?.Flexibility_moving_date);
         setNext(isValid);
     }, [formData, flexible, setNext]);
 
@@ -43,20 +43,20 @@ export default function MovingLaundry5({ onInputChange, formData, setNext }) {
                 <DatePicker value={formData?.Desired_moving_date} onInputChange={handleDateChange} />
             </div>
             <div className="flex flex-col space-y-1.5">
-                <RadioGroup className="space-y-1" onValueChange={handleFlexibleChange} value={flexible} name="flexible" defaultValue="no">
+                <RadioGroup className="space-y-1" onValueChange={handleFlexibleChange} value={flexible} name="flexible" defaultValue="nei">
                     <Label htmlFor="flexible date">Is the moving date flexible?</Label>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="yes" id="yes" />
-                        <Label htmlFor="yes">yes</Label>
+                        <RadioGroupItem value="ja" id="ja" />
+                        <Label htmlFor="ja">ja</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="no" id="no" />
-                        <Label htmlFor="no">no</Label>
+                        <RadioGroupItem value="nei" id="nei" />
+                        <Label htmlFor="nei">nei</Label>
                     </div>
                 </RadioGroup>
             </div>
 
-            {flexible === "yes" && <div className="flex flex-col space-y-1.5">
+            {flexible === "ja" && <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="flexibility moving date">Flexible moving date</Label>
                 <Select onValueChange={e => onInputChange("Flexibility_moving_date", e)} value={formData?.Flexibility_moving_date}>
                     <SelectTrigger id="flexibility">
@@ -95,7 +95,7 @@ export function DatePicker({ value, onInputChange }) {
                     )}
                 >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {date ? format(date, "PPP") : <span>Pick a date</span>}
+                    {date ? format(date, "PPP") : <span>Velg dato</span>}
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0">

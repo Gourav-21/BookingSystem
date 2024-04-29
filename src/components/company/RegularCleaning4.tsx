@@ -7,12 +7,12 @@ export default function BuildingCleaning3({ onInputChange, formData, setNext }) 
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const options = [
-    "Garbage disposal",
-    "Watering of plants",
-    "Booking of bottles",
-    "Refill paper towels",
-    "Replenishment of toilet paper",
-    "Replacement of door mats"
+    "Søppeltømming",
+    "Vanning av planter",
+    "Panting av flasker",
+    "Påfyll av tørkepapir",
+    "Påfyll av toalettpapir",
+    "Utskiftning av dørmatter"
 ];
 
   const handleCheckboxChange = (option) => {
@@ -29,25 +29,21 @@ export default function BuildingCleaning3({ onInputChange, formData, setNext }) 
   };
 
   useEffect(() => {
-    onInputChange("Extra_services", selectedOptions);
+    onInputChange("ekstra_tjenester", selectedOptions);
   }, [selectedOptions]);
 
   useEffect(() => {
-    setSelectedOptions(formData?.Extra_services || [])
+    setSelectedOptions(formData?.ekstra_tjenester || [])
   }, [])
 
   useEffect(()=>{
-    if(formData?.Other_comments && formData?.Other_comments.length > 0 && formData?.Extra_services.length > 0){
       setNext(true)
-    }else{
-      setNext(false)
-    }
-  },[formData])
+  },[])
 
   return (
     <div className="grid w-full items-center gap-5">
       <div className="flex flex-col space-y-2">
-        <Label htmlFor="floors">Extra services</Label>
+        <Label htmlFor="floors">Velg dersom du ønsker ekstratjenester</Label>
         {options.map((option, index) => (
           <div key={index} className="flex items-center space-x-2">
             <Checkbox
@@ -62,8 +58,8 @@ export default function BuildingCleaning3({ onInputChange, formData, setNext }) 
         ))}
       </div>
       <div className="flex flex-col space-y-1.5">
-        <Label htmlFor="area">Do you have other comments?</Label>
-        <Textarea onChange={handleChange} value={formData?.Other_comments} name="Other_comments" placeholder="Write here if you have other information that is relevant for the washing company to know." />
+        <Label htmlFor="andre_kommentarer">Har du andre kommentarer?</Label>
+        <Textarea onChange={handleChange} value={formData?.andre_kommentarer} name="andre_kommentarer" placeholder="Skriv her dersom du har andre opplysninger det er relevant for vaskefirmaet å vite." />
       </div>
     </div>
   );

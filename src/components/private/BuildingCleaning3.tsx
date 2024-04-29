@@ -13,15 +13,15 @@ export default function BuildingCleaning3({ onInputChange, formData, setNext }) 
     };
 
     useEffect(() => {
-        const isValid = formData?.area_size && formData?.How_many_floors_must_be_washed && formData?.area_size.trim() !== '';
+        const isValid = formData?.Omtrent_hvor_stort_areal_skal_vaskes && formData?.How_many_floors_must_be_washed && formData?.Omtrent_hvor_stort_areal_skal_vaskes.trim() !== '';
         setNext(isValid);
     }, [formData, setNext]);
 
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="area">Approximately how large is the area to be washed?</Label>
-                <Input onChange={handleChange} required type="number" value={formData?.area_size} name="area_size" placeholder="70 sq m" />
+                <Label htmlFor="Omtrent_hvor_stort_areal_skal_vaskes">Omtrent hvor stort areal skal vaskes?</Label>
+                <Input onChange={handleChange} required type="number" value={formData?.Omtrent_hvor_stort_areal_skal_vaskes} name="Omtrent_hvor_stort_areal_skal_vaskes" placeholder="70 sq m" />
             </div>
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="floors">How many floors must be washed?</Label>

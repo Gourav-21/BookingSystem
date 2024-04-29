@@ -10,23 +10,23 @@ export default function EstateWashing3({ onInputChange, formData, setNext }) {
     };
 
     React.useEffect(() => {
-        const isValid = formData?.floors;
+        const isValid = formData?.Hvor_mange_etasjer_har_bygningen;
         setNext(isValid);
     }, [formData, setNext]);
 
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="floors">How many floors does the building have?</Label>
-                <Select onValueChange={e => onInputChange("floors", e)} value={formData?.floors}>
-                    <SelectTrigger id="floors">
+                <Label htmlFor="Hvor_mange_etasjer_har_bygningen">Hvor mange etasjer har bygningen?</Label>
+                <Select onValueChange={e => onInputChange("Hvor_mange_etasjer_har_bygningen", e)} value={formData?.Hvor_mange_etasjer_har_bygningen}>
+                    <SelectTrigger id="Hvor_mange_etasjer_har_bygningen">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent position="popper">
                         <SelectItem value="1">1</SelectItem>
                         <SelectItem value="2">2</SelectItem>
                         <SelectItem value="3">3</SelectItem>
-                        <SelectItem value="4+">4 or more</SelectItem>
+                        <SelectItem value="4+">4 +</SelectItem>
                     </SelectContent>
                 </Select>
             </div>

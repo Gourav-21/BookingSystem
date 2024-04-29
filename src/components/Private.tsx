@@ -154,7 +154,7 @@ export default function PrivateCleaning({ page, setPage }) {
         return [<EstateWashing key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <EstateWashing2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <EstateWashing3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
       case "moving-laundry":
         // @ts-ignore
-        if (formData?.relocation_assistance === "yes") {
+        if (formData?.Ønsker_dere_også_flyttehjelp === "ja") {
           // @ts-ignore
           if (formData?.type_of_housing === "Apartment") {
 
@@ -189,7 +189,7 @@ export default function PrivateCleaning({ page, setPage }) {
     }
     emailjs.send("service_s51bxmq", "template_z6fjeta", {
       // @ts-ignore
-      Navn: formData.name,
+      Navn: formData.Navn,
       // @ts-ignore
       type: formData.type,
       // @ts-ignore

@@ -15,7 +15,7 @@ export default function MovingLaundry9({ onInputChange, formData, setNext }) {
       useEffect(() => {
         const isValid =
           formData?.What_floor_is_the_apartment_on &&
-          formData?.Is_there_a_lift_in_the_building &&
+          formData?.Er_det_heis_i_bygningen &&
           formData?.distance_to_parking;
       
         setNext(isValid);
@@ -46,22 +46,22 @@ export default function MovingLaundry9({ onInputChange, formData, setNext }) {
             </div>
 
             <div className="flex flex-col space-y-1.5">
-                <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Is_there_a_lift_in_the_building", e)} value={formData?.Is_there_a_lift_in_the_building} name="Is there a lift in the building"  >
-                    <Label htmlFor="flexible date">Is there a lift in the building?</Label>
+                <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Er_det_heis_i_bygningen", e)} value={formData?.Er_det_heis_i_bygningen} name="Is there a lift in the building"  >
+                    <Label htmlFor="flexible date">Er det heis i bygningen?</Label>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="yes" id="yes" />
-                        <Label htmlFor="yes">yes</Label>
+                        <RadioGroupItem value="ja" id="ja" />
+                        <Label htmlFor="ja">ja</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="no" id="no" />
-                        <Label htmlFor="no">no</Label>
+                        <RadioGroupItem value="nei" id="nei" />
+                        <Label htmlFor="nei">nei</Label>
                     </div>
                 </RadioGroup>
             </div>
             
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="number">Distance to parking</Label>
-                <CardDescription >Nearest point where the removal truck can be parked during loading</CardDescription>
+                <Label htmlFor="number">Avstand til parkering</Label>
+                <CardDescription >Nærmeste punkt hvor flyttebilen kan stå under lasting</CardDescription>
                 <Input onChange={handleChange} value={formData?.distance_to_parking} name="distance_to_parking" id="number" type="number" placeholder="20 meters" />
             </div>
         </div>

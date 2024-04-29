@@ -7,11 +7,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 export default function MovingLaundry8({ onInputChange, formData, setNext }) {
 
   const [ToAddress, setToAddress] = useState({
-    address: '',
-    streetNo: '',
-    postalCode: '',
-    homeSize: '',
-    totalRooms: ''
+    Adresse: '',
+    Gatenr: '',
+    Postnummer: '',
+    Størrelse_på_lokalet: '',
+    Totalt_antall_rom: ''
   });
 
   const handleChange = (e) => {
@@ -32,10 +32,10 @@ export default function MovingLaundry8({ onInputChange, formData, setNext }) {
 
   useEffect(() => {
     const isValid =
-      ToAddress?.address &&
-      ToAddress?.postalCode &&
-      ToAddress?.homeSize &&
-      ToAddress?.totalRooms &&
+      ToAddress?.Adresse &&
+      ToAddress?.Postnummer &&
+      ToAddress?.Størrelse_på_lokalet &&
+      ToAddress?.Totalt_antall_rom &&
       formData?.type_of_housing;
   
     setNext(isValid);
@@ -44,31 +44,31 @@ export default function MovingLaundry8({ onInputChange, formData, setNext }) {
 
   return (
     <div className="grid w-full items-center gap-5">
-      <Card className="p-4">The address to be <b>moved to.</b> </Card>
+      <Card className="p-4">Adressen som skal <b>flyttes til.</b> </Card>
       <div className="grid grid-cols-3 gap-5">
         <div className="flex flex-col col-span-2 space-y-1.5">
-          <Label htmlFor="address">Address</Label>
-          <Input id="address" type="text" placeholder="address" value={ToAddress?.address} onChange={handleChange} />
+          <Label htmlFor="Adresse">Adresse</Label>
+          <Input id="Adresse" type="text" placeholder="Adresse" value={ToAddress?.Adresse} onChange={handleChange} />
         </div>
         <div className="flex flex-col space-y-1.5">
-          <Label htmlFor="streetNo">Street no.</Label>
-          <Input id="streetNo" type="text" placeholder="1A" value={ToAddress?.streetNo} onChange={handleChange} />
+          <Label htmlFor="Gatenr">Gatenr.</Label>
+          <Input id="Gatenr" type="text" placeholder="1A" value={ToAddress?.Gatenr} onChange={handleChange} />
         </div>
       </div>
       <div className="flex flex-col space-y-1.5">
-        <Label htmlFor="postalCode">Postal code</Label>
-        <Input id="postalCode" type="number" minLength={4} maxLength={4} placeholder="1234" value={ToAddress?.postalCode} onChange={handleChange} />
+        <Label htmlFor="Postnummer">Postnummer</Label>
+        <Input id="Postnummer" type="number" minLength={4} maxLength={4} placeholder="1234" value={ToAddress?.Postnummer} onChange={handleChange} />
       </div>
       <div className="flex flex-col space-y-1.5">
-        <Label htmlFor="homeSize">The size of the home</Label>
-        <Input id="homeSize" type="number" placeholder="120 sq m" value={ToAddress?.homeSize} onChange={handleChange} />
+        <Label htmlFor="Størrelse_på_lokalet">Størrelse på lokalet</Label>
+        <Input id="Størrelse_på_lokalet" type="number" placeholder="120 sq m" value={ToAddress?.Størrelse_på_lokalet} onChange={handleChange} />
       </div>
 
       <div className="flex flex-col space-y-1.5">
-        <Label htmlFor="totalRooms">Total number of rooms</Label>
-        <CardDescription>Including kitchen and bathroom</CardDescription>
-        <Select onValueChange={e => setToAddress(prevData => ({ ...prevData, totalRooms: e }))} value={ToAddress?.totalRooms}>
-          <SelectTrigger id="totalRooms">
+        <Label htmlFor="Totalt_antall_rom">Totalt antall rom</Label>
+        <CardDescription>Inkludert kjøkken og bad</CardDescription>
+        <Select onValueChange={e => setToAddress(prevData => ({ ...prevData, Totalt_antall_rom: e }))} value={ToAddress?.Totalt_antall_rom}>
+          <SelectTrigger id="Totalt_antall_rom">
             <SelectValue placeholder="Select" />
           </SelectTrigger>
           <SelectContent position="popper">

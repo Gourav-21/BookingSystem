@@ -16,7 +16,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "../ui/checkbox";
 
 export default function EstateWashing({ onInputChange, formData, setNext }) {
-    const [flexible, setFlexible] = React.useState("no");
+    const [flexible, setFlexible] = React.useState("nei");
     const [selectedOptions, setSelectedOptions] = React.useState([]);
     const [date, setDate] = React.useState<Date | null>(formData?.washingDate || null);
     const [flexibilitySelected, setFlexibilitySelected] = React.useState(false);
@@ -40,13 +40,13 @@ export default function EstateWashing({ onInputChange, formData, setNext }) {
     }, [selectedOptions]);
 
     React.useEffect(() => {
-        setFlexible(formData?.washing_Date_flexible || "no");
+        setFlexible(formData?.Er_vaskedatoen_fleksibel || "nei");
         setSelectedOptions(formData?.Extra_services || []);
         setDate(formData?.washingDate || null);
     }, []);
 
     React.useEffect(() => {
-        const isValid = date !== null && flexible !== "" && (flexible === "no" || (flexible === "yes" && flexibilitySelected));
+        const isValid = date !== null && flexible !== "" && (flexible === "nei" || (flexible === "ja" && flexibilitySelected));
         setNext(isValid);
     }, [date, flexible, flexibilitySelected, setNext]);
 
@@ -57,23 +57,23 @@ export default function EstateWashing({ onInputChange, formData, setNext }) {
                 <DatePicker onInputChange={setDate} value={date} />
             </div>
             <div className="flex flex-col space-y-1.5">
-                <RadioGroup className="space-y-1" onValueChange={(e) => { setFlexible(e); setFlexibilitySelected(false); onInputChange("washing_Date_flexible", e) }} value={flexible} name="flexible" defaultValue={""}>
-                    <Label htmlFor="flexible date">Is the washing date flexible?</Label>
+                <RadioGroup className="space-y-1" onValueChange={(e) => { setFlexible(e); setFlexibilitySelected(false); onInputChange("Er_vaskedatoen_fleksibel", e) }} value={flexible} name="flexible" defaultValue={""}>
+                    <Label htmlFor="flexible date">Er vaskedatoen fleksibel?</Label>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="yes" id="yes" />
-                        <Label htmlFor="yes">yes</Label>
+                        <RadioGroupItem value="ja" id="ja" />
+                        <Label htmlFor="ja">ja</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="no" id="no" />
-                        <Label htmlFor="no">no</Label>
+                        <RadioGroupItem value="nei" id="nei" />
+                        <Label htmlFor="nei">nei</Label>
                     </div>
                 </RadioGroup>
             </div>
 
-            {flexible === "yes" && <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="Flexibility">Flexibility</Label>
-                <Select onValueChange={(e) => { onInputChange("Flexibility", e); setFlexibilitySelected(true); }} value={formData?.Flexibility || ""}>
-                    <SelectTrigger id="Flexibility">
+            {flexible === "ja" && <div className="flex flex-col space-y-1.5">
+                <Label htmlFor="Fleksibilitet">Fleksibilitet</Label>
+                <Select onValueChange={(e) => { onInputChange("Fleksibilitet", e); setFlexibilitySelected(true); }} value={formData?.Fleksibilitet || ""}>
+                    <SelectTrigger id="Fleksibilitet">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent position="popper">
@@ -126,7 +126,7 @@ export function DatePicker({ value, onInputChange }) {
                     )}
                 >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {date ? format(date, "PPP") : <span>Pick a date</span>}
+                    {date ? format(date, "PPP") : <span>Velg dato</span>}
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0">

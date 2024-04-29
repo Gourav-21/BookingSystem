@@ -71,7 +71,7 @@ export default function MovingLaundry3({ onInputChange, formData, setNext }) {
     }, [])
 
     useEffect(() => {
-        const isFormValid = Object.values(roomCounts).some(count => count > 0) ;
+        const isFormValid = Object.values(roomCounts).some(count => count > 0);
         setIsValid(isFormValid);
     }, [roomCounts, selectedOptions]);
 
@@ -85,7 +85,7 @@ export default function MovingLaundry3({ onInputChange, formData, setNext }) {
                 <Label htmlFor="floors">Number of rooms to be washed</Label>
                 {Object.keys(roomCounts).map((room, index) => (
                     <Card key={index} className="grid grid-cols-2 gap-5 items-center p-3 justify-center">
-                                               <Label className="text-slate-500" htmlFor={room}>{room.charAt(0).toUpperCase() + room.slice(1)}</Label>
+                        <Label className="text-slate-500" htmlFor={room}>{room.charAt(0).toUpperCase() + room.slice(1)}</Label>
 
                         <div className="flex items-center gap-3 justify-center">
                             <Button onClick={() => decrementCount(room)} className="w-8 h-8 rounded-full bg-slate-500 text-white hover:bg-slate-200 hover:text-slate-900"><span className="">-</span></Button>
@@ -112,8 +112,8 @@ export default function MovingLaundry3({ onInputChange, formData, setNext }) {
             </div>
 
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="area">Do you have other comments?</Label>
-                <Textarea onChange={handleChange} value={formData?.Other_comments} name="Other_comments" placeholder="For example, washing double-glazed windows and hand-washing stucco" />
+                <Label htmlFor="andre_kommentarer">Har du andre kommentarer?</Label>
+                <Textarea onChange={handleChange} value={formData?.andre_kommentarer} name="andre_kommentarer" placeholder="Skriv her dersom du har andre opplysninger det er relevant for vaskefirmaet å vite." />
             </div>
 
         </div>

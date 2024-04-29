@@ -11,14 +11,14 @@ export default function MovingLaundry10({ onInputChange, formData, setNext }) {
 
     useEffect(() => {
         const isValid =
-            formData?.name &&
-            formData?.number &&
+            formData?.Navn &&
+            formData?.Telefon &&
             formData?.email &&
-            formData?.company_name &&
-            formData?.name !="" &&
-            formData?.number != "" &&
+            formData?.Firma &&
+            formData?.Navn !="" &&
+            formData?.Telefon != "" &&
             formData?.email != "" &&
-            formData?.company_name != "";
+            formData?.Firma != "";
 
         setNext(isValid);
     }, [formData, setNext]);
@@ -27,8 +27,8 @@ export default function MovingLaundry10({ onInputChange, formData, setNext }) {
         <div className="grid w-full items-center gap-5">
 
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="additional_information">Additional information (optional)</Label>
-                <Textarea onChange={handleChange} value={formData?.additional_information} name="additional_information" placeholder="Feel free to write detailed information about the move here. What kind of company are you and what kind of equipment will mainly be moved?" />
+                <Label htmlFor="Utfyllende_informasjon">Utfyllende informasjon</Label>
+                <Textarea onChange={handleChange} value={formData?.Utfyllende_informasjon} name="Utfyllende_informasjon" placeholder="Skriv gjerne detaljert informasjon om flyttingen her. Hva slags bedrift er dere og hva slags utstyr skal i hovedsak flyttes?" />
             </div>
 
             {/* <div className="flex items-center space-x-2">
@@ -41,19 +41,19 @@ export default function MovingLaundry10({ onInputChange, formData, setNext }) {
                 </label>
             </div> */}
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="name">Company name or organization number</Label>
-                <Input onChange={handleChange} value={formData?.company_name} name="company_name" placeholder="Company AS" />
+                <Label htmlFor="name">Firma</Label>
+                <Input onChange={handleChange} value={formData?.Firma} name="Firma" placeholder="Selskap AS" />
             </div>
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="name">Contact person's name</Label>
-                <Input onChange={handleChange} value={formData?.name} name="name" placeholder="steve jobs" />
+                <Label htmlFor="name">Kontaktperson</Label>
+                <Input onChange={handleChange} value={formData?.Navn} name="Navn" placeholder="steve jobs" />
             </div>
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="number">The contact person's telephone number</Label>
-                <Input onChange={handleChange} value={formData?.number} name="number" type="number" placeholder="12345678" />
+                <Label htmlFor="number">Telefon</Label>
+                <Input onChange={handleChange} value={formData?.Telefon} name="Telefon" type="number" placeholder="12345678" />
             </div>
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">E-post</Label>
                 <Input onChange={handleChange} value={formData?.email} name="email" type="email" placeholder="example@example.com" />
             </div>
 

@@ -11,8 +11,8 @@ export default function MovingLaundry11({ onInputChange, formData, setNext }) {
 
     useEffect(() => {
         const isValid =
-            formData?.name &&
-            formData?.number &&
+            formData?.Navn &&
+            formData?.Telefon &&
             formData?.email;
 
         setNext(isValid);
@@ -22,19 +22,19 @@ export default function MovingLaundry11({ onInputChange, formData, setNext }) {
         <div className="grid w-full items-center gap-5">
 
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="additional_information">Additional information (optional)</Label>
-                <Textarea onChange={handleChange} value={formData?.additional_information} name="additional_information" placeholder="Other relevant information, questions or comments to the moving companies." />
+                <Label htmlFor="Utfyllende_informasjon">Utfyllende informasjon</Label>
+                <Textarea onChange={handleChange} value={formData?.Utfyllende_informasjon} name="Utfyllende_informasjon" placeholder="Other relevant information, questions or comments to the moving companies." />
             </div>
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Your name</Label>
-                <Input onChange={handleChange} value={formData?.name} name="name" placeholder="First and last name" />
+                <Input onChange={handleChange} value={formData?.Navn} name="name" placeholder="First and last name" />
             </div>
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="number">Telephone</Label>
-                <Input onChange={handleChange} value={formData?.number} name="number" type="number" placeholder="12345678" />
+                <Input onChange={handleChange} value={formData?.Telefon} name="number" type="number" placeholder="12345678" />
             </div>
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">E-post</Label>
                 <Input onChange={handleChange} value={formData?.email} name="email" type="email" placeholder="example@example.com" />
             </div>
             {/* <div className="flex items-center space-x-2">
