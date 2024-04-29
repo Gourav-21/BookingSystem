@@ -118,6 +118,11 @@ export default function HousingAssociationCleaning({ page, setPage }) {
         setIsLoading(false);
       })
       .catch((error) => {
+        toast({
+          variant: "destructive",
+          title: "Åh! Noe gikk galt.",
+          description:error,
+        })
         console.error('Error sending email:', error);
         setIsLoading(false);
       });
