@@ -14,7 +14,7 @@ export default function MovingLaundry9({ onInputChange, formData, setNext }) {
 
       useEffect(() => {
         const isValid =
-          formData?.What_floor_is_the_apartment_on &&
+          formData?.I_hvilken_etasje_ligger_leiligheten &&
           formData?.Er_det_heis_i_bygningen &&
           formData?.distance_to_parking;
       
@@ -25,8 +25,8 @@ export default function MovingLaundry9({ onInputChange, formData, setNext }) {
         <div className="grid w-full items-center gap-5">
 
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="floors">What floor is the apartment on?</Label>
-                <Select onValueChange={e => onInputChange("What_floor_is_the_apartment_on", e)} value={formData?.What_floor_is_the_apartment_on}>
+                <Label htmlFor="floors">I hvilken etasje ligger leiligheten?</Label>
+                <Select onValueChange={e => onInputChange("I_hvilken_etasje_ligger_leiligheten", e)} value={formData?.I_hvilken_etasje_ligger_leiligheten}>
                     <SelectTrigger id="floors">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>

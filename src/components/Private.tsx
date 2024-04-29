@@ -66,8 +66,8 @@ function ChoicePage({ choice, onChoiceChange, nextPage }) {
               <Label htmlFor="r5">Moving Laundry</Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="major-cleaning" id="r7" />
-              <Label htmlFor="r7">Major Cleaning</Label>
+              <RadioGroupItem value="Storrengjøring" id="r7" />
+              <Label htmlFor="r7">Storrengjøring</Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="Visningsvask" id="r9" />
@@ -165,7 +165,7 @@ export default function PrivateCleaning({ page, setPage }) {
         } else {
           return [<MovingLaundry key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />]
         }
-      case "major-cleaning":
+      case "Storrengjøring":
         return [<MajorCleaning key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MajorCleaning2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MajorCleaning3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MajorCleaning4 key={"page4"} setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
       case "Visningsvask":
         return [<DisplayWash key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <DisplayWash2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <DisplayWash3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <DisplayWash4 key="page5" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];

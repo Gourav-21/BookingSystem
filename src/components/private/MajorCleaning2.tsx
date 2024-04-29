@@ -66,9 +66,9 @@ export default function DisplayWash2({ onInputChange, formData, setNext }) {
             </div>
 
             {flexible === "ja" && <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="Flexibility">Flexibility</Label>
+                <Label htmlFor="Fleksibilitet">Fleksibilitet</Label>
                 <Select onValueChange={handleFlexibilityChange} value={formData?.Fleksibilitet}>
-                    <SelectTrigger id="Flexibility">
+                    <SelectTrigger id="Fleksibilitet">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent position="popper">

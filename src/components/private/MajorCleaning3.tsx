@@ -11,9 +11,9 @@ export default function MajorCleaning3({ onInputChange, formData, setNext }) {
     const [selectedOptions, setSelectedOptions] = useState([]);
 
     const options = [
-        "Garage",
-        "Balcony/Veranda/Terrace",
-        "Storage room"
+        "Garasje",
+        "Balkong/Veranda/Terrasse",
+        "Bod"
     ];
 
     const handleCheckboxChange = (option) => {
@@ -25,7 +25,7 @@ export default function MajorCleaning3({ onInputChange, formData, setNext }) {
     };
 
     const [roomCounts, setRoomCounts] = useState({
-               Soverom: 0,
+        Soverom: 0,
         Kjøkken: 0,
         "Bad/WC": 0,
         Stue: 0,
@@ -51,14 +51,14 @@ export default function MajorCleaning3({ onInputChange, formData, setNext }) {
     useEffect(() => {
         onInputChange("Velg_om_du_vil_ha_vask_av_følgende", selectedOptions);
     }, [selectedOptions]);
-    
+
     useEffect(() => {
         onInputChange("Antall_rom_som_skal_vaskes", roomCounts);
     }, [roomCounts]);
 
     useEffect(() => {
         setSelectedOptions(formData?.Velg_om_du_vil_ha_vask_av_følgende || [])
-        setRoomCounts(formData?.Antall_rom_som_skal_vaskes||{
+        setRoomCounts(formData?.Antall_rom_som_skal_vaskes || {
             Soverom: 0,
             Kjøkken: 0,
             "Bad/WC": 0,
@@ -69,8 +69,8 @@ export default function MajorCleaning3({ onInputChange, formData, setNext }) {
 
     useEffect(() => {
         const isValid = formData?.Hvor_mange_etasjer_skal_vaskes &&
-            (formData?.what_floor_is_the_apartment_on !== "1" || !formData?.what_floor_is_the_apartment_on) &&
-            (formData?.what_floor_is_the_apartment_on === "1" || formData?.Er_det_heis_i_bygningen) &&
+            (formData?.I_hvilken_etasje_ligger_leiligheten !== "1" || !formData?.I_hvilken_etasje_ligger_leiligheten) &&
+            (formData?.I_hvilken_etasje_ligger_leiligheten === "1" || formData?.Er_det_heis_i_bygningen) &&
             Object.values(roomCounts).reduce((acc, val) => acc + val, 0) > 0;
 
         setNext(isValid);
@@ -78,20 +78,20 @@ export default function MajorCleaning3({ onInputChange, formData, setNext }) {
 
     return (
         <div className="grid w-full items-center gap-5">
-           <div className="flex flex-col space-y-1.5">
-            <Label htmlFor="floors">Antall rom som skal vaskes</Label>
-            {Object.keys(roomCounts).map((room, index) => (
-                <Card key={index} className="grid grid-cols-2 gap-5 items-center p-3 justify-center">
-                                           <Label className="text-slate-500" htmlFor={room}>{room.charAt(0).toUpperCase() + room.slice(1)}</Label>
+            <div className="flex flex-col space-y-1.5">
+                <Label htmlFor="floors">Antall rom som skal vaskes</Label>
+                {Object.keys(roomCounts).map((room, index) => (
+                    <Card key={index} className="grid grid-cols-2 gap-5 items-center p-3 justify-center">
+                        <Label className="text-slate-500" htmlFor={room}>{room.charAt(0).toUpperCase() + room.slice(1)}</Label>
 
-                    <div className="flex items-center gap-3 justify-center">
-                        <Button onClick={() => decrementCount(room)} className="w-8 h-8 rounded-full bg-slate-500 text-white"><p className="mb-[1px] mr-[1px]">-</p></Button>
-                        <b>{roomCounts[room]}</b>
-                        <Button onClick={() => incrementCount(room)} className="w-8 h-8 rounded-full bg-blue-500 text-white"><p className="mb-[1px] mr-[1px]">+</p></Button>
-                    </div>
-                </Card>
-            ))}
-        </div>
+                        <div className="flex items-center gap-3 justify-center">
+                            <Button onClick={() => decrementCount(room)} className="w-8 h-8 rounded-full bg-slate-500 text-white hover:bg-slate-200 hover:text-slate-900"><p className="mb-[1px] mr-[1px]">-</p></Button>
+                            <b>{roomCounts[room]}</b>
+                            <Button onClick={() => incrementCount(room)} className="w-8 h-8 rounded-full bg-blue-500 text-white hover:bg-blue-200 hover:text-blue-900"><p className="mb-[1px] mr-[1px]">+</p></Button>
+                        </div>
+                    </Card>
+                ))}
+            </div>
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="floors">Hvor mange etasjer skal vaskes?</Label>
                 <Select onValueChange={e => onInputChange("Hvor_mange_etasjer_skal_vaskes", e)} value={formData?.Hvor_mange_etasjer_skal_vaskes}>
@@ -106,9 +106,9 @@ export default function MajorCleaning3({ onInputChange, formData, setNext }) {
                 </Select>
             </div>
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="what_floor_is_the_apartment_on">What floor is the apartment on?</Label>
-                <Select onValueChange={e => onInputChange("what_floor_is_the_apartment_on", e)} value={formData?.what_floor_is_the_apartment_on}>
-                    <SelectTrigger id="what_floor_is_the_apartment_on">
+                <Label htmlFor="I_hvilken_etasje_ligger_leiligheten">I hvilken etasje ligger leiligheten?</Label>
+                <Select onValueChange={e => onInputChange("I_hvilken_etasje_ligger_leiligheten", e)} value={formData?.I_hvilken_etasje_ligger_leiligheten}>
+                    <SelectTrigger id="I_hvilken_etasje_ligger_leiligheten">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent position="popper">
@@ -126,8 +126,8 @@ export default function MajorCleaning3({ onInputChange, formData, setNext }) {
                 </Select>
             </div>
 
-            {formData?.what_floor_is_the_apartment_on && formData?.what_floor_is_the_apartment_on !== "1" && <div className="flex flex-col space-y-1.5">
-                <RadioGroup className="space-y-1" value={formData?.Er_det_heis_i_bygningen} onValueChange={(e) => onInputChange("Er_det_heis_i_bygningen",e)} name="lift"  >
+            {formData?.I_hvilken_etasje_ligger_leiligheten && formData?.I_hvilken_etasje_ligger_leiligheten !== "1" && <div className="flex flex-col space-y-1.5">
+                <RadioGroup className="space-y-1" value={formData?.Er_det_heis_i_bygningen} onValueChange={(e) => onInputChange("Er_det_heis_i_bygningen", e)} name="lift"  >
                     <Label htmlFor="lift">Er det heis i bygningen?</Label>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="ja" id="ja" />
