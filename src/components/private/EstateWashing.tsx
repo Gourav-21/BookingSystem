@@ -53,7 +53,7 @@ export default function EstateWashing({ onInputChange, formData, setNext }) {
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="washing date">When do you want building cleaning?</Label>
+                <Label htmlFor="washing date">Når ønsker du byggrengjøring??</Label>
                 <DatePicker onInputChange={setDate} value={date} />
             </div>
             <div className="flex flex-col space-y-1.5">

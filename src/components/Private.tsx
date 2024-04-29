@@ -54,8 +54,8 @@ function ChoicePage({ choice, onChoiceChange, nextPage }) {
               <Label htmlFor="r1">Fast renhold</Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="building-cleaning" id="r2" />
-              <Label htmlFor="r2">Building Cleaning</Label>
+              <RadioGroupItem value="Byggrengjøring" id="r2" />
+              <Label htmlFor="r2">Byggrengjøring</Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="estate-washing" id="r3" />
@@ -148,7 +148,7 @@ export default function PrivateCleaning({ page, setPage }) {
     switch (choice) {
       case "Fast_renhold":
         return [<RegularCleaning key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning4 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
-      case "building-cleaning":
+      case "Byggrengjøring":
         return [<BuildingCleaning1 key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <BuildingCleaning2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <BuildingCleaning3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
       case "estate-washing":
         return [<EstateWashing key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <EstateWashing2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <EstateWashing3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];

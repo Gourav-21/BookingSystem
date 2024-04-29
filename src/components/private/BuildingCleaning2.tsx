@@ -24,18 +24,18 @@ export default function BuildingCleaning2({ onInputChange, formData, setNext }) 
     }, [])
 
     React.useEffect(() => {
-        const isValid = formData?.washingDate && formData?.Hva_slags_type_bolig_skal_vaskes && (flexible === "ja" ? formData?.Fleksibilitet : true);
+        const isValid = formData?.Når_ønsker_du_byggrengjøring && formData?.Hva_slags_type_bolig_skal_vaskes && (flexible === "ja" ? formData?.Fleksibilitet : true);
         setNext(isValid);
     }, [formData, flexible, setNext]);
-    
+
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="washing date">When do you want building cleaning?</Label>
-                <DatePicker onInputChange={(e) => onInputChange("washingDate", e)} value={formData?.washingDate} />
+                <Label htmlFor="washing date">Når ønsker du byggrengjøring??</Label>
+                <DatePicker onInputChange={(e) => onInputChange("Når_ønsker_du_byggrengjøring", e)} value={formData?.Når_ønsker_du_byggrengjøring} />
             </div>
             <div className="flex flex-col space-y-1.5">
-                <RadioGroup className="space-y-1" onValueChange={(e) =>{ setFlexible(e); onInputChange("Er_vaskedatoen_fleksibel", e)}} name="flexible" defaultValue={flexible} value={flexible} >
+                <RadioGroup className="space-y-1" onValueChange={(e) => { setFlexible(e); onInputChange("Er_vaskedatoen_fleksibel", e) }} name="flexible" defaultValue={flexible} value={flexible} >
                     <Label htmlFor="flexible date">Er vaskedatoen fleksibel?</Label>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="ja" id="ja" />
@@ -73,12 +73,12 @@ export default function BuildingCleaning2({ onInputChange, formData, setNext }) 
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent position="popper">
-                        <SelectItem value="detached home">detached home</SelectItem>
-                        <SelectItem value="terraced home">terraced home</SelectItem>
-                        <SelectItem value="apartment">apartment</SelectItem>
-                        <SelectItem value="semi-detached home">semi-detached home</SelectItem>
-                        <SelectItem value="cabin or holiday home">cabin or holiday home</SelectItem>
-                        <SelectItem value="other">other</SelectItem>
+                        <SelectItem value="Enebolig">Enebolig</SelectItem>
+                        <SelectItem value="Leilighet">Leilighet</SelectItem>
+                        <SelectItem value="Rekkehus">Rekkehus</SelectItem>
+                        <SelectItem value="Tomannsbolig">Tomannsbolig</SelectItem>
+                        <SelectItem value="Hytte eller fritidshus">Hytte eller fritidshus</SelectItem>
+                        <SelectItem value="Annet">Annet</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
@@ -112,7 +112,7 @@ export function DatePicker({ value, onInputChange }) {
                 <Calendar
                     mode="single"
                     selected={date}
-                    disabled={(day) => day.getTime() < new Date().setHours(0, 0, 0, 0)}                    onSelect={setDate}
+                    disabled={(day) => day.getTime() < new Date().setHours(0, 0, 0, 0)} onSelect={setDate}
                     initialFocus
                 />
             </PopoverContent>

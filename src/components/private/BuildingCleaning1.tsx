@@ -7,35 +7,35 @@ export default function BuildingCleaning1({ onInputChange, formData, setNext }) 
     const [selectedOptions2, setSelectedOptions2] = useState([]);
 
     const options = [
-        "Renovation/Conversion",
-        "Extension/Extension",
-        "Painting/Sanding",
-        "Flooring/Floor sanding",
-        "Other"
+        "Renovering/Ombygging",
+        "Tillbygg/Utbygg",
+        "Maling/Sliping",
+        "Gulvlegging/Gulvsliping",
+        "Annet"
     ];
 
     const options2 = [
-        "Dust drying",
-        "Vacuuming",
-        "Floor washing",
-        "Window washing",
-        "Kitchen sink",
-        "Bathroom sink",
-        "Wash the ceiling and walls",
-        "Disposal of garbage and waste"
+        "Støvtørking",
+        "Støvsuging",
+        "Gulvvask",
+        "Vindusvask",
+        "Kjøkkenvask",
+        "Baderomsvask",
+        "Vask av tak og vegger",
+        "Kast av søppel og avfall"
     ];
 
     useEffect(() => {
-        onInputChange("What_should_be_included_in_the_wash", selectedOptions2);
+        onInputChange("Hva_skal_inngå_i_vasken", selectedOptions2);
     }, [selectedOptions2]);
 
     useEffect(() => {
-        onInputChange("What_kind_of_work_is_done", selectedOptions);
+        onInputChange("Hva_slags_arbeid_er_utført", selectedOptions);
     }, [selectedOptions]);
     
     useEffect(() => {
-        setSelectedOptions2(formData?.What_should_be_included_in_the_wash || [])
-        setSelectedOptions(formData?.What_kind_of_work_is_done || [])
+        setSelectedOptions2(formData?.Hva_skal_inngå_i_vasken || [])
+        setSelectedOptions(formData?.Hva_slags_arbeid_er_utført || [])
     }, [])
 
     useEffect(() => {
@@ -62,7 +62,7 @@ export default function BuildingCleaning1({ onInputChange, formData, setNext }) 
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-2">
-                <Label htmlFor="What_should_be_included_in_the_wash">What kind of work is done?</Label>
+                <Label htmlFor="Hva_slags_arbeid_er_utført">Hva slags arbeid er utført?</Label>
                 {options.map((option, index) => (
                     <div key={index} className="flex items-center space-x-2">
                         <Checkbox
@@ -77,7 +77,7 @@ export default function BuildingCleaning1({ onInputChange, formData, setNext }) 
                 ))}
             </div>
             <div className="flex flex-col space-y-2">
-                <Label htmlFor="What_kind_of_work_is_done">What should be included in the wash?</Label>
+                <Label htmlFor="Hva_skal_inngå_i_vasken">Hva skal inngå i vasken?</Label>
                 {options2.map((option, index) => (
                     <div key={index} className="flex items-center space-x-2">
                         <Checkbox
