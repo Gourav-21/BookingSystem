@@ -24,7 +24,7 @@ export default function BuildingCleaning2({ onInputChange, formData, setNext }) 
     }, [])
 
     React.useEffect(() => {
-        const isValid = formData?.washingDate && formData?.type_of_home && (flexible === "ja" ? formData?.Fleksibilitet : true);
+        const isValid = formData?.washingDate && formData?.Hva_slags_type_bolig_skal_vaskes && (flexible === "ja" ? formData?.Fleksibilitet : true);
         setNext(isValid);
     }, [formData, flexible, setNext]);
     
@@ -67,9 +67,9 @@ export default function BuildingCleaning2({ onInputChange, formData, setNext }) 
             </div>}
 
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="type_of_home">What type of home should be washed?</Label>
-                <Select onValueChange={e => onInputChange("type_of_home", e)} value={formData?.type_of_home}>
-                    <SelectTrigger id="type_of_home">
+                <Label htmlFor="Hva_slags_type_bolig_skal_vaskes">Hva slags type bolig skal vaskes?</Label>
+                <Select onValueChange={e => onInputChange("Hva_slags_type_bolig_skal_vaskes", e)} value={formData?.Hva_slags_type_bolig_skal_vaskes}>
+                    <SelectTrigger id="Hva_slags_type_bolig_skal_vaskes">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent position="popper">

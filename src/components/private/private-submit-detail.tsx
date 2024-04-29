@@ -22,8 +22,8 @@ function PrivateSubmitDetail({ onInputChange, formData, setNext }) {
   return (
     <div className="grid w-full items-center gap-4">
       <div className="flex flex-col space-y-1.5">
-        <Label htmlFor="name">Your name</Label>
-        <Input onChange={handleChange} value={formData?.Navn} name="Navn" placeholder="First and last name" />
+        <Label htmlFor="name">Ditt navn</Label>
+        <Input onChange={handleChange} value={formData?.Navn} name="Navn" placeholder="For- og etternavn" />
       </div>
       <div className="flex flex-col space-y-1.5">
         <Label htmlFor="email">Email</Label>

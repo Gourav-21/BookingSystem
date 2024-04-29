@@ -14,9 +14,9 @@ export default function MovingLaundry2({ onInputChange, formData, setNext }) {
 
     useEffect(() => {
         const isFormValid = (
-            formData?.type_of_home &&
+            formData?.Hva_slags_type_bolig_skal_vaskes &&
             formData?.How_many_floors_must_be_washed &&
-            formData?.Should_entire_home_be_washed &&
+            formData?.Skal_hele_boligen_vaskes &&
             formData?.Omtrent_hvor_stort_areal_skal_vaskes
         );
         setIsValid(isFormValid);
@@ -28,9 +28,9 @@ export default function MovingLaundry2({ onInputChange, formData, setNext }) {
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="type_of_home">What type of home should be washed?</Label>
-                <Select onValueChange={e => onInputChange("type_of_home", e)} value={formData?.type_of_home}>
-                    <SelectTrigger id="type_of_home">
+                <Label htmlFor="Hva_slags_type_bolig_skal_vaskes">Hva slags type bolig skal vaskes?</Label>
+                <Select onValueChange={e => onInputChange("Hva_slags_type_bolig_skal_vaskes", e)} value={formData?.Hva_slags_type_bolig_skal_vaskes}>
+                    <SelectTrigger id="Hva_slags_type_bolig_skal_vaskes">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent position="popper">
@@ -57,8 +57,8 @@ export default function MovingLaundry2({ onInputChange, formData, setNext }) {
                 </Select>
             </div>
             <div className="flex flex-col space-y-1.5">
-                <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Should_entire_home_be_washed", e)} value={formData?.Should_entire_home_be_washed} name="entire home" defaultValue={""} >
-                    <Label htmlFor="entire home">Should the entire home be washed?</Label>
+                <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Skal_hele_boligen_vaskes", e)} value={formData?.Skal_hele_boligen_vaskes} name="entire home" defaultValue={""} >
+                    <Label htmlFor="entire home">Skal hele boligen vaskes?</Label>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="ja" id="ja" />
                         <Label htmlFor="ja">ja</Label>

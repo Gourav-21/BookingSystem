@@ -50,8 +50,8 @@ function ChoicePage({ choice, onChoiceChange, nextPage }) {
         <CardContent>
           <RadioGroup defaultValue="comfortable" value={choice} onValueChange={onChoiceChange} className="space-y-1">
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="regular-cleaning" id="r1" />
-              <Label htmlFor="r1">Regular Cleaning</Label>
+              <RadioGroupItem value="Fast_renhold" id="r1" />
+              <Label htmlFor="r1">Fast renhold</Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="building-cleaning" id="r2" />
@@ -74,8 +74,8 @@ function ChoicePage({ choice, onChoiceChange, nextPage }) {
               <Label htmlFor="r9">Display wash</Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="other-washing" id="r10" />
-              <Label htmlFor="r10">Other Washing</Label>
+              <RadioGroupItem value="Annen_vask" id="r10" />
+              <Label htmlFor="r10">Annen vask</Label>
             </div>
           </RadioGroup>
         </CardContent>
@@ -146,7 +146,7 @@ export default function PrivateCleaning({ page, setPage }) {
 
   const getPages = (choice) => {
     switch (choice) {
-      case "regular-cleaning":
+      case "Fast_renhold":
         return [<RegularCleaning key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning4 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
       case "building-cleaning":
         return [<BuildingCleaning1 key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <BuildingCleaning2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <BuildingCleaning3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];

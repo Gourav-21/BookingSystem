@@ -52,7 +52,7 @@ export default function EstateWashing2({ onInputChange, formData, setNext }) {
     }, []);
 
     useEffect(() => {
-        const isValid = formData?.type_of_home &&
+        const isValid = formData?.Hva_slags_type_bolig_skal_vaskes &&
                         formData?.Omtrent_hvor_stort_areal_skal_vaskes &&
                         Object.values(roomCounts).reduce((total, count) => total + count, 0) > 0 &&
                         formData?.Does_the_household_have_pets !== undefined;
@@ -62,9 +62,9 @@ export default function EstateWashing2({ onInputChange, formData, setNext }) {
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="type_of_home">What type of home should be washed?</Label>
-                <Select onValueChange={e => onInputChange("type_of_home", e)} value={formData?.type_of_home}>
-                    <SelectTrigger id="type_of_home">
+                <Label htmlFor="Hva_slags_type_bolig_skal_vaskes">Hva slags type bolig skal vaskes?</Label>
+                <Select onValueChange={e => onInputChange("Hva_slags_type_bolig_skal_vaskes", e)} value={formData?.Hva_slags_type_bolig_skal_vaskes}>
+                    <SelectTrigger id="Hva_slags_type_bolig_skal_vaskes">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent position="popper">
