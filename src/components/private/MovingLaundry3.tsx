@@ -14,13 +14,12 @@ export default function MovingLaundry3({ onInputChange, formData, setNext }) {
         Kjøkken: 0,
         "Bad/WC": 0,
         Stue: 0,
-        "Øvrige rom": 0
     });
 
     const options = [
-        "Garage",
-        "Balcony/porch",
-        "Storage room"
+        "Garasje",
+        "Balkong/veranda",
+        "Bod"
     ];
 
     const handleCheckboxChange = (option) => {
@@ -66,7 +65,6 @@ export default function MovingLaundry3({ onInputChange, formData, setNext }) {
             Kjøkken: 0,
             "Bad/WC": 0,
             Stue: 0,
-            "Øvrige rom": 0
         })
     }, [])
 

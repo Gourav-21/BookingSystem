@@ -62,8 +62,8 @@ function ChoicePage({ choice, onChoiceChange, nextPage }) {
               <Label htmlFor="r3">Dødsbovask</Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="moving-laundry" id="r5" />
-              <Label htmlFor="r5">Moving Laundry</Label>
+              <RadioGroupItem value="Flyttevask" id="r5" />
+              <Label htmlFor="r5">Flyttevask</Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="Storrengjøring" id="r7" />
@@ -152,11 +152,11 @@ export default function PrivateCleaning({ page, setPage }) {
         return [<BuildingCleaning1 key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <BuildingCleaning2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <BuildingCleaning3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
       case "Dødsbovask":
         return [<EstateWashing key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <EstateWashing2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <EstateWashing3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
-      case "moving-laundry":
+      case "Flyttevask":
         // @ts-ignore
         if (formData?.Ønsker_dere_også_flyttehjelp === "ja") {
           // @ts-ignore
-          if (formData?.type_of_housing === "Apartment") {
+          if (formData?.Hva_slags_type_bolig_skal_det_flyttes_til === "Leilighet") {
 
             return [<MovingLaundry key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry3 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry4 key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry5 key="page5" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry6 key="page6" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry7 key="page7" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry8 key="page8" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry9 key="page9" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry10 key="page10" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MovingLaundry11 key="page11" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
           } else {

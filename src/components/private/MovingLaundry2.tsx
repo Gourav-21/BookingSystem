@@ -34,12 +34,12 @@ export default function MovingLaundry2({ onInputChange, formData, setNext }) {
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent position="popper">
-                        <SelectItem value="detached home">detached home</SelectItem>
-                        <SelectItem value="terraced home">terraced home</SelectItem>
-                        <SelectItem value="apartment">apartment</SelectItem>
-                        <SelectItem value="semi-detached home">semi-detached home</SelectItem>
-                        <SelectItem value="cabin or holiday home">cabin or holiday home</SelectItem>
-                        <SelectItem value="other">other</SelectItem>
+                        <SelectItem value="Enebolig">Enebolig</SelectItem>
+                        <SelectItem value="Leilighet">Leilighet</SelectItem>
+                        <SelectItem value="Rekkehus">Rekkehus</SelectItem>
+                        <SelectItem value="Tomannsbolig">Tomannsbolig</SelectItem>
+                        <SelectItem value="Hytte eller fritidshus">Hytte eller fritidshus</SelectItem>
+                        <SelectItem value="Annet">Annet</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
@@ -50,9 +50,9 @@ export default function MovingLaundry2({ onInputChange, formData, setNext }) {
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent position="popper">
-                        <SelectItem value="1 floor">1 floor</SelectItem>
-                        <SelectItem value="2 floors">2 floors</SelectItem>
-                        <SelectItem value="3 or more floors">3 or more floors</SelectItem>
+                        <SelectItem value="1 ">1 </SelectItem>
+                        <SelectItem value="2">2</SelectItem>
+                        <SelectItem value="3+">3+</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
@@ -71,7 +71,7 @@ export default function MovingLaundry2({ onInputChange, formData, setNext }) {
             </div>
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="Omtrent_hvor_stort_areal_skal_vaskes">Omtrent hvor stort areal skal vaskes?</Label>
-                <Input onChange={handleChange} required type="number" value={formData?.Omtrent_hvor_stort_areal_skal_vaskes} name="Omtrent_hvor_stort_areal_skal_vaskes" placeholder="70 sq m" />
+                <Input onChange={handleChange} required type="number" value={formData?.Omtrent_hvor_stort_areal_skal_vaskes} name="Omtrent_hvor_stort_areal_skal_vaskes" placeholder="70 kvm" />
             </div>
 
         </div>

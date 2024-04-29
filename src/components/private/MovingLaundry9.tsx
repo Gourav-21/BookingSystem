@@ -16,7 +16,7 @@ export default function MovingLaundry9({ onInputChange, formData, setNext }) {
         const isValid =
           formData?.I_hvilken_etasje_ligger_leiligheten &&
           formData?.Er_det_heis_i_bygningen &&
-          formData?.distance_to_parking;
+          formData?.Avstand_til_parkering;
       
         setNext(isValid);
       }, [formData, setNext]);
@@ -62,7 +62,7 @@ export default function MovingLaundry9({ onInputChange, formData, setNext }) {
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="number">Avstand til parkering</Label>
                 <CardDescription >Nærmeste punkt hvor flyttebilen kan stå under lasting</CardDescription>
-                <Input onChange={handleChange} value={formData?.distance_to_parking} name="distance_to_parking" id="number" type="number" placeholder="20 meters" />
+                <Input onChange={handleChange} value={formData?.Avstand_til_parkering} name="Avstand_til_parkering" id="number" type="number" placeholder="20 meters" />
             </div>
         </div>
     )

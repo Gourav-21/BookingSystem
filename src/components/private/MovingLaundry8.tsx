@@ -23,12 +23,12 @@ export default function MovingLaundry8({ onInputChange, formData, setNext }) {
   };
 
   useEffect(() => {
-    onInputChange("to_address",ToAddress);
+    onInputChange("to_address", ToAddress);
   }, [ToAddress]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setToAddress(formData?.to_address)
-  },[])
+  }, [])
 
   useEffect(() => {
     const isValid =
@@ -36,11 +36,11 @@ export default function MovingLaundry8({ onInputChange, formData, setNext }) {
       ToAddress?.Postnummer &&
       ToAddress?.Størrelse_på_lokalet &&
       ToAddress?.Totalt_antall_rom &&
-      formData?.type_of_housing;
-  
+      formData?.Hva_slags_type_bolig_skal_det_flyttes_til;
+
     setNext(isValid);
   }, [ToAddress, formData, setNext]);
-  
+
 
   return (
     <div className="grid w-full items-center gap-5">
@@ -72,33 +72,33 @@ export default function MovingLaundry8({ onInputChange, formData, setNext }) {
             <SelectValue placeholder="Select" />
           </SelectTrigger>
           <SelectContent position="popper">
-            <SelectItem value="1 room">1 room</SelectItem>
-            <SelectItem value="2 rooms">2 rooms</SelectItem>
-            <SelectItem value="3 rooms">3 rooms</SelectItem>
-            <SelectItem value="4 rooms">4 rooms</SelectItem>
-            <SelectItem value="5 rooms">5 rooms</SelectItem>
-            <SelectItem value="6 rooms">6 rooms</SelectItem>
-            <SelectItem value="7 rooms">7 rooms</SelectItem>
-            <SelectItem value="8 rooms">8 rooms</SelectItem>
-            <SelectItem value="9 rooms">9 rooms</SelectItem>
-            <SelectItem value="10 rooms or more">10 rooms or more</SelectItem>
+            <SelectItem value="1 rom">1 rom</SelectItem>
+            <SelectItem value="2 rom">2 rom</SelectItem>
+            <SelectItem value="3 rom">3 rom</SelectItem>
+            <SelectItem value="4 rom">4 rom</SelectItem>
+            <SelectItem value="5 rom">5 rom</SelectItem>
+            <SelectItem value="6 rom">6 rom</SelectItem>
+            <SelectItem value="7 rom">7 rom</SelectItem>
+            <SelectItem value="8 rom">8 rom</SelectItem>
+            <SelectItem value="9 rom">9 rom</SelectItem>
+            <SelectItem value="10 rom+">10 rom+</SelectItem>
           </SelectContent>
 
         </Select>
       </div>
 
       <div className="flex flex-col space-y-1.5">
-        <Label htmlFor="type_of_housing">What type of housing will it be moved to?</Label>
-        <Select onValueChange={e => onInputChange("type_of_housing", e)} value={formData?.type_of_housing}>
-          <SelectTrigger id="type_of_housing">
+        <Label htmlFor="Hva_slags_type_bolig_skal_det_flyttes_til">Hva slags type bolig skal det flyttes til?</Label>
+        <Select onValueChange={e => onInputChange("Hva_slags_type_bolig_skal_det_flyttes_til", e)} value={formData?.Hva_slags_type_bolig_skal_det_flyttes_til}>
+          <SelectTrigger id="Hva_slags_type_bolig_skal_det_flyttes_til">
             <SelectValue placeholder="Select" />
           </SelectTrigger>
           <SelectContent position="popper">
-            <SelectItem value="Detached house">Detached house</SelectItem>
-            <SelectItem value="Semi-detached house">Semi-detached house</SelectItem>
-            <SelectItem value="Apartment">Apartment</SelectItem>
-            <SelectItem value="Terraced house">Terraced house</SelectItem>
-            <SelectItem value="Other">Other</SelectItem>
+            <SelectItem value="Enebolig">Enebolig</SelectItem>
+            <SelectItem value="Tomannsbolig">Tomannsbolig</SelectItem>
+            <SelectItem value="Leilighet">Leilighet</SelectItem>
+            <SelectItem value="Rekkehus">Rekkehus</SelectItem>
+            <SelectItem value="Annet">Annet</SelectItem>
           </SelectContent>
 
         </Select>

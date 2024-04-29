@@ -22,15 +22,15 @@ export default function MovingLaundry11({ onInputChange, formData, setNext }) {
         <div className="grid w-full items-center gap-5">
 
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="Utfyllende_informasjon">Utfyllende informasjon</Label>
-                <Textarea onChange={handleChange} value={formData?.Utfyllende_informasjon} name="Utfyllende_informasjon" placeholder="Other relevant information, questions or comments to the moving companies." />
+                <Label htmlFor="Utfyllende_informasjon">Utfyllende informasjon (valgfritt)</Label>
+                <Textarea onChange={handleChange} value={formData?.Utfyllende_informasjon} name="Utfyllende_informasjon" placeholder="Annen relevant informasjon, spørsmål eller kommentarer til flyttefirmaene." />
             </div>
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="name">Your name</Label>
-                <Input onChange={handleChange} value={formData?.Navn} name="Navn" placeholder="First and last name" />
+                <Label htmlFor="name">Ditt navn</Label>
+                <Input onChange={handleChange} value={formData?.Navn} name="Navn" placeholder="Ola Nordmann" />
             </div>
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="number">Telephone</Label>
+                <Label htmlFor="number">Telefon</Label>
                 <Input onChange={handleChange} value={formData?.Telefon} name="Telefon" type="number" placeholder="12345678" />
             </div>
             <div className="flex flex-col space-y-1.5">

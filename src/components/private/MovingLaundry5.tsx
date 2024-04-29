@@ -19,32 +19,32 @@ export default function MovingLaundry5({ onInputChange, formData, setNext }) {
     const [flexible, setFlexible] = React.useState("nei");
 
     React.useEffect(() => {
-        setFlexible(formData?.is_moving_Date_flexible || "nei");
-    }, [formData?.is_moving_Date_flexible]);
+        setFlexible(formData?.Er_flyttedatoen_fleksibel || "nei");
+    }, [formData?.Er_flyttedatoen_fleksibel]);
 
     const handleDateChange = (date: Date | null) => {
-        onInputChange("Desired_moving_date", date);
+        onInputChange("Ønsket_flyttedato", date);
     };
 
     const handleFlexibleChange = (value: string) => {
         setFlexible(value);
-        onInputChange("is_moving_Date_flexible", value);
+        onInputChange("Er_flyttedatoen_fleksibel", value);
     };
 
     React.useEffect(() => {
-        const isValid = formData?.Desired_moving_date && (flexible === "nei" || formData?.Flexibility_moving_date);
+        const isValid = formData?.Ønsket_flyttedato && (flexible === "nei" || formData?.Fleksibel_flyttedato);
         setNext(isValid);
     }, [formData, flexible, setNext]);
 
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="desired moving date">Desired moving date</Label>
-                <DatePicker value={formData?.Desired_moving_date} onInputChange={handleDateChange} />
+                <Label htmlFor="Ønsket flyttedato">Ønsket flyttedato</Label>
+                <DatePicker value={formData?.Ønsket_flyttedato} onInputChange={handleDateChange} />
             </div>
             <div className="flex flex-col space-y-1.5">
-                <RadioGroup className="space-y-1" onValueChange={handleFlexibleChange} value={flexible} name="flexible" defaultValue="nei">
-                    <Label htmlFor="flexible date">Is the moving date flexible?</Label>
+                <RadioGroup className="space-y-1" onValueChange={handleFlexibleChange} value={formData?.Er_flyttedatoen_fleksibel} name="flexible" defaultValue="nei">
+                    <Label htmlFor="flexible date">Er flyttedatoen fleksibel?</Label>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="ja" id="ja" />
                         <Label htmlFor="ja">ja</Label>
@@ -57,8 +57,8 @@ export default function MovingLaundry5({ onInputChange, formData, setNext }) {
             </div>
 
             {flexible === "ja" && <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="flexibility moving date">Flexible moving date</Label>
-                <Select onValueChange={e => onInputChange("Flexibility_moving_date", e)} value={formData?.Flexibility_moving_date}>
+                <Label htmlFor="flexibility moving date">Fleksibel flyttedato</Label>
+                <Select onValueChange={e => onInputChange("Fleksibel_flyttedato", e)} value={formData?.Fleksibel_flyttedato}>
                     <SelectTrigger id="flexibility">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>

@@ -7,10 +7,9 @@ import { useEffect } from "react";
 export default function MovingLaundry6({ onInputChange, formData, setNext }) {
   useEffect(() => {
     const isValid =
-      formData?.Ønsker_dere_at_flyttebyrået_pakker_inventaret_deres &&
+      formData?.Ønsker_du_at_flyttebyrået_pakker_gjenstandene &&
       formData?.Må_gjenstandene_lagres_mellom_ut_og_innflytting &&
-      formData?.Do_you_want_to_move_abroad &&
-      formData?.are_you_going_to_move_abroad &&
+      formData?.Skal_du_flytte_til_utlandet &&
       formData?.Ønsker_dere_å_forsikre_flyttelasset &&
       formData?.Omtrent_hvor_stort_er_flyttelasset;
 
@@ -20,8 +19,8 @@ export default function MovingLaundry6({ onInputChange, formData, setNext }) {
     <div className="grid w-full items-center gap-5">
 
       <div className="flex flex-col space-y-1.5">
-        <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Ønsker_dere_at_flyttebyrået_pakker_inventaret_deres", e)} value={formData?.Ønsker_dere_at_flyttebyrået_pakker_inventaret_deres}  >
-          <Label htmlFor="flexible date">Ønsker dere at flyttebyrået pakker inventaret deres?</Label>
+        <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Ønsker_du_at_flyttebyrået_pakker_gjenstandene", e)} value={formData?.Ønsker_du_at_flyttebyrået_pakker_gjenstandene}  >
+          <Label htmlFor="flexible date">Ønsker du at flyttebyrået pakker gjenstandene?</Label>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="ja" id="1"/>
             <Label htmlFor="1">ja</Label>
@@ -48,21 +47,8 @@ export default function MovingLaundry6({ onInputChange, formData, setNext }) {
       </div>
 
       <div className="flex flex-col space-y-1.5">
-        <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Do_you_want_to_move_abroad", e)} value={formData?.Do_you_want_to_move_abroad}  >
-          <Label htmlFor="flexible date">Do you want to move abroad?</Label>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="ja" id="5" />
-            <Label htmlFor="5">ja</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="nei" id="6" />
-            <Label htmlFor="6">nei</Label>
-          </div>
-        </RadioGroup>
-      </div>
-      <div className="flex flex-col space-y-1.5">
-        <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("are_you_going_to_move_abroad", e)} value={formData?.are_you_going_to_move_abroad} >
-          <Label htmlFor="flexible date">Are you going to move abroad?</Label>
+        <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Skal_du_flytte_til_utlandet", e)} value={formData?.Skal_du_flytte_til_utlandet} >
+          <Label htmlFor="flexible date">Skal du flytte til utlandet?</Label>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="ja" id="7" />
             <Label htmlFor="7">ja</Label>
