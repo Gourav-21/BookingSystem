@@ -42,7 +42,7 @@ export default function MovingLaundry({ onInputChange, formData, setNext }) {
     };
 
     React.useEffect(() => {
-        const isValid = formData?.Vaskedato && (flexible === "nei" || flexibility);
+        const isValid = formData?.Vaskedato && (flexible === "nei" ||  formData?.Fleksibilitet);
         setNext(isValid);
     }, [formData, flexible, flexibility, setNext]);
 
@@ -68,7 +68,7 @@ export default function MovingLaundry({ onInputChange, formData, setNext }) {
 
             {flexible === "ja" && <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="Flexibility">Fleksibilitet</Label>
-                <Select onValueChange={handleFlexibilityChange} value={flexibility}>
+                <Select onValueChange={handleFlexibilityChange} value={formData?.Fleksibilitet}>
                     <SelectTrigger id="Flexibility">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>

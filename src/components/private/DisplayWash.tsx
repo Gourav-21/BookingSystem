@@ -25,12 +25,12 @@ export default function DisplayWash({ onInputChange, formData, setNext }) {
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent position="popper">
-                        <SelectItem value="detached home">detached home</SelectItem>
-                        <SelectItem value="terraced home">terraced home</SelectItem>
-                        <SelectItem value="apartment">apartment</SelectItem>
-                        <SelectItem value="semi-detached home">semi-detached home</SelectItem>
-                        <SelectItem value="cabin or holiday home">cabin or holiday home</SelectItem>
-                        <SelectItem value="other">other</SelectItem>
+                        <SelectItem value="Enebolig">Enebolig</SelectItem>
+                        <SelectItem value="Leilighet">Leilighet</SelectItem>
+                        <SelectItem value="Rekkehus">Rekkehus</SelectItem>
+                        <SelectItem value="Tomannsbolig">Tomannsbolig</SelectItem>
+                        <SelectItem value="Hytte eller fritidshus">Hytte eller fritidshus</SelectItem>
+                        <SelectItem value="Annet">Annet</SelectItem>
                     </SelectContent>
                 </Select>
             </div>

@@ -31,24 +31,24 @@ export default function DisplayWash2({ onInputChange, formData, setNext }) {
         onInputChange("Er_vaskedatoen_fleksibel", value);
         if (value === "nei") {
             setFlexibility("");
-            onInputChange("Flexibility", "");
+            onInputChange("Fleksibilitet", "");
         }
     };
 
     const handleFlexibilityChange = (value: string) => {
         setFlexibility(value);
-        onInputChange("Flexibility", value);
+        onInputChange("Fleksibilitet", value);
     };
 
     React.useEffect(() => {
-        const isValid = formData?.washingDate && (flexible === "nei" || flexibility);
+        const isValid = formData?.washingDate && (flexible === "nei" || formData?.Fleksibilitet);
         setNext(isValid);
     }, [formData, flexible, flexibility, setNext]);
 
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="washing date">Washing date?</Label>
+                <Label htmlFor="washing date">Når ønsker du vask?</Label>
                 <DatePicker value={formData?.washingDate} onInputChange={handleDateChange} />
             </div>
             <div className="flex flex-col space-y-1.5">
@@ -67,7 +67,7 @@ export default function DisplayWash2({ onInputChange, formData, setNext }) {
 
             {flexible === "ja" && <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="Flexibility">Flexibility</Label>
-                <Select onValueChange={handleFlexibilityChange} value={flexibility}>
+                <Select onValueChange={handleFlexibilityChange} value={formData?.Fleksibilitet}>
                     <SelectTrigger id="Flexibility">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>

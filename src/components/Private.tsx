@@ -58,8 +58,8 @@ function ChoicePage({ choice, onChoiceChange, nextPage }) {
               <Label htmlFor="r2">Byggrengjøring</Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="estate-washing" id="r3" />
-              <Label htmlFor="r3">Estate Washing</Label>
+              <RadioGroupItem value="Dødsbovask" id="r3" />
+              <Label htmlFor="r3">Dødsbovask</Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="moving-laundry" id="r5" />
@@ -70,8 +70,8 @@ function ChoicePage({ choice, onChoiceChange, nextPage }) {
               <Label htmlFor="r7">Major Cleaning</Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="display-wash" id="r9" />
-              <Label htmlFor="r9">Display wash</Label>
+              <RadioGroupItem value="Visningsvask" id="r9" />
+              <Label htmlFor="r9">Visningsvask</Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="Annen_vask" id="r10" />
@@ -150,7 +150,7 @@ export default function PrivateCleaning({ page, setPage }) {
         return [<RegularCleaning key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <RegularCleaning4 key="page3" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
       case "Byggrengjøring":
         return [<BuildingCleaning1 key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <BuildingCleaning2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <BuildingCleaning3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
-      case "estate-washing":
+      case "Dødsbovask":
         return [<EstateWashing key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <EstateWashing2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <EstateWashing3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
       case "moving-laundry":
         // @ts-ignore
@@ -167,7 +167,7 @@ export default function PrivateCleaning({ page, setPage }) {
         }
       case "major-cleaning":
         return [<MajorCleaning key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MajorCleaning2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MajorCleaning3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <MajorCleaning4 key={"page4"} setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
-      case "display-wash":
+      case "Visningsvask":
         return [<DisplayWash key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <DisplayWash2 key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <DisplayWash3 key="page0" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <DisplayWash4 key="page5" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page4" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];
       default:
         return [<Describe key="page1" setNext={setNext} onInputChange={handleInputChange} formData={formData} />, <PrivateSubmitDetail key="page2" setNext={setNext} onInputChange={handleInputChange} formData={formData} />];

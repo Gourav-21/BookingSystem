@@ -14,7 +14,7 @@ export default function EstateWashing2({ onInputChange, formData, setNext }) {
     };
 
     const [roomCounts, setRoomCounts] = useState({
-               Soverom: 0,
+        Soverom: 0,
         Kjøkken: 0,
         "Bad/WC": 0,
         Stue: 0,
@@ -53,9 +53,9 @@ export default function EstateWashing2({ onInputChange, formData, setNext }) {
 
     useEffect(() => {
         const isValid = formData?.Hva_slags_type_bolig_skal_vaskes &&
-                        formData?.Omtrent_hvor_stort_areal_skal_vaskes &&
-                        Object.values(roomCounts).reduce((total, count) => total + count, 0) > 0 &&
-                        formData?.Har_husholdningen_kjæledyr !== undefined;
+            formData?.Omtrent_hvor_stort_areal_skal_vaskes &&
+            Object.values(roomCounts).reduce((total, count) => total + count, 0) > 0 &&
+            formData?.Har_husholdningen_kjæledyr !== undefined;
         setNext(isValid);
     }, [formData, roomCounts, setNext]);
 
@@ -68,12 +68,12 @@ export default function EstateWashing2({ onInputChange, formData, setNext }) {
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent position="popper">
-                        <SelectItem value="detached home">detached home</SelectItem>
-                        <SelectItem value="terraced home">terraced home</SelectItem>
-                        <SelectItem value="apartment">apartment</SelectItem>
-                        <SelectItem value="semi-detached home">semi-detached home</SelectItem>
-                        <SelectItem value="cabin or holiday home">cabin or holiday home</SelectItem>
-                        <SelectItem value="other">other</SelectItem>
+                        <SelectItem value="Enebolig">Enebolig</SelectItem>
+                        <SelectItem value="Leilighet">Leilighet</SelectItem>
+                        <SelectItem value="Rekkehus">Rekkehus</SelectItem>
+                        <SelectItem value="Tomannsbolig">Tomannsbolig</SelectItem>
+                        <SelectItem value="Hytte eller fritidshus">Hytte eller fritidshus</SelectItem>
+                        <SelectItem value="Annet">Annet</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
@@ -86,7 +86,7 @@ export default function EstateWashing2({ onInputChange, formData, setNext }) {
                 <Label htmlFor="floors">Antall rom som skal vaskes</Label>
                 {Object.keys(roomCounts).map((room, index) => (
                     <Card key={index} className="grid grid-cols-2 gap-5 items-center p-3 justify-center">
-                                               <Label className="text-slate-500" htmlFor={room}>{room.charAt(0).toUpperCase() + room.slice(1)}</Label>
+                        <Label className="text-slate-500" htmlFor={room}>{room.charAt(0).toUpperCase() + room.slice(1)}</Label>
 
                         <div className="flex items-center gap-3 justify-center">
                             <Button onClick={() => decrementCount(room)} className="w-8 h-8 rounded-full bg-slate-500 text-white hover:bg-slate-200 hover:text-slate-900"><span className="">-</span></Button>

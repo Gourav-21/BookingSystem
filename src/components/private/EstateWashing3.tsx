@@ -32,7 +32,7 @@ export default function EstateWashing3({ onInputChange, formData, setNext }) {
             </div>
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="area">Øvrige ønsker (frivillig)</Label>
-                <Textarea onChange={handleChange} value={formData?.Øvrige_ønsker || ''} name="Øvrige_ønsker" placeholder="Inform the laundry company of any wishes." />
+                <Textarea onChange={handleChange} value={formData?.Øvrige_ønsker || ''} name="Øvrige_ønsker" placeholder="Opplys vaskefirmaet om eventuelle ønsker." />
             </div>
         </div>
     );

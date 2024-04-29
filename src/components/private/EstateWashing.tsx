@@ -18,7 +18,6 @@ import { Checkbox } from "../ui/checkbox";
 export default function EstateWashing({ onInputChange, formData, setNext }) {
     const [flexible, setFlexible] = React.useState("nei");
     const [selectedOptions, setSelectedOptions] = React.useState([]);
-    const [date, setDate] = React.useState<Date | null>(formData?.washingDate || null);
     const [flexibilitySelected, setFlexibilitySelected] = React.useState(false);
 
     const handleCheckboxChange = (option) => {
@@ -29,11 +28,15 @@ export default function EstateWashing({ onInputChange, formData, setNext }) {
         }
     };
 
+    const handleDateChange = (date: Date | null) => {
+        onInputChange("Når_ønsker_du_vask_av_dødsbo", date);
+    };
+
     const options = [
-        "Wants emptying/driving away of assets",
-        "Want window washing",
-        "Wants to sell movable property"
-    ];
+        "Ønsker tømming/Bortkjøring av eiendeler",
+        "Ønsker vindusvask",
+        "Ønsker salg av løsøre"
+    ];    
     
     React.useEffect(() => {
         onInputChange("Ekstratjenester", selectedOptions);
@@ -42,19 +45,18 @@ export default function EstateWashing({ onInputChange, formData, setNext }) {
     React.useEffect(() => {
         setFlexible(formData?.Er_vaskedatoen_fleksibel || "nei");
         setSelectedOptions(formData?.Ekstratjenester || []);
-        setDate(formData?.washingDate || null);
     }, []);
 
     React.useEffect(() => {
-        const isValid = date !== null && flexible !== "" && (flexible === "nei" || (flexible === "ja" && flexibilitySelected));
+        const isValid = formData?.Når_ønsker_du_vask_av_dødsbo !== null && flexible !== "" && (flexible === "nei" || (flexible === "ja" && formData?.Fleksibilitet));
         setNext(isValid);
-    }, [date, flexible, flexibilitySelected, setNext]);
+    }, [formData?.Når_ønsker_du_vask_av_dødsbo, flexible, flexibilitySelected, setNext]);
 
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="washing date">Når ønsker du byggrengjøring??</Label>
-                <DatePicker onInputChange={setDate} value={date} />
+                <Label htmlFor="washing date">Når ønsker du vask av dødsbo?</Label>
+                <DatePicker onInputChange={handleDateChange} value={formData?.Når_ønsker_du_vask_av_dødsbo } />
             </div>
             <div className="flex flex-col space-y-1.5">
                 <RadioGroup className="space-y-1" onValueChange={(e) => { setFlexible(e); setFlexibilitySelected(false); onInputChange("Er_vaskedatoen_fleksibel", e) }} value={flexible} name="flexible" defaultValue={""}>

@@ -17,9 +17,9 @@ export default function DisplayWash3({ onInputChange, formData, setNext }) {
     const [floorCount, setFloorCount] = useState("");
 
     const options = [
-        "Garage",
-        "Balcony/Veranda/Terrace",
-        "Storage room"
+        "Garasje",
+        "Balkong/Veranda/Terrasse",
+        "Bod"
     ];
 
     const handleCheckboxChange = (option) => {
@@ -49,7 +49,7 @@ export default function DisplayWash3({ onInputChange, formData, setNext }) {
     useEffect(() => {
         onInputChange("Velg_om_du_vil_ha_vask_av_følgende", selectedOptions);
     }, [selectedOptions]);
-    
+
     useEffect(() => {
         onInputChange("Antall_rom_som_skal_vaskes", roomCounts);
     }, [roomCounts]);
@@ -77,7 +77,7 @@ export default function DisplayWash3({ onInputChange, formData, setNext }) {
                 <Label htmlFor="floors">Antall rom som skal vaskes</Label>
                 {Object.keys(roomCounts).map((room, index) => (
                     <Card key={index} className="grid grid-cols-2 gap-5 items-center p-3 justify-center">
-                                               <Label className="text-slate-500" htmlFor={room}>{room.charAt(0).toUpperCase() + room.slice(1)}</Label>
+                        <Label className="text-slate-500" htmlFor={room}>{room.charAt(0).toUpperCase() + room.slice(1)}</Label>
 
                         <div className="flex items-center gap-3 justify-center">
                             <Button onClick={() => decrementCount(room)} className="w-8 h-8 rounded-full bg-slate-500 text-white hover:bg-slate-200 hover:text-slate-900"><span className="">-</span></Button>
