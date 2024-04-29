@@ -11,16 +11,16 @@ export default function DisplayWash4({ onInputChange, formData, setNext }) {
       };
 
       useEffect(() => {
-        const isValid = formData?.Does_the_household_have_pets !== undefined && formData?.Does_the_household_have_pets !== "";
+        const isValid = formData?.Har_husholdningen_kjæledyr !== undefined && formData?.Har_husholdningen_kjæledyr !== "";
         setNext(isValid);
-    }, [formData?.Does_the_household_have_pets, setNext]);
+    }, [formData?.Har_husholdningen_kjæledyr, setNext]);
 
 
     return (
         <div className="grid w-full items-center gap-5">
             <div className="flex flex-col space-y-1.5">
-                <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Does_the_household_have_pets", e)} value={formData?.Does_the_household_have_pets} name="entire home" defaultValue={""} >
-                    <Label htmlFor="entire home">Does the household have pets?</Label>
+                <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Har_husholdningen_kjæledyr", e)} value={formData?.Har_husholdningen_kjæledyr} name="entire home" defaultValue={""} >
+                    <Label htmlFor="entire home">Har husholdningen kjæledyr?</Label>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="ja" id="ja" />
                         <Label htmlFor="ja">ja</Label>
@@ -33,8 +33,8 @@ export default function DisplayWash4({ onInputChange, formData, setNext }) {
             </div>
 
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="area">Other wishes (optional)</Label>
-                <Textarea onChange={handleChange} value={formData?.Other_wishes} name="Other_wishes" placeholder="Inform the laundry company of any wishes." />
+                <Label htmlFor="area">Øvrige ønsker (frivillig)</Label>
+                <Textarea onChange={handleChange} value={formData?.Øvrige_ønsker} name="Øvrige_ønsker" placeholder="Inform the laundry company of any wishes." />
             </div>
         </div>
     )

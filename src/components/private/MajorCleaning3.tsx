@@ -25,11 +25,11 @@ export default function MajorCleaning3({ onInputChange, formData, setNext }) {
     };
 
     const [roomCounts, setRoomCounts] = useState({
-        bedroom: 0,
-        kitchen: 0,
-        bathroom: 0,
-        livingRoom: 0,
-        otherRooms: 0
+               Soverom: 0,
+        Kjøkken: 0,
+        "Bad/WC": 0,
+        Stue: 0,
+        "Øvrige rom": 0
     });
 
     const decrementCount = (room) => {
@@ -49,26 +49,26 @@ export default function MajorCleaning3({ onInputChange, formData, setNext }) {
     };
 
     useEffect(() => {
-        onInputChange("wash", selectedOptions);
+        onInputChange("Velg_om_du_vil_ha_vask_av_følgende", selectedOptions);
     }, [selectedOptions]);
     
     useEffect(() => {
-        onInputChange("rooms", roomCounts);
+        onInputChange("Antall_rom_som_skal_vaskes", roomCounts);
     }, [roomCounts]);
 
     useEffect(() => {
-        setSelectedOptions(formData?.wash || [])
-        setRoomCounts(formData?.rooms||{
-            bedroom: 0,
-            kitchen: 0,
-            bathroom: 0,
-            livingRoom: 0,
-            otherRooms: 0
+        setSelectedOptions(formData?.Velg_om_du_vil_ha_vask_av_følgende || [])
+        setRoomCounts(formData?.Antall_rom_som_skal_vaskes||{
+            Soverom: 0,
+            Kjøkken: 0,
+            "Bad/WC": 0,
+            Stue: 0,
+            "Øvrige rom": 0
         })
     }, [])
 
     useEffect(() => {
-        const isValid = formData?.How_many_floors_must_be_washed &&
+        const isValid = formData?.Hvor_mange_etasjer_skal_vaskes &&
             (formData?.what_floor_is_the_apartment_on !== "1" || !formData?.what_floor_is_the_apartment_on) &&
             (formData?.what_floor_is_the_apartment_on === "1" || formData?.Er_det_heis_i_bygningen) &&
             Object.values(roomCounts).reduce((acc, val) => acc + val, 0) > 0;
@@ -79,7 +79,7 @@ export default function MajorCleaning3({ onInputChange, formData, setNext }) {
     return (
         <div className="grid w-full items-center gap-5">
            <div className="flex flex-col space-y-1.5">
-            <Label htmlFor="floors">Number of rooms to be washed</Label>
+            <Label htmlFor="floors">Antall rom som skal vaskes</Label>
             {Object.keys(roomCounts).map((room, index) => (
                 <Card key={index} className="grid grid-cols-2 gap-5 items-center p-3 justify-center">
                                            <Label className="text-slate-500" htmlFor={room}>{room.charAt(0).toUpperCase() + room.slice(1)}</Label>
@@ -93,8 +93,8 @@ export default function MajorCleaning3({ onInputChange, formData, setNext }) {
             ))}
         </div>
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="floors">How many floors must be washed?</Label>
-                <Select onValueChange={e => onInputChange("How_many_floors_must_be_washed", e)} value={formData?.How_many_floors_must_be_washed}>
+                <Label htmlFor="floors">Hvor mange etasjer skal vaskes?</Label>
+                <Select onValueChange={e => onInputChange("Hvor_mange_etasjer_skal_vaskes", e)} value={formData?.Hvor_mange_etasjer_skal_vaskes}>
                     <SelectTrigger id="floors">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
@@ -141,7 +141,7 @@ export default function MajorCleaning3({ onInputChange, formData, setNext }) {
             </div>}
 
             <div className="flex flex-col space-y-2">
-                <Label htmlFor="floors">Choose whether you want to wash the following:</Label>
+                <Label htmlFor="floors">Velg om du vil ha vask av følgende:</Label>
                 {options.map((option, index) => (
                     <div key={index} className="flex items-center space-x-2">
                         <Checkbox

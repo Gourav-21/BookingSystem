@@ -13,7 +13,7 @@ export default function BuildingCleaning3({ onInputChange, formData, setNext }) 
     };
 
     useEffect(() => {
-        const isValid = formData?.Omtrent_hvor_stort_areal_skal_vaskes && formData?.How_many_floors_must_be_washed && formData?.Omtrent_hvor_stort_areal_skal_vaskes.trim() !== '';
+        const isValid = formData?.Omtrent_hvor_stort_areal_skal_vaskes && formData?.Hvor_mange_etasjer_skal_vaskes && formData?.Omtrent_hvor_stort_areal_skal_vaskes.trim() !== '';
         setNext(isValid);
     }, [formData, setNext]);
 
@@ -24,8 +24,8 @@ export default function BuildingCleaning3({ onInputChange, formData, setNext }) 
                 <Input onChange={handleChange} required type="number" value={formData?.Omtrent_hvor_stort_areal_skal_vaskes} name="Omtrent_hvor_stort_areal_skal_vaskes" placeholder="70 sq m" />
             </div>
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="floors">How many floors must be washed?</Label>
-                <Select onValueChange={e => onInputChange("How_many_floors_must_be_washed", e)} value={formData?.How_many_floors_must_be_washed}>
+                <Label htmlFor="floors">Hvor mange etasjer skal vaskes?</Label>
+                <Select onValueChange={e => onInputChange("Hvor_mange_etasjer_skal_vaskes", e)} value={formData?.Hvor_mange_etasjer_skal_vaskes}>
                     <SelectTrigger id="floors">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
@@ -38,8 +38,8 @@ export default function BuildingCleaning3({ onInputChange, formData, setNext }) 
             </div>
 
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="area">Other wishes (optional)</Label>
-                <Textarea onChange={handleChange} value={formData?.Other_wishes} name="Other_wishes" placeholder="Inform the laundry company of any wishes." />
+                <Label htmlFor="area">Øvrige ønsker (frivillig)</Label>
+                <Textarea onChange={handleChange} value={formData?.Øvrige_ønsker} name="Øvrige_ønsker" placeholder="Inform the laundry company of any wishes." />
             </div>
         </div>
     );

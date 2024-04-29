@@ -15,7 +15,7 @@ export default function MovingLaundry2({ onInputChange, formData, setNext }) {
     useEffect(() => {
         const isFormValid = (
             formData?.Hva_slags_type_bolig_skal_vaskes &&
-            formData?.How_many_floors_must_be_washed &&
+            formData?.Hvor_mange_etasjer_skal_vaskes &&
             formData?.Skal_hele_boligen_vaskes &&
             formData?.Omtrent_hvor_stort_areal_skal_vaskes
         );
@@ -44,8 +44,8 @@ export default function MovingLaundry2({ onInputChange, formData, setNext }) {
                 </Select>
             </div>
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="floors">How many floors must be washed?</Label>
-                <Select onValueChange={e => onInputChange("How_many_floors_must_be_washed", e)} value={formData?.How_many_floors_must_be_washed}>
+                <Label htmlFor="floors">Hvor mange etasjer skal vaskes?</Label>
+                <Select onValueChange={e => onInputChange("Hvor_mange_etasjer_skal_vaskes", e)} value={formData?.Hvor_mange_etasjer_skal_vaskes}>
                     <SelectTrigger id="floors">
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>

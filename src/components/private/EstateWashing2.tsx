@@ -14,11 +14,11 @@ export default function EstateWashing2({ onInputChange, formData, setNext }) {
     };
 
     const [roomCounts, setRoomCounts] = useState({
-        bedroom: 0,
-        kitchen: 0,
-        bathroom: 0,
-        livingRoom: 0,
-        otherRooms: 0
+               Soverom: 0,
+        Kjøkken: 0,
+        "Bad/WC": 0,
+        Stue: 0,
+        "Øvrige rom": 0
     });
 
     const decrementCount = (room) => {
@@ -38,16 +38,16 @@ export default function EstateWashing2({ onInputChange, formData, setNext }) {
     };
 
     useEffect(() => {
-        onInputChange("rooms", roomCounts);
+        onInputChange("Antall_rom_som_skal_vaskes", roomCounts);
     }, [roomCounts]);
 
     useEffect(() => {
-        setRoomCounts(formData?.rooms || {
-            bedroom: 0,
-            kitchen: 0,
-            bathroom: 0,
-            livingRoom: 0,
-            otherRooms: 0
+        setRoomCounts(formData?.Antall_rom_som_skal_vaskes || {
+            Soverom: 0,
+            Kjøkken: 0,
+            "Bad/WC": 0,
+            Stue: 0,
+            "Øvrige rom": 0
         })
     }, []);
 
@@ -55,7 +55,7 @@ export default function EstateWashing2({ onInputChange, formData, setNext }) {
         const isValid = formData?.Hva_slags_type_bolig_skal_vaskes &&
                         formData?.Omtrent_hvor_stort_areal_skal_vaskes &&
                         Object.values(roomCounts).reduce((total, count) => total + count, 0) > 0 &&
-                        formData?.Does_the_household_have_pets !== undefined;
+                        formData?.Har_husholdningen_kjæledyr !== undefined;
         setNext(isValid);
     }, [formData, roomCounts, setNext]);
 
@@ -83,7 +83,7 @@ export default function EstateWashing2({ onInputChange, formData, setNext }) {
             </div>
 
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="floors">Number of rooms to be washed</Label>
+                <Label htmlFor="floors">Antall rom som skal vaskes</Label>
                 {Object.keys(roomCounts).map((room, index) => (
                     <Card key={index} className="grid grid-cols-2 gap-5 items-center p-3 justify-center">
                                                <Label className="text-slate-500" htmlFor={room}>{room.charAt(0).toUpperCase() + room.slice(1)}</Label>
@@ -97,8 +97,8 @@ export default function EstateWashing2({ onInputChange, formData, setNext }) {
                 ))}
             </div>
             <div className="flex flex-col space-y-1.5">
-                <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Does_the_household_have_pets", e)} value={formData?.Does_the_household_have_pets} name="entire home" defaultValue={""} >
-                    <Label htmlFor="entire home">Does the household have pets?</Label>
+                <RadioGroup className="space-y-1" onValueChange={(e) => onInputChange("Har_husholdningen_kjæledyr", e)} value={formData?.Har_husholdningen_kjæledyr} name="entire home" defaultValue={""} >
+                    <Label htmlFor="entire home">Har husholdningen kjæledyr?</Label>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="ja" id="ja" />
                         <Label htmlFor="ja">ja</Label>

@@ -31,8 +31,8 @@ export default function EstateWashing3({ onInputChange, formData, setNext }) {
                 </Select>
             </div>
             <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="area">Other wishes (optional)</Label>
-                <Textarea onChange={handleChange} value={formData?.Other_wishes || ''} name="Other_wishes" placeholder="Inform the laundry company of any wishes." />
+                <Label htmlFor="area">Øvrige ønsker (frivillig)</Label>
+                <Textarea onChange={handleChange} value={formData?.Øvrige_ønsker || ''} name="Øvrige_ønsker" placeholder="Inform the laundry company of any wishes." />
             </div>
         </div>
     );

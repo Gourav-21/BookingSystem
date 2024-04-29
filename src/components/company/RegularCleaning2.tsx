@@ -34,11 +34,11 @@ export default function RegularCleaning2({ onInputChange, formData, setNext }) {
     };
 
     React.useEffect(() => {
-        onInputChange("rooms", roomCounts);
+        onInputChange("Antall_rom_som_skal_vaskes", roomCounts);
     }, [roomCounts]);
 
     React.useEffect(() => {
-        setRoomCounts(formData?.rooms || {
+        setRoomCounts(formData?.Antall_rom_som_skal_vaskes || {
             Cellekontor: 0,
             Møterom: 0,
             Bad_WC: 0,
@@ -50,7 +50,7 @@ export default function RegularCleaning2({ onInputChange, formData, setNext }) {
     }, [])
 
     React.useEffect(() => {
-        if (formData?.Har_bedriften_heis && (formData?.rooms?.Cellekontor > 0 || formData?.rooms?.Møterom > 0 || formData?.rooms?.Bad_WC > 0 || formData?.rooms?.Kantine > 0 || formData?.rooms?.Kjøkken > 0 || formData?.rooms?.Kontorfellesskap > 0 || formData?.rooms?.Annet > 0)) {
+        if (formData?.Har_bedriften_heis && (formData?.Antall_rom_som_skal_vaskes?.Cellekontor > 0 || formData?.Antall_rom_som_skal_vaskes?.Møterom > 0 || formData?.Antall_rom_som_skal_vaskes?.Bad_WC > 0 || formData?.Antall_rom_som_skal_vaskes?.Kantine > 0 || formData?.Antall_rom_som_skal_vaskes?.Kjøkken > 0 || formData?.Antall_rom_som_skal_vaskes?.Kontorfellesskap > 0 || formData?.Antall_rom_som_skal_vaskes?.Annet > 0)) {
             setNext(true);
         } else {
             setNext(false);

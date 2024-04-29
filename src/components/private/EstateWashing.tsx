@@ -36,12 +36,12 @@ export default function EstateWashing({ onInputChange, formData, setNext }) {
     ];
     
     React.useEffect(() => {
-        onInputChange("Extra_services", selectedOptions);
+        onInputChange("Ekstratjenester", selectedOptions);
     }, [selectedOptions]);
 
     React.useEffect(() => {
         setFlexible(formData?.Er_vaskedatoen_fleksibel || "nei");
-        setSelectedOptions(formData?.Extra_services || []);
+        setSelectedOptions(formData?.Ekstratjenester || []);
         setDate(formData?.washingDate || null);
     }, []);
 
@@ -89,7 +89,7 @@ export default function EstateWashing({ onInputChange, formData, setNext }) {
             </div>}
 
             <div className="flex flex-col space-y-2">
-                <Label htmlFor="floors">Extra services</Label>
+                <Label htmlFor="floors">Ekstratjenester</Label>
                 {options.map((option, index) => (
                     <div key={index} className="flex items-center space-x-2">
                         <Checkbox
