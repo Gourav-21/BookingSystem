@@ -27,11 +27,11 @@ export default function MovingLaundry11({ onInputChange, formData, setNext }) {
             </div>
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Your name</Label>
-                <Input onChange={handleChange} value={formData?.Navn} name="name" placeholder="First and last name" />
+                <Input onChange={handleChange} value={formData?.Navn} name="Navn" placeholder="First and last name" />
             </div>
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="number">Telephone</Label>
-                <Input onChange={handleChange} value={formData?.Telefon} name="number" type="number" placeholder="12345678" />
+                <Input onChange={handleChange} value={formData?.Telefon} name="Telefon" type="number" placeholder="12345678" />
             </div>
             <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="email">E-post</Label>

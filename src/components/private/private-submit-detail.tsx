@@ -23,15 +23,15 @@ function PrivateSubmitDetail({ onInputChange, formData, setNext }) {
     <div className="grid w-full items-center gap-4">
       <div className="flex flex-col space-y-1.5">
         <Label htmlFor="name">Your name</Label>
-        <Input onChange={handleChange} value={formData?.Navn} name="name" placeholder="First and last name" />
+        <Input onChange={handleChange} value={formData?.Navn} name="Navn" placeholder="First and last name" />
       </div>
       <div className="flex flex-col space-y-1.5">
         <Label htmlFor="email">Email</Label>
         <Input onChange={handleChange} value={formData?.email} name="email" type="email" placeholder="example@example.com" />
       </div>
       <div className="flex flex-col space-y-1.5">
-        <Label htmlFor="number">Telephone</Label>
-        <Input onChange={handleChange} value={formData?.Telefon} name="number" type="number" placeholder="12345678" />
+        <Label htmlFor="Telefon">Telephone</Label>
+        <Input onChange={handleChange} value={formData?.Telefon} name="Telefon" type="number" placeholder="12345678" />
       </div>
       <div className="grid grid-cols-3 gap-4">
         <div className="flex flex-col col-span-2 space-y-1.5">
