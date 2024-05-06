@@ -34,7 +34,10 @@ export default function HousingAssociationCleaning({ page, setPage }) {
   const [next, setNext] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    type: "Borettslag",
+    type_rengjøring: "",
+  });
 
   const handleChoiceChange = (value) => {
     setFormData({
@@ -171,7 +174,8 @@ export default function HousingAssociationCleaning({ page, setPage }) {
       ) : (
         <div className="text-center">
           <Success />
-          <p className="text-2xl text-white font-semibold mb-4">Vellykket innsendt!</p>
+          <p className="text-2xl text-white font-semibold mb-4">Tusen takk for din henvendelse!</p>
+          <p className="text-xs text-white font-semibold mb-4">Vi har videreformidlet din forespørsel om {formData?.type_rengjøring} til tre selskaper. Du kan forvente å bli kontaktet av dem innen 1-2 dager. Vennligst vær oppmerksom på anrop fra ukjente numre, og sjekk din søppelpost jevnlig for sikkerhets skyld.</p>
           <Button variant="outline" onClick={goToHome}>gå tilbake</Button>
         </div>
       )}
