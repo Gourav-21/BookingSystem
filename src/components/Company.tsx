@@ -113,6 +113,7 @@ export default function Company({ page, setPage }) {
         title: "Åh! Noe gikk galt.",
         description: "Vennligst fyll inn alle feltene",
       })
+      setIsLoading(false);
       return
     }
     emailjs.send("service_s51bxmq", "template_z6fjeta", {
