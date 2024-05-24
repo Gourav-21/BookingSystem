@@ -37,6 +37,7 @@ import MovingLaundry11 from "./private/MovingLaundry11";
 import Success from "./Success";
 import { useToast } from "./ui/use-toast";
 import emailjs from '@emailjs/browser';
+import { generateHTML } from "@/lib/utils";
 
 function ChoicePage({ choice, onChoiceChange, nextPage }) {
   return (
@@ -199,7 +200,7 @@ export default function PrivateCleaning({ page, setPage }) {
       // @ts-ignore
       type_rengjøring: formData.type_rengjøring,
 
-      formData: JSON.stringify(formData, null, 2),
+      formData: generateHTML(formData)
     }, "Ir-YjhpxWCxJ8yqh_")
       .then((result) => {
         console.log("Submitted Data:", formData);

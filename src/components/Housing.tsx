@@ -12,6 +12,7 @@ import Page2 from "./housing/stairAndCoridorWashing/page2";
 import Success from "./Success";
 import { useToast } from "./ui/use-toast";
 import emailjs from '@emailjs/browser';
+import { generateHTML } from "@/lib/utils";
 
 function PageIndicator({ currentPage, totalPages }) {
   return (
@@ -112,7 +113,7 @@ export default function HousingAssociationCleaning({ page, setPage }) {
       // @ts-ignore
       type_rengjøring: formData.type_rengjøring,
 
-      formData: JSON.stringify(formData, null, 2),
+      formData: generateHTML(formData)
     }, "Ir-YjhpxWCxJ8yqh_")
       .then((result) => {
         console.log("Submitted Data:", formData);

@@ -22,6 +22,7 @@ import MovingLaundry8 from "./company/MovingLaundry8";
 import MovingLaundry9 from "./company/MovingLaundry9";
 import MovingLaundry10 from "./company/MovingLaundry10";
 import emailjs from '@emailjs/browser';
+import { generateHTML } from "@/lib/utils";
 
 function PageIndicator({ currentPage, totalPages }) {
   return (
@@ -127,7 +128,7 @@ export default function Company({ page, setPage }) {
       // @ts-ignore
       type_rengjøring: formData.type_rengjøring,
 
-      formData: JSON.stringify(formData, null, 2),
+      formData: generateHTML(formData)
     }, "Ir-YjhpxWCxJ8yqh_")
       .then((result) => {
         console.log("Submitted Data:", formData);
