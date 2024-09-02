@@ -88,10 +88,10 @@ export default function MovingLaundry({ onInputChange, formData, setNext }) {
 }
 
 export function DatePicker({ value, onInputChange }) {
-    const [date, setDate] = React.useState<Date>(value || null);
+    const [date, setDate] = React.useState<Date>(value? new Date(value) : null);
 
     React.useEffect(() => {
-        onInputChange(date);
+        onInputChange(date ? date.toDateString() : null);
     }, [date])
 
     return (
